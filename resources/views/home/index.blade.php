@@ -15,61 +15,74 @@
 
                 <div class="card border-0 shadow">
 
-                    <div class="card-header d-flex flex-row justify-content-between border-0">
-                        <h4>{{ __('November') }} 2020</h4>
+                    @guest
 
-                        <div class="btn-group" role="group" aria-label="Navigation by weeks">
-                            <button type="button" class="btn btn-outline-secondary">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-fill"
-                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-                                </svg>
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar-check-fill"
-                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                          d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-                                </svg>
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill"
-                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                                </svg>
-                            </button>
+                        <div class="card-header d-flex flex-row justify-content-between border-0">
+                            <h4>{{ $dt->format('l, d F Y') }}</h4>
                         </div>
-                    </div>
 
-                    <div class="card-header">
+                    @else
 
-                        <ul class="nav nav-tabs card-header-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark active" data-toggle="tab" href="#monday" role="tab" aria-controls="monday" aria-selected="true">Monday</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" data-toggle="tab" href="#tuesday" role="tab" aria-controls="tuesday" aria-selected="false">Tuesday</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" data-toggle="tab" href="#wednesday" role="tab" aria-controls="wednesday" aria-selected="false">Wednesday</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" data-toggle="tab" href="#thursday" role="tab" aria-controls="thursday" aria-selected="false">Thursday</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" data-toggle="tab" href="#friday" role="tab" aria-controls="friday" aria-selected="false">Friday</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" data-toggle="tab" href="#saturday" role="tab" aria-controls="saturday" aria-selected="false">Saturday</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" data-toggle="tab" href="#sunday" role="tab" aria-controls="sunday" aria-selected="false">Sunday</a>
-                            </li>
-                        </ul>
+                        @if (Auth::user()->isAdmin() || Auth::user()->isUser())
 
-                    </div>
+                            <div class="card-header d-flex flex-row justify-content-between border-0">
+                                <h4>{{ $dt->format('d F Y') }}</h4>
+
+                                <div class="btn-group" role="group" aria-label="Navigation by weeks">
+                                    <a class="btn btn-outline-secondary"
+                                       href="{{ url('/?date=' . $startOfWeek->subDay()->toDateString()) }}"
+                                       role="button">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-fill"
+                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                                        </svg>
+                                    </a>
+                                    <a class="btn btn-outline-secondary"
+                                       href="{{ url('/?date=' . $today->toDateString()) }}" role="button">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                             class="bi bi-calendar-check-fill"
+                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                  d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                                        </svg>
+                                    </a>
+                                    <a type="button" class="btn btn-outline-secondary"
+                                       href="{{ url('/?date=' . $endOfWeek->addDay()->toDateString()) }}" role="button">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill"
+                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="card-header">
+
+                                <ul class="nav nav-tabs card-header-tabs">
+
+                                    @for($i = 1; $i <= 7; $i++)
+
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark{{ ($dt->dayOfWeek == $i || (7 == $i && 0 == $dt->dayOfWeek)) ? ' active' : '' }}"
+                                               href="{{ url('/?date=' . $startOfWeek->addDay()->toDateString()) }}">{{ $startOfWeek->dayName }}</a>
+                                        </li>
+
+                                    @endfor
+
+                                </ul>
+
+                            </div>
+                        @else
+
+                            <div class="card-header d-flex flex-row justify-content-between border-0">
+                                <h4>{{ $dt->format('l, d F Y') }}</h4>
+                            </div>
+
+                        @endif
+
+                    @endguest
 
                     <div class="card-body">
 
@@ -81,7 +94,8 @@
 
                         <div class="tab-content">
 
-                            <div class="tab-pane fade show active" id="monday" role="tabpanel" aria-labelledby="monday-tab">
+                            <div class="tab-pane fade show active" id="monday" role="tabpanel"
+                                 aria-labelledby="monday-tab">
 
                                 <div class="row py-2">
 
@@ -90,11 +104,15 @@
                                     </div>
 
                                     <div class="col-4 col-lg-5">
-                                        <button class="btn btn-outline-secondary w-100" data-toggle="modal" data-target="#confirmation-modal">Sign up</button>
+                                        <button class="btn btn-outline-secondary w-100" data-toggle="modal"
+                                                data-target="#confirmation-modal">Sign up
+                                        </button>
                                     </div>
 
                                     <div class="col-4 col-lg-5">
-                                        <button class="btn btn-success w-100" data-toggle="modal" data-target="#confirmation-modal">Andrew Petryk</button>
+                                        <button class="btn btn-success w-100" data-toggle="modal"
+                                                data-target="#confirmation-modal">Andrew Petryk
+                                        </button>
                                     </div>
 
                                 </div>
@@ -1352,7 +1370,8 @@
 
 
     <!-- Modal -->
-    <div class="modal border-0 fade" id="confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
+    <div class="modal border-0 fade" id="confirmation-modal" tabindex="-1" role="dialog"
+         aria-labelledby="confirmationModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">

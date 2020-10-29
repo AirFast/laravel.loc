@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,8 +23,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $today = Carbon::today();
+        $currentDate = Carbon::createFromDate($request->query('date', $today->toDateString()));
+
+        $dt = $currentDate->timezone('Europe/Kiev');
+        $startOfWeek = $dt->clone()->startOfWeek();
+        $endOfWeek = $dt->clone()->endOfWeek();
+
+        return view('home.index', compact('today', 'dt', 'startOfWeek', 'endOfWeek'));
     }
 }
