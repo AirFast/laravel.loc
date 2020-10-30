@@ -145,21 +145,86 @@
                                         <span class="m-auto">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
                                     </div>
 
-                                    <div class="col-5">
-                                        <button class="btn btn-outline-secondary w-100"
-                                                data-time="{{ $i }}"
-                                                data-user-id-1="{{ Auth::user()->id }}" data-toggle="modal"
-                                                data-target="#confirmation-modal" role="button">Sign up
-                                        </button>
-                                    </div>
+                                    @if($stands->contains('time', $i))
+                                        @foreach($stands as $stand)
 
-                                    <div class="col-5">
-                                        <button class="btn btn-success w-100"
-                                                data-time="{{ $i }}"
-                                                data-user-id-2="{{ Auth::user()->id }}" data-toggle="modal"
-                                                data-target="#confirmation-modal">Andrew Petryk
-                                        </button>
-                                    </div>
+                                            @if($stand->time == $i)
+
+                                                @if(!empty($stand->user_id_1))
+
+                                                    <div class="col-5">
+                                                        <button class="btn btn-success w-100"
+                                                                data-stand-id="{{ $stand->id }}"
+                                                                data-time="{{ $i }}"
+                                                                data-user-id-1="{{ Auth::user()->id }}"
+                                                                data-toggle="{{ Auth::user()->id == $stand->user_id_1 ? 'modal' : '' }}"
+                                                                data-target="#edit-modal">{{ $stand->userOne->name }}
+                                                        </button>
+                                                    </div>
+
+                                                @else
+
+                                                    <div class="col-5">
+                                                        <button class="btn btn-outline-secondary w-100"
+                                                                data-stand-id="{{ $stand->id }}"
+                                                                data-time="{{ $i }}"
+                                                                data-user-id-1="{{ Auth::user()->id }}"
+                                                                data-toggle="modal"
+                                                                data-target="#edit-modal" role="button">Sign up
+                                                        </button>
+                                                    </div>
+
+                                                @endif
+
+                                                @if(!empty($stand->user_id_2))
+
+                                                    <div class="col-5">
+                                                        <button class="btn btn-success w-100"
+                                                                data-stand-id="{{ $stand->id }}"
+                                                                data-time="{{ $i }}"
+                                                                data-user-id-2="{{ Auth::user()->id }}"
+                                                                data-toggle="{{ Auth::user()->id == $stand->user_id_2 ? 'modal' : '' }}"
+                                                                data-target="#edit-modal">{{ $stand->userTwo->name }}
+                                                        </button>
+                                                    </div>
+
+                                                @else
+
+                                                    <div class="col-5">
+                                                        <button class="btn btn-outline-secondary w-100"
+                                                                data-stand-id="{{ $stand->id }}"
+                                                                data-time="{{ $i }}"
+                                                                data-user-id-2="{{ Auth::user()->id }}"
+                                                                data-toggle="modal"
+                                                                data-target="#edit-modal" role="button">Sign up
+                                                        </button>
+                                                    </div>
+
+                                                @endif
+
+                                            @endif
+
+                                        @endforeach
+
+                                    @else
+
+                                        <div class="col-5">
+                                            <button class="btn btn-outline-secondary w-100"
+                                                    data-time="{{ $i }}"
+                                                    data-user-id-1="{{ Auth::user()->id }}" data-toggle="modal"
+                                                    data-target="#confirmation-modal" role="button">Sign up
+                                            </button>
+                                        </div>
+
+                                        <div class="col-5">
+                                            <button class="btn btn-outline-secondary w-100"
+                                                    data-time="{{ $i }}"
+                                                    data-user-id-2="{{ Auth::user()->id }}" data-toggle="modal"
+                                                    data-target="#confirmation-modal" role="button">Sign up
+                                            </button>
+                                        </div>
+
+                                    @endif
 
                                 </div>
 
@@ -184,7 +249,6 @@
 
         @if (Auth::user()->isAdmin() || Auth::user()->isUser())
 
-            <!-- Modal -->
             <div class="modal border-0 fade" id="confirmation-modal" tabindex="-1" role="dialog"
                  aria-labelledby="confirmationModalTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -220,7 +284,43 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
+
+            <div class="modal border-0 fade" id="edit-modal" tabindex="-1" role="dialog"
+                 aria-labelledby="confirmationModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLongTitle">Dear, {{ Auth::user()->name }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really want to delete yourself from the ministry with a stand at <span
+                                    id="edit-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}?</p>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">No</button>
+
+                            <form id="edit-form" action="user/stands" method="POST">
+
+                                @csrf
+                                @method('PATCH')
+
+                                <input id="edit-time" type="text" name="time" hidden>
+                                <input type="text" name="date" hidden value="{{ $dt->toDateString() }}">
+                                <input id="edit-user-id-1" type="text" name="user_id_1" hidden>
+                                <input id="edit-user-id-2" type="text" name="user_id_2" hidden>
+
+                                <button type="submit" class="btn btn-dark">Yes, I want</button>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         @endif
 

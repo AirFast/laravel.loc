@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\Stand;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,8 +35,8 @@ class HomeController extends Controller
         $startOfWeek = $dt->clone()->startOfWeek();
         $endOfWeek = $dt->clone()->endOfWeek();
 
-        $standRow = Stand::where('date', $currentDate->toDateString())->get();
+        $stands = Stand::where('date', $currentDate->toDateString())->get();
 
-        return view('home.index', compact('today', 'dt', 'startOfWeek', 'endOfWeek', 'standRow'));
+        return view('home.index', compact('today', 'dt', 'startOfWeek', 'endOfWeek', 'stands'));
     }
 }

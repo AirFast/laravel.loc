@@ -10,4 +10,12 @@ class Stand extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function userOne() {
+        return $this->belongsTo(User::class, 'user_id_1');
+    }
+
+    public function userTwo() {
+        return $this->belongsTo(User::class, 'user_id_2');
+    }
 }
