@@ -308,8 +308,6 @@
                                 @csrf
                                 @method('PATCH')
 
-                                <input id="edit-time" type="text" name="time" hidden>
-                                <input type="text" name="date" hidden value="{{ $dt->toDateString() }}">
                                 <input id="edit-user-id-1" type="text" name="user_id_1" hidden>
                                 <input id="edit-user-id-2" type="text" name="user_id_2" hidden>
 

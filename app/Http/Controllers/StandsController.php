@@ -31,13 +31,23 @@ class StandsController extends Controller {
     public function update(Stand $stand) {
 
         $data = request()->validate( [
-            'time'      => 'required|numeric',
-            'date'      => 'required',
             'user_id_1' => 'required_if:user_id_2,null|required_if:user_id_1,' . Auth::user()->id,
             'user_id_2' => 'required_if:user_id_1,null|required_if:user_id_2,' . Auth::user()->id
         ] );
 
-        dd($stand);
+        if ($stand->user_id_1 == $data['user_id_1']) {
+            $data['user_id_1'] = null;
+        }
+
+        if ($stand->user_id_2 == $data['user_id_2']) {
+            $data['user_id_2'] = null;
+        }
+
+        dd($data);
+
+        $stand->update($data);
+
+        return back();
     }
 
 }
