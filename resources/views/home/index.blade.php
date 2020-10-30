@@ -17,16 +17,14 @@
 
                     @guest
 
-                        <div class="card-header d-flex flex-row justify-content-between border-0">
-                            <h4>{{ $dt->format('l, d F Y') }}</h4>
-                        </div>
+                        @include('home.calendar-header')
 
                     @else
 
                         @if (Auth::user()->isAdmin() || Auth::user()->isUser())
 
                             <div class="card-header d-flex flex-row justify-content-between border-0">
-                                <h4>{{ $dt->format('d F Y') }}</h4>
+                                <h4>{{ $dt->format('l, d F Y') }}</h4>
 
                                 <div class="btn-group" role="group" aria-label="Navigation by weeks">
                                     <a class="btn btn-outline-secondary"
@@ -76,9 +74,7 @@
                             </div>
                         @else
 
-                            <div class="card-header d-flex flex-row justify-content-between border-0">
-                                <h4>{{ $dt->format('l, d F Y') }}</h4>
-                            </div>
+                            @include('home.calendar-header')
 
                         @endif
 
@@ -89,32 +85,88 @@
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         @endif
 
-                        @for($i = 8; $i <= 20; $i++)
-
-                            <div class="row py-2">
-
-                                <div class="col-2 d-flex">
-                                    <span class="m-auto">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
-                                </div>
-
-                                <div class="col-5">
-                                    <button class="btn btn-outline-secondary w-100" data-toggle="modal"
-                                            data-target="#confirmation-modal">Sign up
-                                    </button>
-                                </div>
-
-                                <div class="col-5">
-                                    <button class="btn btn-success w-100" data-toggle="modal"
-                                            data-target="#confirmation-modal">Andrew Petryk
-                                    </button>
-                                </div>
-
+                        @if (session('message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('message') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
+                        @endif
 
-                        @endfor
+                        @if ($errors->count() > 0)
+                            @foreach($errors->all() as $error)
+
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $error }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                            @endforeach
+                        @endif
+
+                        @guest
+
+                            @for($i = 8; $i <= 20; $i++)
+
+                                <div class="row py-2">
+
+                                    <div class="col-2 d-flex">
+                                        <span class="m-auto">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <button class="btn btn-outline-secondary w-100">Sign up</button>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <button class="btn btn-success w-100">Andrew Petryk</button>
+                                    </div>
+
+                                </div>
+
+                            @endfor
+
+                        @else
+
+                            @for($i = 8; $i <= 20; $i++)
+
+                                <div class="row py-2">
+
+                                    <div class="col-2 d-flex">
+                                        <span class="m-auto">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <button class="btn btn-outline-secondary w-100"
+                                                data-time="{{ $i }}"
+                                                data-user-id-1="{{ Auth::user()->id }}" data-toggle="modal"
+                                                data-target="#confirmation-modal" role="button">Sign up
+                                        </button>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <button class="btn btn-success w-100"
+                                                data-time="{{ $i }}"
+                                                data-user-id-2="{{ Auth::user()->id }}" data-toggle="modal"
+                                                data-target="#confirmation-modal">Andrew Petryk
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            @endfor
+
+                        @endguest
+
 
                     </div>
 
@@ -128,26 +180,50 @@
     </div>
 
 
-    <!-- Modal -->
-    <div class="modal border-0 fade" id="confirmation-modal" tabindex="-1" role="dialog"
-         aria-labelledby="confirmationModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmationModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Monday 08:00 - 09:00
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-dark">Save changes</button>
+    @auth
+
+        @if (Auth::user()->isAdmin() || Auth::user()->isUser())
+
+            <!-- Modal -->
+            <div class="modal border-0 fade" id="confirmation-modal" tabindex="-1" role="dialog"
+                 aria-labelledby="confirmationModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLongTitle">Dear, {{ Auth::user()->name }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really want to sign up for the ministry with a stand at <span
+                                    id="confirmation-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}?</p>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">No</button>
+
+                            <form action="user/stands" method="POST">
+
+                                @csrf
+
+                                <input id="store-time" type="text" name="time" hidden>
+                                <input type="text" name="date" hidden value="{{ $dt->toDateString() }}">
+                                <input id="store-user-id-1" type="text" name="user_id_1" hidden>
+                                <input id="store-user-id-2" type="text" name="user_id_2" hidden>
+
+                                <button type="submit" class="btn btn-dark">Yes, I want</button>
+
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Modal -->
+            <!-- Modal -->
+
+        @endif
+
+    @endauth
+
 @endsection

@@ -37272,7 +37272,20 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Custom js
+
+
+$('#confirmation-modal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var modal = $(this);
+  var time = button.data('time');
+  var userId1 = button.data('user-id-1');
+  var userId2 = button.data('user-id-2');
+  modal.find('#confirmation-modal-time').text(time + ':00');
+  modal.find('#store-time').val(time);
+  modal.find('#store-user-id-1').val(userId1);
+  modal.find('#store-user-id-2').val(userId2);
+});
 
 /***/ }),
 
