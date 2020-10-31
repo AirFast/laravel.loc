@@ -35,19 +35,33 @@ class StandsController extends Controller {
             'user_id_2' => 'required_if:user_id_1,null|required_if:user_id_2,' . Auth::user()->id
         ] );
 
-        if ($stand->user_id_1 == $data['user_id_1']) {
-            $data['user_id_1'] = null;
+        if (!empty($stand->user_id_1) && ($stand->user_id_1 == $data['user_id_1'])) {
+            $stand->user_id_1 = null;
+            $stand->update();
+
+            return back()->with(['message' => '1']);
         }
 
-        if ($stand->user_id_2 == $data['user_id_2']) {
-            $data['user_id_2'] = null;
+        if (!empty($data['user_id_1'])) {
+            $stand->user_id_1 = $data['user_id_1'];
+            $stand->update();
+
+            return back()->with(['message' => '2']);
         }
 
-        dd($data);
+        if (!empty($stand->user_id_2) && ($stand->user_id_2 == $data['user_id_2'])) {
+            $stand->user_id_2 = null;
+            $stand->update();
 
-        $stand->update($data);
+            return back()->with(['message' => '3']);
+        }
 
-        return back();
+        if (!empty($data['user_id_2'])) {
+            $stand->user_id_2 = $data['user_id_2'];
+            $stand->update();
+
+            return back()->with(['message' => '4']);
+        }
     }
 
 }
