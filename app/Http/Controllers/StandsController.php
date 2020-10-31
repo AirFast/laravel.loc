@@ -3,10 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stand;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class StandsController extends Controller {
+
+    public function __construct() {
+        $this->middleware('user');
+    }
+
+    public function index(Request $request) {
+
+        $today = Carbon::today();
+        $currentDate = Carbon::createFromDate($request->query('date', $today->toDateString()));
+
+        $dt = $currentDate->timezone('Europe/Kiev');
+        $startOfWeek = $dt->clone()->startOfWeek();
+        $endOfWeek = $dt->clone()->endOfWeek();
+
+        $stands = Stand::where('date', $dt->toDateString())->get();
+
+        return view('stand.index', compact('today', 'dt', 'startOfWeek', 'endOfWeek', 'stands'));
+
+    }
 
     public function store() {
 

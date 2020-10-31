@@ -37294,7 +37294,7 @@ $('#edit-modal').on('show.bs.modal', function (event) {
   var time = button.data('time');
   var userId1 = button.data('user-id-1');
   var userId2 = button.data('user-id-2');
-  form.attr('action', 'user/stands/' + action);
+  form.attr('action', 'stand/' + action);
   modal.find('#edit-modal-time').text(time + ':00');
   modal.find('#edit-user-id-1').val(userId1);
   modal.find('#edit-user-id-2').val(userId2);

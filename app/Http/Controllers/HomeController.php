@@ -29,14 +29,9 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $today = Carbon::today();
-        $currentDate = Carbon::createFromDate($request->query('date', $today->toDateString()));
+        $dt = $today->timezone('Europe/Kiev');
+        $stands = Stand::where('date', $dt->toDateString())->get();
 
-        $dt = $currentDate->timezone('Europe/Kiev');
-        $startOfWeek = $dt->clone()->startOfWeek();
-        $endOfWeek = $dt->clone()->endOfWeek();
-
-        $stands = Stand::where('date', $currentDate->toDateString())->get();
-
-        return view('home.index', compact('today', 'dt', 'startOfWeek', 'endOfWeek', 'stands'));
+        return view('home', compact('today', 'dt', 'stands'));
     }
 }

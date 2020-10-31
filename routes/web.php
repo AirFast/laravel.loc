@@ -31,7 +31,7 @@ Route::prefix('admin')->group(function () {
 
 // User route
 Route::prefix('user')->middleware('user')->group(function () {
-    Route::get('', [ App\Http\Controllers\Admin\DashboardController::class, 'index' ]);
-    Route::post('stands', [ App\Http\Controllers\StandsController::class, 'store' ]);
-    Route::patch('stands/{stand}', [ App\Http\Controllers\StandsController::class, 'update' ]);
+    Route::get('stand', [ App\Http\Controllers\StandsController::class, 'index' ]);
+    Route::post('stand', [ App\Http\Controllers\StandsController::class, 'store' ]);
+    Route::patch('stand/{stand}', [ App\Http\Controllers\StandsController::class, 'update' ]);
 });
