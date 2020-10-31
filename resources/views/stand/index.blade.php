@@ -35,7 +35,7 @@
                                         </svg>
                                     </a>
                                     <a class="btn btn-outline-secondary"
-                                       href="{{ url('/user/stand?date=' . $today->toDateString()) }}" role="button">
+                                       href="{{ url('/user/stand?date=' . $now->toDateString()) }}" role="button">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16"
                                              class="bi bi-calendar-check-fill"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -133,7 +133,7 @@
                                         <div class="row py-2">
 
                                             <div class="col-2 d-flex">
-                                                <span class="m-auto">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
+                                                <span class="m-auto {{ ($now->hour == $i) && ($now->toDateString() == $dt->toDateString()) ? 'btn btn-secondary' : '' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
                                             </div>
 
                                             @if($stands->contains('time', $i))

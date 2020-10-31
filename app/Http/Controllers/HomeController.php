@@ -9,15 +9,13 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         //$this->middleware('auth');
     }
 
@@ -26,12 +24,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
-    {
-        $today = Carbon::today();
-        $dt = $today->timezone('Europe/Kiev');
-        $stands = Stand::where('date', $dt->toDateString())->get();
+    public function index() {
+        $dt     = Carbon::now()->timezone( 'Europe/Kiev' );
+        $stands = Stand::where( 'date', $dt->toDateString() )->get();
 
-        return view('home', compact('today', 'dt', 'stands'));
+        return view( 'home', compact( 'dt', 'stands' ) );
     }
 }

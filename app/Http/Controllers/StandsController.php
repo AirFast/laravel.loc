@@ -15,16 +15,15 @@ class StandsController extends Controller {
 
     public function index(Request $request) {
 
-        $today = Carbon::today();
-        $currentDate = Carbon::createFromDate($request->query('date', $today->toDateString()));
+        $now = Carbon::now()->timezone('Europe/Kiev');
+        $dt = Carbon::createFromDate($request->query('date', $now->toDateString()))->timezone('Europe/Kiev');
 
-        $dt = $currentDate->timezone('Europe/Kiev');
         $startOfWeek = $dt->clone()->startOfWeek();
         $endOfWeek = $dt->clone()->endOfWeek();
 
         $stands = Stand::where('date', $dt->toDateString())->get();
 
-        return view('stand.index', compact('today', 'dt', 'startOfWeek', 'endOfWeek', 'stands'));
+        return view('stand.index', compact('now', 'dt', 'startOfWeek', 'endOfWeek', 'stands'));
 
     }
 
