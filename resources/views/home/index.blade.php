@@ -83,7 +83,7 @@
                     <div class="card-body">
 
                         @if (session('status'))
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-success col-12 col-md-10 ml-auto text-center" role="alert">
                                 {{ session('status') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -92,7 +92,7 @@
                         @endif
 
                         @if (session('message'))
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-success ol-12 col-md-10 ml-auto text-center" role="alert">
                                 {{ session('message') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -103,7 +103,7 @@
                         @if ($errors->count() > 0)
                             @foreach($errors->all() as $error)
 
-                                <div class="alert alert-danger" role="alert">
+                                <div class="alert alert-danger col-10 ml-auto text-center" role="alert">
                                     {{ $error }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -153,7 +153,7 @@
                                                 @if(!empty($stand->user_id_1))
 
                                                     <div class="col-5">
-                                                        <button class="btn btn-success w-100"
+                                                        <button class="btn {{ Auth::user()->id == $stand->user_id_1 ? 'btn-success' : 'btn-secondary' }} w-100"
                                                                 data-stand-id="{{ $stand->id }}"
                                                                 data-time="{{ $i }}"
                                                                 data-user-id-1="{{ Auth::user()->id }}"
@@ -179,7 +179,7 @@
                                                 @if(!empty($stand->user_id_2))
 
                                                     <div class="col-5">
-                                                        <button class="btn btn-success w-100"
+                                                        <button class="btn {{ Auth::user()->id == $stand->user_id_2 ? 'btn-success' : 'btn-secondary' }} w-100"
                                                                 data-stand-id="{{ $stand->id }}"
                                                                 data-time="{{ $i }}"
                                                                 data-user-id-2="{{ Auth::user()->id }}"
