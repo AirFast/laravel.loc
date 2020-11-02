@@ -40,7 +40,7 @@ class StandsController extends Controller {
 
         $stand = Stand::create( $data );
 
-        return back()->with(['message' => $this->setCreateSessionMessage($stand)]);
+        return back()->with(['create' => $this->setCreateSessionMessage($stand)]);
     }
 
     public function update(Stand $stand) {
@@ -54,28 +54,28 @@ class StandsController extends Controller {
             $stand->user_id_1 = null;
             $stand->update();
 
-            return back()->with(['message' => $this->setDeleteSessionMessage($stand)]);
+            return back()->with(['delete' => $this->setDeleteSessionMessage($stand)]);
         }
 
         if (!empty($data['user_id_1'])) {
             $stand->user_id_1 = $data['user_id_1'];
             $stand->update();
 
-            return back()->with(['message' => $this->setCreateSessionMessage($stand)]);
+            return back()->with(['create' => $this->setCreateSessionMessage($stand)]);
         }
 
         if (!empty($stand->user_id_2) && ($stand->user_id_2 == $data['user_id_2'])) {
             $stand->user_id_2 = null;
             $stand->update();
 
-            return back()->with(['message' => $this->setDeleteSessionMessage($stand)]);
+            return back()->with(['delete' => $this->setDeleteSessionMessage($stand)]);
         }
 
         if (!empty($data['user_id_2'])) {
             $stand->user_id_2 = $data['user_id_2'];
             $stand->update();
 
-            return back()->with(['message' => $this->setCreateSessionMessage($stand)]);
+            return back()->with(['create' => $this->setCreateSessionMessage($stand)]);
         }
     }
 

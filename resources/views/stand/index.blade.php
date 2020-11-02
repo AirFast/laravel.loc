@@ -75,9 +75,18 @@
 
                             <div class="card-body">
 
-                                @if (session('message'))
+                                @if (session('create'))
                                     <div class="alert alert-success ol-12 col-md-10 ml-auto text-center" role="alert">
-                                        {{ session('message') }}
+                                        {{ session('create') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
+
+                                @if (session('delete'))
+                                    <div class="alert alert-danger ol-12 col-md-10 ml-auto text-center" role="alert">
+                                        {{ session('delete') }}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -102,7 +111,8 @@
                                     <div class="row py-2">
 
                                         <div class="col-2 d-flex text-center">
-                                            <span class="m-auto {{ ($now->hour == $i) && ($now->toDateString() == $dt->toDateString()) ? 'btn btn-secondary' : '' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
+                                            <span
+                                                class="m-auto {{ ($now->hour == $i) && ($now->toDateString() == $dt->toDateString()) ? 'btn btn-secondary' : '' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
                                         </div>
 
                                         @if($stands->contains('time', $i))
@@ -124,12 +134,14 @@
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-1="{{ Auth::user()->id }}"
                                                                     data-toggle="modal"
-                                                                    data-target="#update-modal" role="button">{{ $stand->userOne->name }}
+                                                                    data-target="#update-modal"
+                                                                    role="button">{{ $stand->userOne->name }}
                                                                 </button>
 
                                                             @else
 
-                                                                <button class="btn btn-secondary btn-block">{{ $stand->userOne->name }}</button>
+                                                                <button
+                                                                    class="btn btn-secondary btn-block">{{ $stand->userOne->name }}</button>
 
                                                             @endif
 
@@ -163,12 +175,14 @@
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-2="{{ Auth::user()->id }}"
                                                                     data-toggle="modal"
-                                                                    data-target="#update-modal" role="button">{{ $stand->userTwo->name }}
+                                                                    data-target="#update-modal"
+                                                                    role="button">{{ $stand->userTwo->name }}
                                                                 </button>
 
                                                             @else
 
-                                                                <button class="btn btn-secondary btn-block">{{ $stand->userTwo->name }}</button>
+                                                                <button
+                                                                    class="btn btn-secondary btn-block">{{ $stand->userTwo->name }}</button>
 
                                                             @endif
 
@@ -245,11 +259,14 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>You really want, create entry?</br><span id="create-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}</p>
+                            <p>Do you really want to create entry?</br><span id="create-modal-time">8:00</span>
+                                on {{ $dt->format('l, d F Y') }}</p>
                         </div>
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">No</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">
+                                No
+                            </button>
 
                             <form action="{{ route('user.stand.store') }}" method="POST">
 
@@ -280,11 +297,14 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>You really want, <span id="crt-dlt-sign">#</span> an entry?</br><span id="update-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}</p>
+                            <p>Do you really want to <span id="crt-dlt-sign">#</span> an entry?</br><span
+                                    id="update-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}</p>
                         </div>
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">No</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">
+                                No
+                            </button>
 
                             <form id="edit-form" action="#" method="POST">
 
