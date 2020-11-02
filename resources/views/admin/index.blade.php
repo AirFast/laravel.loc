@@ -12,10 +12,43 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4 col-lg-3">
-                <div class="card border-0 shadow">
-                    <div class="card-header border-0">{{ __('Menu') }}</div>
+                <div class="card mb-4 border-0 shadow">
+                    <div class="card-header border-0">
+                        <h5 class="m-0">{{ __('Admin menu') }}</h5>
+                    </div>
 
                     <div class="card-body">
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2">
+                                <a class="text-dark" href="{{ route('admin.dashboard.index') }}">Dashboard</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="text-dark" href="{{ route('user.stand.index') }}">Schedule</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="text-dark" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-dark" href="#">Disabled</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="card mb-md-0 mb-5 border-0 shadow">
+                    <div class="card-header border-0">
+                        <h5 class="m-0">{{ __('User menu') }}</h5>
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2">
+                                <a class="text-dark" href="{{ route('user.stand.index') }}">Schedule</a>
+                            </li>
+                        </ul>
 
                     </div>
                 </div>
@@ -24,7 +57,7 @@
             <div class="col-md-8 col-lg-9">
                 <div class="card border-0 shadow">
                     <div class="card-header border-0">
-                        <h4 class="m-0">{{ __('Users') }}</h4>
+                        <h5 class="m-0">{{ __('Users') }}</h5>
                     </div>
 
                     <div class="card-body">
