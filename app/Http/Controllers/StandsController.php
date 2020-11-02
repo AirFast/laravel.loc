@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class StandsController extends Controller {
 
     public function __construct() {
+
         $this->middleware('user');
+
     }
 
     public function index(Request $request) {
@@ -36,15 +38,9 @@ class StandsController extends Controller {
             'user_id_2' => 'required_if:user_id_1,null|required_if:user_id_2,' . Auth::user()->id
         ] );
 
-        $standRecord = Stand::where([['date', $data['date']], ['time', $data['time']]])->exists();
+        $stand = Stand::create( $data );
 
-        if($standRecord) {
-            return $this->update();
-        }
-
-        Stand::create( $data );
-
-        return back()->with(['message' => Auth::user()->name . ', you are recorded in the ministry with the stand. Thanks!']);
+        return back()->with(['message' => $this->setCreateSessionMessage($stand)]);
     }
 
     public function update(Stand $stand) {
@@ -58,29 +54,36 @@ class StandsController extends Controller {
             $stand->user_id_1 = null;
             $stand->update();
 
-            return back()->with(['message' => '1']);
+            return back()->with(['message' => $this->setDeleteSessionMessage($stand)]);
         }
 
         if (!empty($data['user_id_1'])) {
             $stand->user_id_1 = $data['user_id_1'];
             $stand->update();
 
-            return back()->with(['message' => '2']);
+            return back()->with(['message' => $this->setCreateSessionMessage($stand)]);
         }
 
         if (!empty($stand->user_id_2) && ($stand->user_id_2 == $data['user_id_2'])) {
             $stand->user_id_2 = null;
             $stand->update();
 
-            return back()->with(['message' => '3']);
+            return back()->with(['message' => $this->setDeleteSessionMessage($stand)]);
         }
 
         if (!empty($data['user_id_2'])) {
             $stand->user_id_2 = $data['user_id_2'];
             $stand->update();
 
-            return back()->with(['message' => '4']);
+            return back()->with(['message' => $this->setCreateSessionMessage($stand)]);
         }
     }
 
+    private function setCreateSessionMessage($stand) {
+        return Auth::user()->name . ', you have created an entry at ' . $stand->time .':00 on ' . Carbon::createFromDate($stand->date)->timezone('Europe/Kiev')->format('l, d F Y') . '. Thanks!';
+    }
+
+    private function setDeleteSessionMessage($stand) {
+        return Auth::user()->name . ', you have delete an entry at ' . $stand->time .':00 on ' . Carbon::createFromDate($stand->date)->timezone('Europe/Kiev')->format('l, d F Y') . '. Thanks!';
+    }
 }
