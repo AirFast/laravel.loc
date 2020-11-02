@@ -10,13 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class StandsController extends Controller {
 
     public function __construct() {
-
         $this->middleware( 'user' );
-
     }
 
     public function index( Request $request ) {
-
         $now = Carbon::now()->timezone( 'Europe/Kiev' );
         $dt  = Carbon::createFromDate( $request->query( 'date', $now->toDateString() ) )->timezone( 'Europe/Kiev' );
 
@@ -26,11 +23,9 @@ class StandsController extends Controller {
         $stands = Stand::where( 'date', $dt->toDateString() )->get();
 
         return view( 'stand.index', compact( 'now', 'dt', 'startOfWeek', 'endOfWeek', 'stands' ) );
-
     }
 
     public function store() {
-
         $data = request()->validate( [
             'time'      => 'required|numeric',
             'date'      => 'required',
@@ -44,7 +39,6 @@ class StandsController extends Controller {
     }
 
     public function update( Stand $stand ) {
-
         $data = request()->validate( [
             'user_id_1' => 'required_if:user_id_2,null|required_if:user_id_1,' . Auth::user()->id,
             'user_id_2' => 'required_if:user_id_1,null|required_if:user_id_2,' . Auth::user()->id
@@ -86,4 +80,5 @@ class StandsController extends Controller {
     private function setDeleteSessionMessage( $stand ) {
         return Auth::user()->name . ', you have delete an entry at ' . $stand->time . ':00 on ' . Carbon::createFromDate( $stand->date )->timezone( 'Europe/Kiev' )->format( 'l, d F Y' ) . '. Thanks!';
     }
+
 }

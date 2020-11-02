@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
 
-class DashboardController extends Controller
-{
+class DashboardController extends Controller {
+
     public function __construct() {
-        //$this->middleware('admin');
+        $this->middleware('admin');
     }
 
     public function index() {
-        return view('admin.index');
+        $users = User::all();
+
+        return view('admin.index', compact('users'));
     }
+
 }
