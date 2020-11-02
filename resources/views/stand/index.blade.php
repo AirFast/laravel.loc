@@ -26,7 +26,7 @@
 
                                 <div class="btn-group" role="group" aria-label="Navigation by weeks">
                                     <a class="btn btn-outline-secondary"
-                                       href="{{ url('/user/stand?date=' . $startOfWeek->subDay()->toDateString()) }}"
+                                       href="{{ route( 'user.stand.index', ['date' => $startOfWeek->subDay()->toDateString()] ) }}"
                                        role="button">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-fill"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,8 @@
                                         </svg>
                                     </a>
                                     <a class="btn btn-outline-secondary"
-                                       href="{{ url('/user/stand?date=' . $now->toDateString()) }}" role="button">
+                                       href="{{ route( 'user.stand.index', ['date' => $now->toDateString()] ) }}"
+                                       role="button">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16"
                                              class="bi bi-calendar-check-fill"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +45,8 @@
                                         </svg>
                                     </a>
                                     <a type="button" class="btn btn-outline-secondary"
-                                       href="{{ url('/user/stand?date=' . $endOfWeek->addDay()->toDateString()) }}" role="button">
+                                       href="{{ route('user.stand.index', ['date' => $endOfWeek->addDay()->toDateString()] ) }}"
+                                       role="button">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -62,7 +64,7 @@
 
                                         <li class="nav-item">
                                             <a class="nav-link text-dark{{ ($dt->dayOfWeek == $i || (7 == $i && 0 == $dt->dayOfWeek)) ? ' active' : '' }}"
-                                               href="{{ url('/user/stand?date=' . $startOfWeek->addDay()->toDateString()) }}">{{ $startOfWeek->dayName }}</a>
+                                               href="{{ route('user.stand.index', ['date' => $startOfWeek->addDay()->toDateString()] ) }}">{{ $startOfWeek->dayName }}</a>
                                         </li>
 
                                     @endfor
@@ -104,125 +106,125 @@
                                     @endforeach
                                 @endif
 
-                                @guest
+                                @for($i = 8; $i <= 20; $i++)
 
-                                    @for($i = 8; $i <= 20; $i++)
+                                    <div class="row py-2">
 
-                                        <div class="row py-2">
-
-                                            <div class="col-2 d-flex">
-                                                <span class="m-auto">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
-                                            </div>
-
-                                            <div class="col-5">
-                                                <button class="btn btn-outline-secondary w-100">Sign up</button>
-                                            </div>
-
-                                            <div class="col-5">
-                                                <button class="btn btn-success w-100">Andrew Petryk</button>
-                                            </div>
-
+                                        <div class="col-2 d-flex text-center">
+                                            <span class="m-auto {{ ($now->hour == $i) && ($now->toDateString() == $dt->toDateString()) ? 'btn btn-secondary' : '' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
                                         </div>
 
-                                    @endfor
+                                        @if($stands->contains('time', $i))
 
-                                @else
+                                            @foreach($stands as $stand)
 
-                                    @for($i = 8; $i <= 20; $i++)
+                                                @if($stand->time == $i)
 
-                                        <div class="row py-2">
+                                                    @if(!empty($stand->user_id_1))
 
-                                            <div class="col-2 d-flex">
-                                                <span class="m-auto {{ ($now->hour == $i) && ($now->toDateString() == $dt->toDateString()) ? 'btn btn-secondary' : '' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
-                                            </div>
+                                                        <div class="col-5">
 
-                                            @if($stands->contains('time', $i))
-                                                @foreach($stands as $stand)
+                                                            @if(Auth::user()->id == $stand->user_id_1)
 
-                                                    @if($stand->time == $i)
-
-                                                        @if(!empty($stand->user_id_1))
-
-                                                            <div class="col-5">
-                                                                <button class="btn {{ Auth::user()->id == $stand->user_id_1 ? 'btn-success' : 'btn-secondary' }} w-100"
-                                                                        data-stand-id="{{ $stand->id }}"
-                                                                        data-time="{{ $i }}"
-                                                                        data-user-id-1="{{ Auth::user()->id }}"
-                                                                        data-toggle="{{ Auth::user()->id == $stand->user_id_1 ? 'modal' : '' }}"
-                                                                        data-target="#edit-modal">{{ $stand->userOne->name }}
+                                                                <button
+                                                                    class="btn btn-success btn-block"
+                                                                    data-update-url="{{ route('user.stand.update', ['stand' => $stand]) }}"
+                                                                    data-crt-dlt-sign="delete"
+                                                                    data-time="{{ $i }}"
+                                                                    data-user-id-1="{{ Auth::user()->id }}"
+                                                                    data-toggle="modal"
+                                                                    data-target="#update-modal" role="button">{{ $stand->userOne->name }}
                                                                 </button>
-                                                            </div>
 
-                                                        @else
+                                                            @else
 
-                                                            <div class="col-5">
-                                                                <button class="btn btn-outline-secondary w-100"
-                                                                        data-stand-id="{{ $stand->id }}"
-                                                                        data-time="{{ $i }}"
-                                                                        data-user-id-1="{{ Auth::user()->id }}"
-                                                                        data-toggle="modal"
-                                                                        data-target="#edit-modal" role="button">Sign up
-                                                                </button>
-                                                            </div>
+                                                                <button class="btn btn-secondary btn-block">{{ $stand->userOne->name }}</button>
 
-                                                        @endif
+                                                            @endif
 
-                                                        @if(!empty($stand->user_id_2))
+                                                        </div>
 
-                                                            <div class="col-5">
-                                                                <button class="btn {{ Auth::user()->id == $stand->user_id_2 ? 'btn-success' : 'btn-secondary' }} w-100"
-                                                                        data-stand-id="{{ $stand->id }}"
-                                                                        data-time="{{ $i }}"
-                                                                        data-user-id-2="{{ Auth::user()->id }}"
-                                                                        data-toggle="{{ Auth::user()->id == $stand->user_id_2 ? 'modal' : '' }}"
-                                                                        data-target="#edit-modal">{{ $stand->userTwo->name }}
-                                                                </button>
-                                                            </div>
+                                                    @else
 
-                                                        @else
-
-                                                            <div class="col-5">
-                                                                <button class="btn btn-outline-secondary w-100"
-                                                                        data-stand-id="{{ $stand->id }}"
-                                                                        data-time="{{ $i }}"
-                                                                        data-user-id-2="{{ Auth::user()->id }}"
-                                                                        data-toggle="modal"
-                                                                        data-target="#edit-modal" role="button">Sign up
-                                                                </button>
-                                                            </div>
-
-                                                        @endif
+                                                        <div class="col-5">
+                                                            <button class="btn btn-outline-secondary btn-block"
+                                                                    data-update-url="{{ route('user.stand.update', ['stand' => $stand]) }}"
+                                                                    data-crt-dlt-sign="create"
+                                                                    data-time="{{ $i }}"
+                                                                    data-user-id-1="{{ Auth::user()->id }}"
+                                                                    data-toggle="modal"
+                                                                    data-target="#update-modal" role="button">Sign up
+                                                            </button>
+                                                        </div>
 
                                                     @endif
 
-                                                @endforeach
+                                                    @if(!empty($stand->user_id_2))
 
-                                            @else
+                                                        <div class="col-5">
 
-                                                <div class="col-5">
-                                                    <button class="btn btn-outline-secondary w-100"
-                                                            data-time="{{ $i }}"
-                                                            data-user-id-1="{{ Auth::user()->id }}" data-toggle="modal"
-                                                            data-target="#confirmation-modal" role="button">Sign up
-                                                    </button>
-                                                </div>
+                                                            @if(Auth::user()->id == $stand->user_id_2)
 
-                                                <div class="col-5">
-                                                    <button class="btn btn-outline-secondary w-100"
-                                                            data-time="{{ $i }}"
-                                                            data-user-id-2="{{ Auth::user()->id }}" data-toggle="modal"
-                                                            data-target="#confirmation-modal" role="button">Sign up
-                                                    </button>
-                                                </div>
+                                                                <button
+                                                                    class="btn btn-success btn-block"
+                                                                    data-update-url="{{ route('user.stand.update', ['stand' => $stand]) }}"
+                                                                    data-crt-dlt-sign="delete"
+                                                                    data-time="{{ $i }}"
+                                                                    data-user-id-2="{{ Auth::user()->id }}"
+                                                                    data-toggle="modal"
+                                                                    data-target="#update-modal" role="button">{{ $stand->userTwo->name }}
+                                                                </button>
 
-                                            @endif
+                                                            @else
 
-                                        </div>
+                                                                <button class="btn btn-secondary btn-block">{{ $stand->userTwo->name }}</button>
 
-                                    @endfor
+                                                            @endif
 
-                                @endguest
+                                                        </div>
 
+                                                    @else
+
+                                                        <div class="col-5">
+                                                            <button class="btn btn-outline-secondary btn-block"
+                                                                    data-update-url="{{ route('user.stand.update', ['stand' => $stand]) }}"
+                                                                    data-crt-dlt-sign="create"
+                                                                    data-time="{{ $i }}"
+                                                                    data-user-id-2="{{ Auth::user()->id }}"
+                                                                    data-toggle="modal"
+                                                                    data-target="#update-modal" role="button">Sign up
+                                                            </button>
+                                                        </div>
+
+                                                    @endif
+
+                                                @endif
+
+                                            @endforeach
+
+                                        @else
+
+                                            <div class="col-5">
+                                                <button class="btn btn-outline-secondary btn-block"
+                                                        data-time="{{ $i }}"
+                                                        data-user-id-1="{{ Auth::user()->id }}" data-toggle="modal"
+                                                        data-target="#create-modal" role="button">Sign up
+                                                </button>
+                                            </div>
+
+                                            <div class="col-5">
+                                                <button class="btn btn-outline-secondary btn-block"
+                                                        data-time="{{ $i }}"
+                                                        data-user-id-2="{{ Auth::user()->id }}" data-toggle="modal"
+                                                        data-target="#create-modal" role="button">Sign up
+                                                </button>
+                                            </div>
+
+                                        @endif
+
+                                    </div>
+
+                                @endfor
 
                             </div>
 
@@ -241,8 +243,8 @@
 
         @if (Auth::user()->isAdmin() || Auth::user()->isUser())
 
-            <div class="modal border-0 fade" id="confirmation-modal" tabindex="-1" role="dialog"
-                 aria-labelledby="confirmationModalTitle" aria-hidden="true">
+            <div class="modal border-0 fade" id="create-modal" tabindex="-1" role="dialog"
+                 aria-labelledby="createModalTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -252,14 +254,13 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Do you really want to sign up for the ministry with a stand at <span
-                                    id="confirmation-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}?</p>
+                            <p>You really want, create entry?</br><span id="create-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}</p>
                         </div>
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">No</button>
 
-                            <form action="stand" method="POST">
+                            <form action="{{ route('user.stand.store') }}" method="POST">
 
                                 @csrf
 
@@ -268,7 +269,7 @@
                                 <input id="store-user-id-1" type="text" name="user_id_1" hidden>
                                 <input id="store-user-id-2" type="text" name="user_id_2" hidden>
 
-                                <button type="submit" class="btn btn-dark">Yes, I want</button>
+                                <button type="submit" class="btn btn-dark" role="button">Yes, I want</button>
 
                             </form>
 
@@ -277,8 +278,8 @@
                 </div>
             </div>
 
-            <div class="modal border-0 fade" id="edit-modal" tabindex="-1" role="dialog"
-                 aria-labelledby="confirmationModalTitle" aria-hidden="true">
+            <div class="modal border-0 fade" id="update-modal" tabindex="-1" role="dialog"
+                 aria-labelledby="updateModalTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -288,14 +289,13 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Do you really want to delete yourself from the ministry with a stand at <span
-                                    id="edit-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}?</p>
+                            <p>You really want, <span id="crt-dlt-sign">#</span> an entry?</br><span id="update-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}</p>
                         </div>
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">No</button>
 
-                            <form id="edit-form" action="stand" method="POST">
+                            <form id="edit-form" action="#" method="POST">
 
                                 @csrf
                                 @method('PATCH')
@@ -303,7 +303,7 @@
                                 <input id="edit-user-id-1" type="text" name="user_id_1" hidden>
                                 <input id="edit-user-id-2" type="text" name="user_id_2" hidden>
 
-                                <button type="submit" class="btn btn-dark">Yes, I want</button>
+                                <button type="submit" class="btn btn-dark" role="button">Yes, I want</button>
 
                             </form>
 

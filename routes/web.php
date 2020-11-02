@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get( '/', [ App\Http\Controllers\HomeController::class, 'index' ] );
+Route::get( '/', [ App\Http\Controllers\HomeController::class, 'index' ] )->name('home');
 
 // Admin route
 Route::prefix('admin')->group(function () {
@@ -24,14 +24,14 @@ Route::prefix('admin')->group(function () {
     Auth::routes();
 
     Route::middleware(['admin'])->group(function () {
-        Route::get('', [ App\Http\Controllers\Admin\DashboardController::class, 'index' ]);
+        Route::get('', [ App\Http\Controllers\Admin\DashboardController::class, 'index' ])->name('admin.dashboard.index');
     });
 
 });
 
 // User route
 Route::prefix('user')->middleware('user')->group(function () {
-    Route::get('stand', [ App\Http\Controllers\StandsController::class, 'index' ]);
-    Route::post('stand', [ App\Http\Controllers\StandsController::class, 'store' ]);
-    Route::patch('stand/{stand}', [ App\Http\Controllers\StandsController::class, 'update' ]);
+    Route::get('stand', [ App\Http\Controllers\StandsController::class, 'index' ])->name('user.stand.index');
+    Route::post('stand', [ App\Http\Controllers\StandsController::class, 'store' ])->name('user.stand.store');
+    Route::patch('stand/{stand}', [ App\Http\Controllers\StandsController::class, 'update' ])->name('user.stand.update');
 });

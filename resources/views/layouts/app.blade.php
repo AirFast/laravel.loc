@@ -22,7 +22,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 {{ config('app.name', 'Stand') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -66,7 +66,7 @@
                                 <div class="btn-group mt-2 mb-3 mx-4" role="group" aria-label="Basic example">
 
                                     @if (Auth::user()->isAdmin())
-                                        <a role="button" class="btn btn-outline-dark" href="{{ url('/admin') }}" title="{{ __('Admin panel') }}">
+                                        <a role="button" class="btn btn-outline-dark" href="{{ route('admin.dashboard.index') }}" title="{{ __('Admin panel') }}">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear-fill"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
@@ -76,7 +76,7 @@
                                     @endif
 
                                     @if (Auth::user()->isAdmin() || Auth::user()->isUser())
-                                        <a role="button" class="btn btn-dark" href="{{ url('/user') }}" title="{{ __('User profile') }}">
+                                        <a role="button" class="btn btn-dark" href="{{ route('home') }}" title="{{ __('User profile') }}">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
@@ -105,7 +105,9 @@
     </nav>
 
     <main class="py-4">
+
         @yield('content')
+
     </main>
 
 </div>

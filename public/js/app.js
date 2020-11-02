@@ -37275,27 +37275,29 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Custom js
 
 
-$('#confirmation-modal').on('show.bs.modal', function (event) {
+$('#create-modal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var modal = $(this);
   var time = button.data('time');
   var userId1 = button.data('user-id-1');
   var userId2 = button.data('user-id-2');
-  modal.find('#confirmation-modal-time').text(time + ':00');
+  modal.find('#create-modal-time').text(time + ':00');
   modal.find('#store-time').val(time);
   modal.find('#store-user-id-1').val(userId1);
   modal.find('#store-user-id-2').val(userId2);
 });
-$('#edit-modal').on('show.bs.modal', function (event) {
+$('#update-modal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var modal = $(this);
   var form = modal.find('#edit-form');
-  var action = button.data('stand-id');
+  var updateUrl = button.data('update-url');
+  var crtDltSign = button.data('crt-dlt-sign');
   var time = button.data('time');
   var userId1 = button.data('user-id-1');
   var userId2 = button.data('user-id-2');
-  form.attr('action', 'stand/' + action);
-  modal.find('#edit-modal-time').text(time + ':00');
+  form.attr('action', updateUrl);
+  modal.find('#crt-dlt-sign').text(crtDltSign);
+  modal.find('#update-modal-time').text(time + ':00');
   modal.find('#edit-user-id-1').val(userId1);
   modal.find('#edit-user-id-2').val(userId2);
 });

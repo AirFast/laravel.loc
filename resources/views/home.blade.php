@@ -25,7 +25,7 @@
 
                             <div class="row py-2">
 
-                                <div class="col-2 d-flex">
+                                <div class="col-2 d-flex text-center">
                                     <span class="m-auto {{ $dt->hour == $i ? 'btn btn-secondary' : '' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
                                 </div>
 
@@ -38,13 +38,13 @@
                                             @if(!empty($stand->user_id_1))
 
                                                 <div class="col-5">
-                                                    <button class="btn btn-secondary w-100" role="button">{{ $stand->userOne->name }}</button>
+                                                    <button class="btn btn-secondary btn-block">{{ $stand->userOne->name }}</button>
                                                 </div>
 
                                             @else
 
                                                 <div class="col-5">
-                                                    <button class="btn btn-outline-secondary w-100" role="button">Sign up</button>
+                                                    <button class="btn btn-outline-secondary btn-block">Sign up</button>
                                                 </div>
 
                                             @endif
@@ -52,13 +52,13 @@
                                             @if(!empty($stand->user_id_2))
 
                                                 <div class="col-5">
-                                                    <button class="btn btn-secondary w-100" role="button">{{ $stand->userTwo->name }}</button>
+                                                    <button class="btn btn-secondary btn-block">{{ $stand->userTwo->name }}</button>
                                                 </div>
 
                                             @else
 
                                                 <div class="col-5">
-                                                    <button class="btn btn-outline-secondary w-100" role="button">Sign up</button>
+                                                    <button class="btn btn-outline-secondary btn-block">Sign up</button>
                                                 </div>
 
                                             @endif
@@ -70,11 +70,11 @@
                                 @else
 
                                     <div class="col-5">
-                                        <button class="btn btn-outline-secondary w-100" role="button">Sign up</button>
+                                        <button class="btn btn-outline-secondary btn-block">Sign up</button>
                                     </div>
 
                                     <div class="col-5">
-                                        <button class="btn btn-outline-secondary w-100" role="button">Sign up</button>
+                                        <button class="btn btn-outline-secondary btn-block">Sign up</button>
                                     </div>
 
                                 @endif
