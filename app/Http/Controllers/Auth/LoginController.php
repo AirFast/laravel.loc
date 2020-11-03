@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -41,11 +42,11 @@ class LoginController extends Controller
 
     protected function authenticated() {
         if ( Auth::user()->isAdmin() ) {
-            $this->redirectTo = RouteServiceProvider::ADMIN;
+            $this->redirectTo = App::getLocale() . RouteServiceProvider::ADMIN;
         } elseif ( Auth::user()->isUser() ) {
-            $this->redirectTo = RouteServiceProvider::USER;
+            $this->redirectTo = App::getLocale() . RouteServiceProvider::USER;
         } else {
-            $this->redirectTo = RouteServiceProvider::HOME;
+            $this->redirectTo = App::getLocale() . RouteServiceProvider::HOME;
         }
     }
 }

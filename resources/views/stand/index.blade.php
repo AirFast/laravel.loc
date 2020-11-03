@@ -26,7 +26,7 @@
 
                                 <div class="btn-group" role="group" aria-label="Navigation by weeks">
                                     <a class="btn btn-outline-secondary"
-                                       href="{{ route( 'user.stand.index', ['date' => $startOfWeek->subDay()->toDateString()] ) }}"
+                                       href="{{ route( 'user.stand.index', [app()->getLocale(), 'date' => $startOfWeek->subDay()->toDateString()] ) }}"
                                        role="button">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-fill"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
                                         </svg>
                                     </a>
                                     <a class="btn btn-outline-secondary"
-                                       href="{{ route( 'user.stand.index', ['date' => $now->toDateString()] ) }}"
+                                       href="{{ route( 'user.stand.index', [app()->getLocale(), 'date' => $now->toDateString()] ) }}"
                                        role="button">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16"
                                              class="bi bi-calendar-check-fill"
@@ -45,7 +45,7 @@
                                         </svg>
                                     </a>
                                     <a type="button" class="btn btn-outline-secondary"
-                                       href="{{ route('user.stand.index', ['date' => $endOfWeek->addDay()->toDateString()] ) }}"
+                                       href="{{ route('user.stand.index', [app()->getLocale(), 'date' => $endOfWeek->addDay()->toDateString()] ) }}"
                                        role="button">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +64,7 @@
 
                                         <li class="nav-item">
                                             <a class="nav-link text-dark{{ ($dt->dayOfWeek == $i || (7 == $i && 0 == $dt->dayOfWeek)) ? ' active' : '' }}"
-                                               href="{{ route('user.stand.index', ['date' => $startOfWeek->addDay()->toDateString()] ) }}">{{ $startOfWeek->dayName }}</a>
+                                               href="{{ route('user.stand.index', [app()->getLocale(), 'date' => $startOfWeek->addDay()->toDateString()] ) }}">{{ $startOfWeek->dayName }}</a>
                                         </li>
 
                                     @endfor
@@ -129,7 +129,7 @@
 
                                                                 <button
                                                                     class="btn btn-success btn-block"
-                                                                    data-update-url="{{ route('user.stand.update', ['stand' => $stand]) }}"
+                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
                                                                     data-crt-dlt-sign="delete"
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-1="{{ Auth::user()->id }}"
@@ -151,7 +151,7 @@
 
                                                         <div class="col-5">
                                                             <button class="btn btn-outline-secondary btn-block"
-                                                                    data-update-url="{{ route('user.stand.update', ['stand' => $stand]) }}"
+                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
                                                                     data-crt-dlt-sign="create"
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-1="{{ Auth::user()->id }}"
@@ -170,7 +170,7 @@
 
                                                                 <button
                                                                     class="btn btn-success btn-block"
-                                                                    data-update-url="{{ route('user.stand.update', ['stand' => $stand]) }}"
+                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
                                                                     data-crt-dlt-sign="delete"
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-2="{{ Auth::user()->id }}"
@@ -192,7 +192,7 @@
 
                                                         <div class="col-5">
                                                             <button class="btn btn-outline-secondary btn-block"
-                                                                    data-update-url="{{ route('user.stand.update', ['stand' => $stand]) }}"
+                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
                                                                     data-crt-dlt-sign="create"
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-2="{{ Auth::user()->id }}"
@@ -268,7 +268,7 @@
                                 No
                             </button>
 
-                            <form action="{{ route('user.stand.store') }}" method="POST">
+                            <form action="{{ route('user.stand.store', app()->getLocale()) }}" method="POST">
 
                                 @csrf
 

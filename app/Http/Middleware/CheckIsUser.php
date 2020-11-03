@@ -25,6 +25,6 @@ class CheckIsUser
             return $next($request);
         }
 
-        return redirect('admin/login');
+        return redirect(route('login', app()->getLocale()));
     }
 }

@@ -22,7 +22,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
+            <a class="navbar-brand" href="{{ route('home', app()->getLocale()) }}">
                 {{ config('app.name', 'Stand') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -45,11 +45,11 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login', app()->getLocale()) }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register', app()->getLocale()) }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                     @else
@@ -66,7 +66,7 @@
                                 <div class="btn-group mt-2 mb-3 mx-4" role="group" aria-label="Basic example">
 
                                     @if (Auth::user()->isAdmin())
-                                        <a role="button" class="btn btn-outline-dark" href="{{ route('admin.dashboard.index') }}" title="{{ __('Admin panel') }}">
+                                        <a role="button" class="btn btn-outline-dark" href="{{ route('admin.dashboard.index', app()->getLocale()) }}" title="{{ __('Admin panel') }}">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear-fill"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
@@ -76,7 +76,7 @@
                                     @endif
 
                                     @if (Auth::user()->isAdmin() || Auth::user()->isUser())
-                                        <a role="button" class="btn btn-dark" href="{{ route('home') }}" title="{{ __('User profile') }}">
+                                        <a role="button" class="btn btn-dark" href="{{ route('home', app()->getLocale()) }}" title="{{ __('User profile') }}">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
@@ -85,13 +85,13 @@
                                         </a>
                                     @endif
 
-                                    <a role="button" class="btn btn-secondary" href="{{ route('logout') }}"
+                                    <a role="button" class="btn btn-secondary" href="{{ route('logout', app()->getLocale()) }}"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('auth.logout') }}
                                     </a>
                                 </div>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('logout', app()->getLocale()) }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
 
