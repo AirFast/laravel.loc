@@ -33,11 +33,15 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-{{--                <ul class="navbar-nav ml-auto">--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
+                <ul class="navbar-nav ml-auto">
+
+                    @foreach(config('app.locales') as $locale => $lang)
+                        <li class="nav-item mx-1 my-2">
+                            <a class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-dark' : 'btn-outline-dark' }}" href="{{ route(Route::currentRouteName(), $locale) }}">{{ $lang }}</a>
+                        </li>
+                    @endforeach
+
+                </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">

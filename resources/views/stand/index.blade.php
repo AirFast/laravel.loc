@@ -64,7 +64,7 @@
 
                                         <li class="nav-item">
                                             <a class="nav-link text-dark{{ ($dt->dayOfWeek == $i || (7 == $i && 0 == $dt->dayOfWeek)) ? ' active' : '' }}"
-                                               href="{{ route('user.stand.index', [app()->getLocale(), 'date' => $startOfWeek->addDay()->toDateString()] ) }}">{{ $startOfWeek->dayName }}</a>
+                                               href="{{ route('user.stand.index', [app()->getLocale(), 'date' => $startOfWeek->addDay()->toDateString()] ) }}">{{ Str::ucfirst($startOfWeek->dayName) }}</a>
                                         </li>
 
                                     @endfor
@@ -191,7 +191,7 @@
                                                     @else
 
                                                         <div class="col-5">
-                                                            <button class="btn btn-outline-secondary btn-block"
+                                                            <button class="btn www btn-outline-secondary btn-block"
                                                                     data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
                                                                     data-crt-dlt-sign="create"
                                                                     data-time="{{ $i }}"
