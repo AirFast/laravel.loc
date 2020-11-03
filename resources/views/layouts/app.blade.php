@@ -37,7 +37,7 @@
 
                     @foreach(config('app.locales') as $locale => $lang)
                         <li class="nav-item mx-1 my-2">
-                            <a class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-dark' : 'btn-outline-dark' }}" href="{{ route(Route::currentRouteName(), $locale) }}">{{ $lang }}</a>
+                            <a class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-secondary' : 'btn-outline-secondary' }}" href="{{ route(Route::currentRouteName(), $locale) }}">{{ $lang }}</a>
                         </li>
                     @endforeach
 

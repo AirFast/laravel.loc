@@ -80,12 +80,12 @@ return [
     |
     */
 
-    'locale' => 'uk',
+    'locale' => 'en',
 
     'locales' => [
-        'en' => 'Eng',
         'uk' => 'Укр',
         'ru' => 'Рус',
+        'en' => 'Eng',
     ],
 
     /*
