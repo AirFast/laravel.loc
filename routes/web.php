@@ -27,6 +27,8 @@ Route::group(['prefix' => '{language}'], function () {
 
         Route::middleware( [ 'admin' ] )->group( function () {
             Route::get( '', [ App\Http\Controllers\Admin\DashboardController::class, 'index' ] )->name( 'admin.dashboard.index' );
+
+            Route::get('users', [ App\Http\Controllers\Users::class, 'index'])->name('admin.users.index');
         } );
 
     } );

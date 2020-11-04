@@ -57,7 +57,7 @@
             <div class="col-md-8 col-lg-9">
                 <div class="card border-0 shadow">
                     <div class="card-header border-0">
-                        <h5 class="m-0">{{ __('Users') }}</h5>
+                        <h5 class="m-0">{{ __('adminpanel.menu.users') }}</span></h5>
                     </div>
 
                     <div class="card-body">
