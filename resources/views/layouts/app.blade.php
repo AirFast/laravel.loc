@@ -37,7 +37,7 @@
 
                     @foreach(config('app.locales') as $locale => $lang)
                         <li class="nav-item mx-1 my-2">
-                            <a class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-secondary' : 'btn-outline-secondary' }}" href="{{ route(Route::currentRouteName(), $locale) }}">{{ $lang }}</a>
+                            <a class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-secondary' : 'btn-outline-secondary' }}" href="{{ route(Route::currentRouteName(), $locale) }}" title="{{ __('language.' . $locale) }}">{{ $lang }}</a>
                         </li>
                     @endforeach
 
@@ -65,12 +65,12 @@
 
                             <div class="dropdown-menu dropdown-menu-right border-0 shadow text-right" aria-labelledby="navbarDropdown">
 
-                                <h6 class="dropdown-header">{{ __('User menu') }}</h6>
+                                <h6 class="dropdown-header">{{ __('adminpanel.user.menu-title') }}</h6>
 
                                 <div class="btn-group mt-2 mb-3 mx-4" role="group" aria-label="Basic example">
 
                                     @if (Auth::user()->isAdmin())
-                                        <a role="button" class="btn btn-outline-dark" href="{{ route('admin.dashboard.index', app()->getLocale()) }}" title="{{ __('Admin panel') }}">
+                                        <a role="button" class="btn btn-outline-dark" href="{{ route('admin.dashboard.index', app()->getLocale()) }}" title="{{ __('adminpanel.admin.title') }}">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear-fill"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
@@ -80,7 +80,7 @@
                                     @endif
 
                                     @if (Auth::user()->isAdmin() || Auth::user()->isUser())
-                                        <a role="button" class="btn btn-dark" href="{{ route('home', app()->getLocale()) }}" title="{{ __('User profile') }}">
+                                        <a role="button" class="btn btn-dark" href="{{ route('home', app()->getLocale()) }}" title="{{ __('adminpanel.user.title') }}">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"

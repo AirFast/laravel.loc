@@ -27,7 +27,7 @@
                                 <div class="btn-group" role="group" aria-label="Navigation by weeks">
                                     <a class="btn btn-outline-secondary"
                                        href="{{ route( 'user.stand.index', [app()->getLocale(), 'date' => $startOfWeek->subDay()->toDateString()] ) }}"
-                                       role="button">
+                                       role="button" title="{{ __('stand.prev-week') }}">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-fill"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -36,7 +36,7 @@
                                     </a>
                                     <a class="btn btn-outline-secondary"
                                        href="{{ route( 'user.stand.index', [app()->getLocale(), 'date' => $now->toDateString()] ) }}"
-                                       role="button">
+                                       role="button" title="{{ __('stand.today') }}">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16"
                                              class="bi bi-calendar-check-fill"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@
                                     </a>
                                     <a type="button" class="btn btn-outline-secondary"
                                        href="{{ route('user.stand.index', [app()->getLocale(), 'date' => $endOfWeek->addDay()->toDateString()] ) }}"
-                                       role="button">
+                                       role="button" title="{{ __('stand.next-week') }}">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill"
                                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -156,7 +156,7 @@
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-1="{{ Auth::user()->id }}"
                                                                     data-toggle="modal"
-                                                                    data-target="#update-modal" role="button">Sign up
+                                                                    data-target="#update-modal" role="button">{{ __('stand.sign') }}
                                                             </button>
                                                         </div>
 
@@ -191,13 +191,13 @@
                                                     @else
 
                                                         <div class="col-5">
-                                                            <button class="btn www btn-outline-secondary btn-block"
+                                                            <button class="btn btn-outline-secondary btn-block"
                                                                     data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
                                                                     data-crt-dlt-sign="create"
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-2="{{ Auth::user()->id }}"
                                                                     data-toggle="modal"
-                                                                    data-target="#update-modal" role="button">Sign up
+                                                                    data-target="#update-modal" role="button">{{ __('stand.sign') }}
                                                             </button>
                                                         </div>
 
@@ -213,7 +213,7 @@
                                                 <button class="btn btn-outline-secondary btn-block"
                                                         data-time="{{ $i }}"
                                                         data-user-id-1="{{ Auth::user()->id }}" data-toggle="modal"
-                                                        data-target="#create-modal" role="button">Sign up
+                                                        data-target="#create-modal" role="button">{{ __('stand.sign') }}
                                                 </button>
                                             </div>
 
@@ -221,7 +221,7 @@
                                                 <button class="btn btn-outline-secondary btn-block"
                                                         data-time="{{ $i }}"
                                                         data-user-id-2="{{ Auth::user()->id }}" data-toggle="modal"
-                                                        data-target="#create-modal" role="button">Sign up
+                                                        data-target="#create-modal" role="button">{{ __('stand.sign') }}
                                                 </button>
                                             </div>
 
