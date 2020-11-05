@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class Users extends Controller {
+class UsersController extends Controller {
 
 
     public function __construct() {
-        $this->middleware( 'user' );
+        $this->middleware( 'admin' );
     }
 
 
     public function index() {
-        $users = User::all();
+        $users = User::paginate(1);
 
-
+        return view('admin.users.index', compact('users'));
     }
 
 

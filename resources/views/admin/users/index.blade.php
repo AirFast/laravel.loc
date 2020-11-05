@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('adminpanel.admin.title') }}
+    {{ __('adminpanel.menu.users') }}
 @endsection
 
 @section('description')
@@ -64,6 +64,12 @@
 
                             </tbody>
                         </table>
+
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-end">
+
+                        {{ $users->links() }}
 
                     </div>
                 </div>

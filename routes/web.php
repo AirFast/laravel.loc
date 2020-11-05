@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', \Illuminate\Support\Facades\App::getLocale());
+Route::redirect('/', Illuminate\Support\Facades\App::getLocale());
 
 Route::group(['prefix' => '{language}'], function () {
 
@@ -28,7 +28,7 @@ Route::group(['prefix' => '{language}'], function () {
         Route::middleware( [ 'admin' ] )->group( function () {
             Route::get( '', [ App\Http\Controllers\Admin\DashboardController::class, 'index' ] )->name( 'admin.dashboard.index' );
 
-            Route::get('users', [ App\Http\Controllers\Users::class, 'index'])->name('admin.users.index');
+            Route::get('users', [ App\Http\Controllers\UsersController::class, 'index'])->name('admin.users.index');
         } );
 
     } );
