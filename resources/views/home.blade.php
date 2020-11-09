@@ -44,7 +44,7 @@
                                             @else
 
                                                 <div class="col-5">
-                                                    <button class="btn btn-outline-secondary btn-block">Sign up</button>
+                                                    <button class="btn btn-outline-secondary btn-block">{{ __('stand.sign') }}</button>
                                                 </div>
 
                                             @endif
@@ -58,7 +58,7 @@
                                             @else
 
                                                 <div class="col-5">
-                                                    <button class="btn btn-outline-secondary btn-block">Sign up</button>
+                                                    <button class="btn btn-outline-secondary btn-block">{{ __('stand.sign') }}</button>
                                                 </div>
 
                                             @endif
@@ -70,11 +70,11 @@
                                 @else
 
                                     <div class="col-5">
-                                        <button class="btn btn-outline-secondary btn-block">Sign up</button>
+                                        <button class="btn btn-outline-secondary btn-block">{{ __('stand.sign') }}</button>
                                     </div>
 
                                     <div class="col-5">
-                                        <button class="btn btn-outline-secondary btn-block">Sign up</button>
+                                        <button class="btn btn-outline-secondary btn-block">{{ __('stand.sign') }}</button>
                                     </div>
 
                                 @endif
