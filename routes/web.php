@@ -29,6 +29,9 @@ Route::group(['prefix' => '{language}'], function () {
             Route::get( '', [ App\Http\Controllers\Admin\DashboardController::class, 'index' ] )->name( 'admin.dashboard.index' );
 
             Route::get('users', [ App\Http\Controllers\UsersController::class, 'index'])->name('admin.users.index');
+            Route::get('users/create', [ App\Http\Controllers\UsersController::class, 'create'])->name('admin.users.create');
+            Route::post('users', [ App\Http\Controllers\UsersController::class, 'store'])->name('admin.users.store');
+            Route::get('user/{user}', [ App\Http\Controllers\UsersController::class, 'show'])->name('admin.users.show');
         } );
 
     } );

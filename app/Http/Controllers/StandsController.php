@@ -41,7 +41,7 @@ class StandsController extends Controller {
         return back()->with( [ 'create' => $this->setCreateSessionMessage( $stand ) ] );
     }
 
-    public function update($language, Stand $stand) {
+    public function update($locale, Stand $stand) {
         $data = request()->validate( [
             'user_id_1' => 'required_if:user_id_2,null|required_if:user_id_1,' . Auth::user()->id,
             'user_id_2' => 'required_if:user_id_1,null|required_if:user_id_2,' . Auth::user()->id
