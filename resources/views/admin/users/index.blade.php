@@ -64,7 +64,7 @@
 
                                 <tr>
                                     <td>
-                                        <a href="{{ route( 'admin.users.show', [app()->getLocale(), $user->id] ) }}">
+                                        <a href="{{ route( 'admin.users.show', [app()->getLocale(), $user] ) }}">
                                             @if($user->img_src)
                                                 <div class="user-avatar inline-img shadow m-auto">
                                                     <img src="{{ asset( 'storage/' . $user->img_src ) }}"

@@ -21,6 +21,11 @@
 
                     <div class="card-header d-flex flex-row justify-content-between border-0">
                         <h5 class="m-0 align-self-center">{{ $user->name }}</h5>
+                        <a href="{{ route( 'admin.users.show', [app()->getLocale(), $user] ) }}" class="btn btn-dark">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-left-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                            </svg>
+                        </a>
                     </div>
 
                     <div class="card-body">
