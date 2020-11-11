@@ -34,6 +34,7 @@ Route::group(['prefix' => '{language}'], function () {
             Route::get('user/{user}', [ App\Http\Controllers\UsersController::class, 'show'])->name('admin.users.show');
             Route::get('user/{user}/edit', [ App\Http\Controllers\UsersController::class, 'edit'])->name('admin.users.edit');
             Route::patch('user/{user}', [ App\Http\Controllers\UsersController::class, 'update'])->name('admin.users.update');
+            Route::delete('user/{user}', [ App\Http\Controllers\UsersController::class, 'destroy'])->name('admin.users.destroy');
         } );
 
     } );

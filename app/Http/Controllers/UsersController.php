@@ -24,9 +24,10 @@ class UsersController extends Controller {
 
 
     public function create() {
+        $user = new User();
         $roles = Role::all();
 
-        return view( 'admin.users.create', compact( 'roles' ) );
+        return view( 'admin.users.create', compact( 'user', 'roles' ) );
     }
 
 
@@ -94,8 +95,10 @@ class UsersController extends Controller {
     }
 
 
-    public function destroy( $id ) {
-        //
+    public function destroy( $locale, User $user ) {
+        $user->delete();
+
+        return back()->with( [ 'delete' => 'User has been deleted!' ] );
     }
 
 
