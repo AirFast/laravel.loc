@@ -20,7 +20,9 @@ class User extends Authenticatable {
         'name',
         'role_id',
         'email',
+        'address',
         'phone',
+        'img_src',
         'password',
     ];
 

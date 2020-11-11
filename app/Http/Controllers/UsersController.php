@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use function Sodium\compare;
 
 class UsersController extends Controller {
 
@@ -34,13 +35,21 @@ class UsersController extends Controller {
             'name'     => 'required|string|max:255',
             'role_id'  => 'required|numeric',
             'email'    => 'required|string|email|max:255|unique:users',
+            'address'  => '',
             'phone'    => '',
             'password' => 'required|string|min:8|confirmed',
         ] );
 
         $data['password'] = Hash::make( $data['password'] );
 
+        if ( request()->hasFile( 'img_src' ) ) {
+            request()->validate( [
+                'img_src' => 'file|image|max:5000',
+            ] );
+        }
+
         $user = User::create( $data );
+        $this->storeImage( $user );
 
         return redirect( route( 'admin.users.index', app()->getLocale() ) )->with( [ 'create' => 'User ' . $user->name . ' has been successfully added!' ] );
     }
@@ -54,20 +63,48 @@ class UsersController extends Controller {
 
 
     public function edit( $locale, User $user ) {
-        $id = $user->id;
+        $id    = $user->id;
         $roles = Role::all();
 
         return view( 'admin.users.edit', compact( 'id', 'user', 'roles' ) );
     }
 
 
-    public function update( Request $request, $id ) {
-        //
+    public function update( $locale, User $user ) {
+
+        $data = request()->validate( [
+            'name'    => '',
+            'role_id' => 'required|numeric',
+            'email'   => '',
+            'address' => '',
+            'phone'   => '',
+        ] );
+
+        if ( request()->hasFile( 'img_src' ) ) {
+            request()->validate( [
+                'img_src' => 'file|image|max:5000',
+            ] );
+        }
+
+        $user->update( $data );
+        $this->storeImage( $user );
+
+        return redirect( route( 'admin.users.show', [ app()->getLocale(), $user ] ) );
+
     }
 
 
     public function destroy( $id ) {
         //
+    }
+
+
+    private function storeImage( $user ) {
+        if ( request()->hasFile( 'img_src' ) ) {
+            $user->update( [
+                'img_src' => request()->img_src->store( 'uploads', 'public' ),
+            ] );
+        }
     }
 
 }

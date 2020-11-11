@@ -25,8 +25,28 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="{{ route('admin.users.store', app()->getLocale()) }}">
+                        <form method="POST" action="{{ route('admin.users.update', [app()->getLocale(), $user]) }}" enctype="multipart/form-data">
+
+                            @method('PATCH')
                             @csrf
+
+                            <div class="form-group row">
+                                <label for="image"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('User Image') }}</label>
+
+                                <div class="col-md-6">
+                                    <div class="custom-file @error('img_src') is-invalid @enderror">
+                                        <input type="file" class="custom-file-input" name="img_src" id="image">
+                                        <label class="custom-file-label" for="image">{{ __('Choose Image') }}</label>
+                                    </div>
+
+                                    @error('img_src')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -34,7 +54,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                            class="form-control @error('name') is-invalid @enderror" name="name"
-                                           value="{{ $user->name }}" required autocomplete="name" autofocus>
+                                           value="{{ $user->name }}" autocomplete="name" autofocus>
 
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -51,9 +71,26 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
-                                           value="{{ $user->email }}" required autocomplete="email">
+                                           value="{{ $user->email }}" autocomplete="email">
 
                                     @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="address"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text"
+                                           class="form-control @error('address') is-invalid @enderror" name="address"
+                                           value="{{ $user->address }}" autocomplete="address">
+
+                                    @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -96,33 +133,6 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                           class="form-control @error('password') is-invalid @enderror" name="password"
-                                           required autocomplete="new-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                           name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
 

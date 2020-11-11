@@ -38,8 +38,9 @@
                             <div class="col-lg-4 d-flex mb-4 mb-lg-0">
 
                                 @if($user->img_src)
-                                    <img class="embed-responsive w-75 rounded-circle m-auto" src="{{ $user->img_src }}"
-                                         alt="{{ $user->name }}">
+                                    <div class="user-avatar shadow m-auto">
+                                        <img src="{{ asset( 'storage/' . $user->img_src ) }}" alt="{{ $user->name }}">
+                                    </div>
                                 @else
                                     <span class="m-auto text-secondary">
                                         <svg width="100" height="100" viewBox="0 0 16 16" class="bi bi-person-circle"

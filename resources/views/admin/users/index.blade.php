@@ -52,7 +52,9 @@
                             @foreach($users as $user)
 
                                 <tr>
-                                    <td><a href="{{ route( 'admin.users.show', [app()->getLocale(), $user->id] ) }}" class="text-dark">{{ $user->name }}</a></td>
+                                    <td>
+                                        <a href="{{ route( 'admin.users.show', [app()->getLocale(), $user->id] ) }}" class="text-dark">{{ $user->name }}</a>
+                                    </td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ Str::ucfirst( $user->role->name ) }}</td>
                                     <td class="text-right">
