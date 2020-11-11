@@ -129,7 +129,7 @@
 
                                                                 <button
                                                                     class="btn btn-success btn-block"
-                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
+                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), $stand]) }}"
                                                                     data-crt-dlt-sign="delete"
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-1="{{ Auth::user()->id }}"
@@ -151,7 +151,7 @@
 
                                                         <div class="col-5">
                                                             <button class="btn btn-outline-secondary btn-block"
-                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
+                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), $stand]) }}"
                                                                     data-crt-dlt-sign="create"
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-1="{{ Auth::user()->id }}"
@@ -170,7 +170,7 @@
 
                                                                 <button
                                                                     class="btn btn-success btn-block"
-                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
+                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), $stand]) }}"
                                                                     data-crt-dlt-sign="delete"
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-2="{{ Auth::user()->id }}"
@@ -192,7 +192,7 @@
 
                                                         <div class="col-5">
                                                             <button class="btn btn-outline-secondary btn-block"
-                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), 'stand' => $stand]) }}"
+                                                                    data-update-url="{{ route('user.stand.update', [app()->getLocale(), $stand]) }}"
                                                                     data-crt-dlt-sign="create"
                                                                     data-time="{{ $i }}"
                                                                     data-user-id-2="{{ Auth::user()->id }}"

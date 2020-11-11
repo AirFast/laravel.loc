@@ -37301,6 +37301,15 @@ $('#update-modal').on('show.bs.modal', function (event) {
   modal.find('#edit-user-id-1').val(userId1);
   modal.find('#edit-user-id-2').val(userId2);
 });
+$('#delete-modal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var modal = $(this);
+  var form = modal.find('#delete-form');
+  var deleteUrl = button.data('delete-url');
+  var userName = button.data('user');
+  form.attr('action', deleteUrl);
+  modal.find('#user-name').text(userName);
+});
 
 /***/ }),
 
