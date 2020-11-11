@@ -53,8 +53,11 @@ class UsersController extends Controller {
     }
 
 
-    public function edit( $id ) {
-        //
+    public function edit( $locale, User $user ) {
+        $id = $user->id;
+        $roles = Role::all();
+
+        return view( 'admin.users.edit', compact( 'id', 'user', 'roles' ) );
     }
 
 

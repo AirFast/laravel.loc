@@ -32,6 +32,7 @@ Route::group(['prefix' => '{language}'], function () {
             Route::get('users/create', [ App\Http\Controllers\UsersController::class, 'create'])->name('admin.users.create');
             Route::post('users', [ App\Http\Controllers\UsersController::class, 'store'])->name('admin.users.store');
             Route::get('user/{user}', [ App\Http\Controllers\UsersController::class, 'show'])->name('admin.users.show');
+            Route::get('user/{user}/edit', [ App\Http\Controllers\UsersController::class, 'edit'])->name('admin.users.edit');
         } );
 
     } );
