@@ -33,7 +33,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto d-flex flex-row justify-content-center">
 
                     @foreach(config('app.locales') as $locale => $lang)
                         <li class="nav-item mx-1 my-2">
