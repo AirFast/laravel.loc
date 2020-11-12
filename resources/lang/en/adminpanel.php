@@ -15,6 +15,30 @@ return [
         'title'      => 'User Profile',
         'add-new'    => 'Add New User',
 
+        'table' => [
+
+            'col-name' => 'Name',
+            'col-role' => 'Role',
+            'admin'    => 'Admin',
+            'user'     => 'User',
+            'unsigned' => 'Unsigned',
+
+        ],
+
+        'popup' => [
+
+            'delete'  => 'Do you really want to delete user',
+            'btn-no'  => 'No',
+            'btn-yes' => 'Yes, I want',
+
+        ],
+
+        'alert' => [
+
+            'create' => 'User :name has been successfully added!',
+            'delete' => 'User has been deleted!',
+
+        ]
     ],
 
     'menu' => [

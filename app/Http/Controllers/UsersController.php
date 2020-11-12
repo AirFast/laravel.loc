@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use function Sodium\compare;
 
@@ -23,7 +22,7 @@ class UsersController extends Controller {
 
 
     public function create() {
-        $user = new User();
+        $user  = new User();
         $roles = Role::all();
 
         return view( 'admin.users.create', compact( 'user', 'roles' ) );
@@ -51,7 +50,7 @@ class UsersController extends Controller {
         $user = User::create( $data );
         $this->storeImage( $user );
 
-        return redirect( route( 'admin.users.index', app()->getLocale() ) )->with( [ 'create' => 'User ' . $user->name . ' has been successfully added!' ] );
+        return redirect( route( 'admin.users.index', app()->getLocale() ) )->with( [ 'create' => __( 'adminpanel.user.alert.create', [ 'name' => $user->name ] ) ] );
     }
 
 
@@ -97,7 +96,7 @@ class UsersController extends Controller {
     public function destroy( $locale, User $user ) {
         $user->delete();
 
-        return back()->with( [ 'delete' => 'User has been deleted!' ] );
+        return back()->with( [ 'delete' => __( 'adminpanel.user.alert.delete' ) ] );
     }
 
 

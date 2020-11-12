@@ -53,8 +53,8 @@
                             <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Role</th>
+                                <th scope="col">{{ __('adminpanel.user.table.col-name') }}</th>
+                                <th scope="col">{{ __('adminpanel.user.table.col-role') }}</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -89,7 +89,7 @@
                                         <a href="{{ route( 'admin.users.show', [app()->getLocale(), $user->id] ) }}"
                                            class="text-dark">{{ $user->name }}</a>
                                     </td>
-                                    <td>{{ Str::ucfirst( $user->role->name ) }}</td>
+                                    <td>{{ __( 'adminpanel.user.table.' . $user->role->name ) }}</td>
                                     <td class="text-right">
                                         <a href="{{ route( 'admin.users.edit', [app()->getLocale(), $user->id] ) }}"
                                            class="btn btn-sm btn-dark">
@@ -140,20 +140,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Do you really want to delete user <span id="user-name">#</span>?</p>
+                    <p>{{ __('adminpanel.user.popup.delete') }} <span id="user-name">#</span>?</p>
                 </div>
                 <div class="modal-footer">
 
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">
-                        No
-                    </button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">{{ __('adminpanel.user.popup.btn-no') }}</button>
 
                     <form id="delete-form" method="POST" action="#">
 
                         @method('DELETE')
                         @csrf
 
-                        <button type="submit" class="btn btn-dark" role="button">Yes, I want</button>
+                        <button type="submit" class="btn btn-dark" role="button">{{ __('adminpanel.user.popup.btn-yes') }}</button>
 
                     </form>
 
