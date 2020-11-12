@@ -10927,3 +10927,8 @@ a.text-dark:focus {
   height: 30px;
 }
 
+.laravel-pagination .page-item.active .page-link {
+  background-color: #e9ecef;
+  border: 1px solid #dee2e6;
+}
+
