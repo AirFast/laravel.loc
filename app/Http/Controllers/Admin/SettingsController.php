@@ -21,9 +21,9 @@ class SettingsController extends Controller {
     public function update() {
 
         $data = request()->validate( [
-            'count_per_page'       => 'required|numeric|min:0|max:100',
+            'count_per_page'       => 'required|numeric|min:1|max:100',
             'stand_time_start'     => 'required|numeric|min:0|max:23',
-            'stand_time_end'       => 'required|numeric|min:1|max:23',
+            'stand_time_end'       => 'required|numeric|min:0|max:23',
             'global_admin_message' => '',
         ] );
 
