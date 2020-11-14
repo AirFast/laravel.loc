@@ -29,5 +29,9 @@ class DatabaseSeeder extends Seeder {
             'email'    => 'admin@email.com',
             'password' => Hash::make( 'password' ),
         ] );
+
+        DB::table( 'settings' )->insert( [
+            [ 'name' => 'admin', 'value' => '' ],
+        ] );
     }
 }
