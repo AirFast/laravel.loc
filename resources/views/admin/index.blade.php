@@ -62,7 +62,7 @@
                                             value="{{ old('stand_time_start') ?? config('settings.stand_time_start')  }}"
                                             required>
 
-                                        @for($i = 1; $i <= 23; $i++)
+                                        @for($i = 0; $i <= 23; $i++)
                                             <option
                                                 value="{{ $i }}" {{ $i == config('settings.stand_time_start') ? 'selected' : '' }}>{{ $i >= 10 ? $i : '0' . $i }}:00
                                             </option>
@@ -88,7 +88,7 @@
                                             value="{{ old('stand_time_end') ?? config('settings.stand_time_end')  }}"
                                             required>
 
-                                        @for($i = 1; $i <= 23; $i++)
+                                        @for($i = 0; $i <= 23; $i++)
                                             <option
                                                 value="{{ $i }}" {{ $i == config('settings.stand_time_end') ? 'selected' : '' }}>{{ $i >= 10 ? $i : '0' . $i }}:00
                                             </option>
@@ -153,7 +153,7 @@
                                     <label for="global-admin-message"
                                            class="col-form-label">{{ __('adminpanel.admin.settings.message.global-msg') }}</label>
 
-                                    <textarea class="form-control @error('global_admin_message') is-invalid @enderror" name="global_admin_message" id="global-admin-message" rows="4">{{ old('global_admin_message') ?? config('settings.global_admin_message')  }}</textarea>
+                                    <textarea class="form-control @error('global_admin_message') is-invalid @enderror" name="global_admin_message" id="global-admin-message" rows="5">{{ old('global_admin_message') ?? config('settings.global_admin_message')  }}</textarea>
 
                                     @error('global_admin_message')
                                     <span class="invalid-feedback" role="alert">
