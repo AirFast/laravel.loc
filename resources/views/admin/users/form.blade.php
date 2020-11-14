@@ -12,8 +12,8 @@
 
         @error('img_src')
         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+            <strong>{{ $message }}</strong>
+        </span>
         @enderror
     </div>
 </div>
@@ -94,7 +94,8 @@
                 value="{{ old('role_id') ?? ''  }}" required>
 
             @foreach($roles as $role)
-                <option value="{{ $role->id }}" {{ $user->role_id == $role->id || old('role_id') == $role->id ? 'selected' : '' }}>{{ __( 'adminpanel.user.table.' . $role->name ) }}</option>
+                <option
+                    value="{{ $role->id }}" {{ $user->role_id == $role->id || old('role_id') == $role->id ? 'selected' : '' }}>{{ __( 'adminpanel.user.table.' . $role->name ) }}</option>
             @endforeach
 
         </select>

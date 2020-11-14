@@ -15,7 +15,7 @@ class UsersController extends Controller {
 
 
     public function index() {
-        $users = User::paginate( 10 );
+        $users = User::paginate( config('settings.count_per_page') );
 
         return view( 'admin.users.index', compact( 'users' ) );
     }

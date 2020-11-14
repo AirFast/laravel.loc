@@ -9,7 +9,7 @@
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">
                     <a class="text-dark"
-                       href="{{ route('admin.dashboard.index', app()->getLocale()) }}">{{ __('adminpanel.menu.dashboard') }}</a>
+                       href="{{ route('admin.settings.index', app()->getLocale()) }}">{{ __('adminpanel.menu.settings') }}</a>
                 </li>
                 <li class="nav-item mb-2">
                     <a class="text-dark" href="{{ route('admin.users.index', app()->getLocale()) }}">{{ __('adminpanel.menu.users') }}</a>

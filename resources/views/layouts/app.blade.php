@@ -75,7 +75,7 @@
 
                                     @if (Auth::user()->isAdmin())
                                         <a role="button" class="btn btn-outline-dark"
-                                           href="{{ route('admin.dashboard.index', app()->getLocale()) }}"
+                                           href="{{ route('admin.settings.index', app()->getLocale()) }}"
                                            title="{{ __('adminpanel.admin.title') }}">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear-fill"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -119,6 +119,33 @@
     </nav>
 
     <main class="py-4">
+
+        @auth
+
+            @if (config('settings.global_admin_message') && Auth::user()->isAdmin() || Auth::user()->isUser())
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <div class="alert alert-success text-center" role="alert">
+                                {{ config('settings.global_admin_message') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            @endif
+
+
+        @endauth
+
 
         @yield('content')
 

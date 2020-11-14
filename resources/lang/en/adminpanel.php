@@ -7,6 +7,34 @@ return [
         'menu-title' => 'Admin Menu',
         'title'      => 'Admin Panel',
 
+        'settings' => [
+
+            'stand' => [
+
+                'title'      => 'The ministry with a stand',
+                'time-start' => 'The start of the ministry',
+                'time-end'   => 'The end of the ministry',
+
+            ],
+
+            'records' => [
+
+                'title'    => 'The records on the page',
+                'per-page' => 'Show no more than',
+
+            ],
+
+            'message' => [
+
+                'title'      => 'The admin message',
+                'global-msg' => 'The message will be shown to all users',
+
+            ],
+
+            'status' => 'Settings has been saved!',
+
+        ],
+
     ],
 
     'user' => [
@@ -43,10 +71,10 @@ return [
 
     'menu' => [
 
-        'dashboard'   => 'Dashboard',
+        'settings'    => 'Settings',
         'users'       => 'Users',
         'territories' => 'Territories',
-        'schedule'    => 'Service schedule with stand'
+        'schedule'    => 'The ministry schedule with stand'
 
     ]
 

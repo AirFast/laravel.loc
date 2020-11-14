@@ -21,7 +21,7 @@
 
                     <div class="card-body">
 
-                        @for($i = 8; $i <= 20; $i++)
+                        @for($i = config('settings.stand_time_start'); $i <= config('settings.stand_time_end'); $i++)
 
                             <div class="row py-2">
 

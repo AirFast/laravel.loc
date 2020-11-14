@@ -19,51 +19,165 @@
 
                 <div class="card border-0 shadow">
                     <div class="card-header border-0">
-                        <h5 class="m-0">{{ __('adminpanel.menu.users') }}</h5>
+                        <h5 class="m-0">{{ __('adminpanel.menu.settings') }}</h5>
                     </div>
 
                     <div class="card-body">
+
                         @if (session('status'))
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-success text-center" role="alert">
                                 {{ session('status') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         @endif
 
-                        <table class="table table-borderless table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Role</th>
-                                <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                        <form action="{{ route('admin.settings.update', app()->getLocale()) }}" method="POST">
 
-                            @foreach($users as $user)
+                            @method('PATCH')
 
-                                <tr>
-                                    <td><a href="#" class="text-dark">{{ $user->name }}</a></td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role->name }}</td>
-                                    <td class="text-right">
-                                        <a href="#" class="btn btn-sm btn-dark">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-                                            </svg>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-danger">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
+                            @csrf
 
-                            @endforeach
+                            <div class="row mt-3">
 
-                            </tbody>
-                        </table>
+                                <div class="form-group col">
+
+                                    <h5>{{ __('adminpanel.admin.settings.stand.title') }}</h5>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-12 col-md-6">
+
+                                    <label for="stand-time-start"
+                                           class="col-form-label">{{ __('adminpanel.admin.settings.stand.time-start') }}</label>
+
+                                    <select id="stand-time-start"
+                                            class="form-control @error('stand_time_start') is-invalid @enderror"
+                                            name="stand_time_start"
+                                            value="{{ old('stand_time_start') ?? config('settings.stand_time_start')  }}"
+                                            required>
+
+                                        @for($i = 1; $i <= 23; $i++)
+                                            <option
+                                                value="{{ $i }}" {{ $i == config('settings.stand_time_start') ? 'selected' : '' }}>{{ $i >= 10 ? $i : '0' . $i }}:00
+                                            </option>
+                                        @endfor
+
+                                    </select>
+
+                                    @error('stand_time_start')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group col-12 col-md-6">
+
+                                    <label for="stand-time-end"
+                                           class="col-form-label">{{ __('adminpanel.admin.settings.stand.time-end') }}</label>
+
+                                    <select id="stand-time-end"
+                                            class="form-control @error('stand_time_end') is-invalid @enderror"
+                                            name="stand_time_end"
+                                            value="{{ old('stand_time_end') ?? config('settings.stand_time_end')  }}"
+                                            required>
+
+                                        @for($i = 1; $i <= 23; $i++)
+                                            <option
+                                                value="{{ $i }}" {{ $i == config('settings.stand_time_end') ? 'selected' : '' }}>{{ $i >= 10 ? $i : '0' . $i }}:00
+                                            </option>
+                                        @endfor
+
+                                    </select>
+
+                                    @error('stand_time_end')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-5">
+
+                                <div class="form-group col">
+
+                                    <h5>{{ __('adminpanel.admin.settings.records.title') }}</h5>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-12 col-md-6">
+
+                                    <label for="count-per-page"
+                                           class="col-form-label">{{ __('adminpanel.admin.settings.records.per-page') }}</label>
+
+                                    <input id="count-per-page" type="number" step="1" min="1" max="100"
+                                           class="form-control @error('count_per_page') is-invalid @enderror"
+                                           value="{{ old('count_per_page') ?? config('settings.count_per_page') }}"
+                                           name="count_per_page" required>
+
+                                    @error('count_per_page')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-5">
+
+                                <div class="form-group col">
+
+                                    <h5>{{ __('adminpanel.admin.settings.message.title') }}</h5>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-12">
+
+                                    <label for="global-admin-message"
+                                           class="col-form-label">{{ __('adminpanel.admin.settings.message.global-msg') }}</label>
+
+                                    <textarea class="form-control @error('global_admin_message') is-invalid @enderror" name="global_admin_message" id="global-admin-message" rows="4">{{ old('global_admin_message') ?? config('settings.global_admin_message')  }}</textarea>
+
+                                    @error('global_admin_message')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-row mt-5">
+
+                                <div class="form-group col-12 text-right">
+
+                                    <button type="submit" class="btn btn-dark">
+                                        {{ __('Update') }}
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </form>
 
                     </div>
                 </div>

@@ -26,7 +26,8 @@ Route::group(['prefix' => '{language}'], function () {
         Auth::routes();
 
         Route::middleware( [ 'admin' ] )->group( function () {
-            Route::get( '', [ App\Http\Controllers\Admin\SettingsController::class, 'index' ] )->name( 'admin.dashboard.index' );
+            Route::get( '', [ App\Http\Controllers\Admin\SettingsController::class, 'index' ] )->name( 'admin.settings.index' );
+            Route::patch('settings', [ App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('admin.settings.update');
 
             Route::get('users', [ App\Http\Controllers\UsersController::class, 'index'])->name('admin.users.index');
             Route::get('users/create', [ App\Http\Controllers\UsersController::class, 'create'])->name('admin.users.create');

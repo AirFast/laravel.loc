@@ -13,13 +13,19 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        //\App\Models\User::factory(10)->create();
-
+//        \App\Models\User::factory(100)->create();
+//
         // Set Roles in DB
         DB::table( 'roles' )->insert( [
-            [ 'name' => 'admin' ],
-            [ 'name' => 'user' ],
-            [ 'name' => 'unsigned' ],
+            [
+                'name' => 'admin'
+            ],
+            [
+                'name' => 'user'
+            ],
+            [
+                'name' => 'unsigned'
+            ],
         ] );
 
         // Set Admin user in DB
@@ -30,8 +36,24 @@ class DatabaseSeeder extends Seeder {
             'password' => Hash::make( 'password' ),
         ] );
 
+        // Set Settings in DB
         DB::table( 'settings' )->insert( [
-            [ 'name' => 'admin', 'value' => '' ],
+            [
+                'name'  => 'count_per_page',
+                'value' => '10'
+            ],
+            [
+                'name'  => 'stand_time_start',
+                'value' => '8'
+            ],
+            [
+                'name'  => 'stand_time_end',
+                'value' => '20'
+            ],
+            [
+                'name'  => 'global_admin_message',
+                'value' => ''
+            ],
         ] );
     }
 }
