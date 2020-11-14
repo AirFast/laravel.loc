@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 
-class DashboardController extends Controller {
+class SettingsController extends Controller {
 
     public function __construct() {
         $this->middleware( 'admin' );
