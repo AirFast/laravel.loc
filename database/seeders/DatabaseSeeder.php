@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder {
             ],
             [
                 'name'  => 'stand_time_end',
-                'value' => '20'
+                'value' => '19'
             ],
             [
                 'name'  => 'global_admin_message',
