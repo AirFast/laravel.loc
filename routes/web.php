@@ -29,13 +29,13 @@ Route::group(['prefix' => '{language}'], function () {
             Route::get( '', [ App\Http\Controllers\Admin\SettingsController::class, 'index' ] )->name( 'admin.settings.index' );
             Route::patch('settings', [ App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('admin.settings.update');
 
-            Route::get('users', [ App\Http\Controllers\UsersController::class, 'index'])->name('admin.users.index');
-            Route::get('users/create', [ App\Http\Controllers\UsersController::class, 'create'])->name('admin.users.create');
-            Route::post('users', [ App\Http\Controllers\UsersController::class, 'store'])->name('admin.users.store');
-            Route::get('user/{user}', [ App\Http\Controllers\UsersController::class, 'show'])->name('admin.users.show');
-            Route::get('user/{user}/edit', [ App\Http\Controllers\UsersController::class, 'edit'])->name('admin.users.edit');
-            Route::patch('user/{user}', [ App\Http\Controllers\UsersController::class, 'update'])->name('admin.users.update');
-            Route::delete('user/{user}', [ App\Http\Controllers\UsersController::class, 'destroy'])->name('admin.users.destroy');
+            Route::get('users', [ App\Http\Controllers\Admin\UsersController::class, 'index'])->name('admin.users.index');
+            Route::get('users/create', [ App\Http\Controllers\Admin\UsersController::class, 'create'])->name('admin.users.create');
+            Route::post('users', [ App\Http\Controllers\Admin\UsersController::class, 'store'])->name('admin.users.store');
+            Route::get('user/{user}', [ App\Http\Controllers\Admin\UsersController::class, 'show'])->name('admin.users.show');
+            Route::get('user/{user}/edit', [ App\Http\Controllers\Admin\UsersController::class, 'edit'])->name('admin.users.edit');
+            Route::patch('user/{user}', [ App\Http\Controllers\Admin\UsersController::class, 'update'])->name('admin.users.update');
+            Route::delete('user/{user}', [ App\Http\Controllers\Admin\UsersController::class, 'destroy'])->name('admin.users.destroy');
         } );
 
     } );
