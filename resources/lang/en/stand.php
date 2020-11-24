@@ -2,6 +2,7 @@
 
 return [
 
+    'home'      => 'Home page',
     'free'      => 'Free place',
     'sign'      => 'Sign up',
     'today'     => 'Today',

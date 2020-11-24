@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Home') }}
+    {{ __('stand.home') }}
 @endsection
 
 @section('description')
