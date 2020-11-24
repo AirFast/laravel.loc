@@ -2,6 +2,7 @@
 
 return [
 
+    'appname'   => 'Ministry with stand',
     'home'      => 'Home page',
     'free'      => 'Free place',
     'sign'      => 'Sign up',
