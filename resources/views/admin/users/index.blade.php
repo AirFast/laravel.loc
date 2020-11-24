@@ -2,9 +2,7 @@
 
 @section('title'){{ __('adminpanel.menu.users') }}@endsection
 
-@section('description')
-    {{ __('Admin panel page a ministry with stand.') }}
-@endsection
+@section('description'){{ __('Admin panel page a ministry with stand.') }}@endsection
 
 @section('content')
 
