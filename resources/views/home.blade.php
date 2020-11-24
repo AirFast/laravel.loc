@@ -1,12 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ __('stand.home') }}
-@endsection
+@section('title'){{ __('stand.home') }}@endsection
 
-@section('description')
-    {{ __('Home page a ministry with stand.') }}
-@endsection
+@section('description'){{ __('Home page a ministry with stand.') }}@endsection
 
 @section('content')
 
