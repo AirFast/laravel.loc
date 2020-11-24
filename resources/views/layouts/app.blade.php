@@ -23,7 +23,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home', app()->getLocale()) }}">{{ config('app.name', 'Stand') }}</a>
+            <a class="navbar-brand" href="{{ route('home', app()->getLocale()) }}">{{ __( 'stand.appname' ) }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
