@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Stand') }} | @yield('title', 'Home')</title>
 
     <meta name="description" content="@yield('description', 'Home')">
+    <link rel="icon" href="{{ asset('css/favicon.png') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
