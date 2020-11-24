@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ __('adminpanel.menu.users') }}
-@endsection
+@section('title'){{ __('adminpanel.menu.users') }}@endsection
 
 @section('description')
     {{ __('Admin panel page a ministry with stand.') }}

@@ -1,12 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ __('adminpanel.user.add-new') }}
-@endsection
+@section('title'){{ __('adminpanel.user.add-new') }}@endsection
 
-@section('description')
-    {{ __('Admin panel page a ministry with stand.') }}
-@endsection
+@section('description'){{ __('Admin panel page a ministry with stand.') }}@endsection
 
 @section('content')
 
