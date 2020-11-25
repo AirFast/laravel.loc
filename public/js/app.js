@@ -37280,7 +37280,7 @@ var activeTab = $('.nav-tabs.card-header-tabs .nav-link.active'),
 var scrollPosition = activeTab.offset().left + activeTab.outerWidth() / 2 - navTabs.width() / 4;
 navTabs.animate({
   scrollLeft: scrollPosition
-});
+}, 1000, 'swing');
 $('#create-modal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var modal = $(this);
