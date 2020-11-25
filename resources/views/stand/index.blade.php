@@ -1,12 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ Auth::user()->name }}
-@endsection
+@section('title'){{ Auth::user()->name }}@endsection
 
-@section('description')
-    {{ __('User page a ministry with stand.') }}
-@endsection
+@section('description'){{ __('User page a ministry with stand.') }}@endsection
 
 @section('content')
 
@@ -21,10 +17,10 @@
 
                         @if (Auth::user()->isAdmin() || Auth::user()->isUser())
 
-                            <div class="card-header d-md-flex flex-md-row justify-content-between border-0">
-                                <h4 class="m-0 align-self-center">{{ Str::ucfirst($dt->locale(app()->getLocale())->translatedFormat('l, d F Y')) }}</h4>
+                            <div class="card-header d-flex flex-column flex-md-row justify-content-md-between border-0">
+                                <h4 class="m-md-0 align-self-center order-last order-md-first">{{ Str::ucfirst($dt->locale(app()->getLocale())->translatedFormat('l, d F Y')) }}</h4>
 
-                                <div class="btn-group" role="group" aria-label="Navigation by weeks">
+                                <div class="col-auto btn-group mx-auto mt-2 mb-4 m-md-0" role="group" aria-label="Navigation by weeks">
                                     <a class="btn btn-outline-secondary"
                                        href="{{ route( 'user.stand.index', [app()->getLocale(), 'date' => $startOfWeek->subDay()->toDateString()] ) }}"
                                        role="button" title="{{ __('stand.prev-week') }}">
@@ -112,7 +108,7 @@
 
                                         <div class="col-2 d-flex text-center">
                                             <span
-                                                class="m-auto {{ ($now->hour == $i) && ($now->toDateString() == $dt->toDateString()) ? 'btn btn-secondary' : '' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
+                                                class="{{ ($now->hour == $i) && ($now->toDateString() == $dt->toDateString()) ? 'btn btn-sm btn-secondary ml-n1 my-auto mx-sm-auto' : 'm-auto' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
                                         </div>
 
                                         @if($stands->contains('time', $i))

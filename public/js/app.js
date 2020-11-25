@@ -37275,6 +37275,12 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Custom js
 
 
+var activeTab = $('.nav-tabs.card-header-tabs .nav-link.active'),
+    navTabs = $('.nav-tabs.card-header-tabs');
+var scrollPosition = activeTab.offset().left + activeTab.outerWidth() / 2 - navTabs.width() / 4;
+navTabs.animate({
+  scrollLeft: scrollPosition
+});
 $('#create-modal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var modal = $(this);
@@ -37376,8 +37382,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\laravel.loc\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\laravel.loc\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! W:\OpenServer\domains\laravel.loc\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! W:\OpenServer\domains\laravel.loc\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

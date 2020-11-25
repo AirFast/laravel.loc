@@ -10932,3 +10932,15 @@ a.text-dark:focus {
   border: 1px solid #dee2e6;
 }
 
+.nav-tabs.card-header-tabs {
+  margin-bottom: calc(-0.75rem - 1px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.nav-tabs.card-header-tabs .nav-link.active {
+  background-color: #ffffff;
+}
+
