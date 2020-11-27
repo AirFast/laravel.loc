@@ -36,6 +36,9 @@ Route::group(['prefix' => '{language}'], function () {
             Route::get('user/{user}/edit', [ App\Http\Controllers\Admin\UsersController::class, 'edit'])->name('admin.users.edit');
             Route::patch('user/{user}', [ App\Http\Controllers\Admin\UsersController::class, 'update'])->name('admin.users.update');
             Route::delete('user/{user}', [ App\Http\Controllers\Admin\UsersController::class, 'destroy'])->name('admin.users.destroy');
+
+            Route::get('territories', [ App\Http\Controllers\Admin\TerritoriesController::class, 'index'])->name('admin.territories.index');
+
         } );
 
     } );

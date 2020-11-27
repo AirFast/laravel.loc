@@ -37275,12 +37275,15 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Custom js
 
 
-var activeTab = $('.nav-tabs.card-header-tabs .nav-link.active'),
-    navTabs = $('.nav-tabs.card-header-tabs');
-var scrollPosition = activeTab.offset().left + activeTab.outerWidth() / 2 - navTabs.width() / 4;
-navTabs.animate({
-  scrollLeft: scrollPosition
-}, 1000, 'swing');
+if ($('.scroll-nav-tabs').length) {
+  var navTabs = $('.scroll-nav-tabs'),
+      activeTab = $('.scroll-nav-tabs .nav-link.active');
+  var scrollPosition = activeTab.offset().left + activeTab.outerWidth() / 2 - navTabs.width() / 4;
+  navTabs.animate({
+    scrollLeft: scrollPosition
+  }, 1000, 'swing');
+}
+
 $('#create-modal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var modal = $(this);
@@ -37316,6 +37319,99 @@ $('#delete-modal').on('show.bs.modal', function (event) {
   form.attr('action', deleteUrl);
   modal.find('#user-name').text(userName);
 });
+
+if ($('#google-map').length) {
+  var map = $('#google-map'),
+      mapLatitude = map.data('map-latitude'),
+      mapLongitude = map.data('map-longitude'),
+      mapZoom = map.data('map-zoom'),
+      mapZoomControl = map.data('map-zoom-control'),
+      mapTypeControl = map.data('map-type-control'),
+      mapStreetViewControl = map.data('map-street-view-control'),
+      mapFullScreenControl = map.data('map-full-screen-control'),
+      mapScrollWheel = map.data('map-scroll-wheel'),
+      mapMarkerIcon = map.data('map-marker-icon'),
+      mapMarkerTitle = map.data('map-marker-title');
+  var googleMap = new google.maps.Map(document.getElementById('google-map'), {
+    center: {
+      lat: mapLatitude,
+      lng: mapLongitude
+    },
+    zoom: mapZoom,
+    zoomControl: mapZoomControl,
+    mapTypeControl: mapTypeControl,
+    streetViewControl: mapStreetViewControl,
+    fullscreenControl: mapFullScreenControl,
+    scrollwheel: mapScrollWheel,
+    gestureHandling: 'cooperative',
+    styles: [{
+      "featureType": "landscape",
+      "elementType": "all",
+      "stylers": [{
+        "visibility": "on"
+      }]
+    }, {
+      "featureType": "poi.business",
+      "elementType": "all",
+      "stylers": [{
+        "visibility": "simplified"
+      }]
+    }, {
+      "featureType": "poi.business",
+      "elementType": "labels",
+      "stylers": [{
+        "visibility": "simplified"
+      }]
+    }, {
+      "featureType": "poi.park",
+      "elementType": "all",
+      "stylers": [{
+        "visibility": "off"
+      }]
+    }, {
+      "featureType": "poi.school",
+      "elementType": "all",
+      "stylers": [{
+        "visibility": "on"
+      }]
+    }, {
+      "featureType": "poi.sports_complex",
+      "elementType": "all",
+      "stylers": [{
+        "visibility": "off"
+      }]
+    }, {
+      "featureType": "transit.station.bus",
+      "elementType": "all",
+      "stylers": [{
+        "visibility": "on"
+      }, {
+        "saturation": "21"
+      }, {
+        "weight": "4.05"
+      }]
+    }]
+  });
+  var marker = new google.maps.Marker({
+    position: {
+      lat: mapLatitude,
+      lng: mapLongitude
+    },
+    map: googleMap,
+    icon: mapMarkerIcon,
+    title: mapMarkerTitle
+  });
+  var infoWindowTitle = map.data('map-info-window-title'),
+      infoWindowText = map.data('map-info-window-text'),
+      infoWindowContent = '<div class="info-window-content">' + '<h4>' + infoWindowTitle + '</h4>' + '<p>' + infoWindowText + '</p>' + '</div>';
+  var infoWindow = new google.maps.InfoWindow({
+    content: infoWindowContent,
+    maxWidth: 300
+  });
+  marker.addListener('click', function () {
+    infoWindow.open(googleMap, marker);
+  });
+}
 
 /***/ }),
 

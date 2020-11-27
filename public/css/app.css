@@ -10944,3 +10944,29 @@ a.text-dark:focus {
   background-color: #ffffff;
 }
 
+.territory-map {
+  height: 40vw;
+}
+
+.territory-map .info-window-content {
+  color: #07070d;
+  text-align: center;
+  padding: 10px 0 0 10px;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .territory-map {
+    max-height: 600px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .territory-map {
+    height: 30vw;
+    min-height: 300px;
+    color: #07070d;
+  }
+}
+

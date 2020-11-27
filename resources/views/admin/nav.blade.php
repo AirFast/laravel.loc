@@ -15,7 +15,7 @@
                     <a class="text-dark" href="{{ route('admin.users.index', app()->getLocale()) }}">{{ __('adminpanel.menu.users') }}</a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="text-dark" href="#">{{ __('adminpanel.menu.territories') }}</a>
+                    <a class="text-dark" href="{{ route('admin.territories.index', app()->getLocale()) }}">{{ __('adminpanel.menu.territories') }}</a>
                 </li>
             </ul>
 

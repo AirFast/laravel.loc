@@ -153,6 +153,7 @@
 </div>
 
 <!-- Scripts -->
+@stack('scripts')
 <script src="{{ asset('js/app.js') }}" defer></script>
 
 </body>

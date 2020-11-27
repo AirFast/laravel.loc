@@ -54,7 +54,7 @@
 
                             <div class="card-header">
 
-                                <ul class="nav nav-tabs card-header-tabs">
+                                <ul class="nav nav-tabs card-header-tabs scroll-nav-tabs">
 
                                     @for($i = 1; $i <= 7; $i++)
 
