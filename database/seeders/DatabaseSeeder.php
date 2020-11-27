@@ -40,19 +40,43 @@ class DatabaseSeeder extends Seeder {
         DB::table( 'settings' )->insert( [
             [
                 'name'  => 'count_per_page',
-                'value' => '10'
+                'value' => 10
             ],
             [
                 'name'  => 'stand_time_start',
-                'value' => '8'
+                'value' => 8
             ],
             [
                 'name'  => 'stand_time_end',
-                'value' => '19'
+                'value' => 19
             ],
             [
                 'name'  => 'global_admin_message',
                 'value' => ''
+            ],
+            [
+                'name'  => 'map_zoom',
+                'value' => 17
+            ],
+            [
+                'name'  => 'map_zoom_control',
+                'value' => false
+            ],
+            [
+                'name'  => 'map_type_control',
+                'value' => false
+            ],
+            [
+                'name'  => 'map_street_view_control',
+                'value' => false
+            ],
+            [
+                'name'  => 'map_full_screen_control',
+                'value' => false
+            ],
+            [
+                'name'  => 'map_scroll_wheel',
+                'value' => false
             ],
         ] );
     }

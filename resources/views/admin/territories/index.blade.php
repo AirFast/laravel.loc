@@ -46,9 +46,9 @@
                         @endif
 
                         <div id="google-map" class="territory-map" data-map-latitude="49.79724860773186"
-                             data-map-longitude="24.045091697303622" data-map-zoom="17" data-map-zoom-control="false"
-                             data-map-type-control="false" data-map-street-view-control="false"
-                             data-map-full-screen-control="false" data-map-scroll-wheel="false"
+                             data-map-longitude="24.045091697303622" data-map-zoom="{{ config('settings.map_zoom') }}" data-map-zoom-control="{{ config('settings.map_zoom_control') }}"
+                             data-map-type-control="{{ config('settings.map_type_control') }}" data-map-street-view-control="{{ config('settings.map_street_view_control') }}"
+                             data-map-full-screen-control="{{ config('settings.map_full_screen_control') }}" data-map-scroll-wheel="{{ config('settings.map_scroll_wheel') }}"
                              data-map-marker-icon="{{ asset('css/marker-icon.png') }}" data-map-marker-title="I am here!"
                              data-map-info-window-title="Hi friends!"
                              data-map-info-window-text="<strong>I am here!</strong> My name is Daniel McKinnon. I look forward to working with you.">
