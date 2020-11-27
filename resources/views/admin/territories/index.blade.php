@@ -46,7 +46,7 @@
                         @endif
 
                         <div id="google-map" class="territory-map" data-map-latitude="49.79724860773186"
-                             data-map-longitude="24.045091697303622" data-map-zoom="18" data-map-zoom-control="false"
+                             data-map-longitude="24.045091697303622" data-map-zoom="17" data-map-zoom-control="false"
                              data-map-type-control="false" data-map-street-view-control="false"
                              data-map-full-screen-control="false" data-map-scroll-wheel="false"
                              data-map-marker-icon="{{ asset('css/marker-icon.png') }}" data-map-marker-title="I am here!"
