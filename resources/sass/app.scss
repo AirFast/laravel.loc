@@ -54,11 +54,22 @@
     }
 }
 
-.form-control,
+.form-control {
+    &:focus {
+        border-color: #6c757d;
+        box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, .25);
+    }
+}
+
 .custom-file-input {
     &:focus {
         border-color: #6c757d;
         box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, .25);
+
+        ~ .custom-file-label {
+            border-color: #6c757d;
+            box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, .25);
+        }
     }
 }
 
