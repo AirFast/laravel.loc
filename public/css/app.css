@@ -10944,6 +10944,106 @@ a.text-dark:focus {
   background-color: #ffffff;
 }
 
+.form-control:focus {
+  border-color: #6c757d;
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.25);
+}
+
+.custom-switch .custom-control-label {
+  cursor: pointer;
+}
+
+.custom-switch .custom-control-label::before {
+  border-color: #343a40;
+}
+
+.custom-switch .custom-control-label::after {
+  background-color: #343a40;
+}
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #343a40;
+  background-color: #343a40;
+}
+
+.custom-switch .custom-control-input:focus ~ .custom-control-label::before {
+  border-color: #6c757d;
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.25);
+}
+
+.custom-switch .custom-control-input:active ~ .custom-control-label::before {
+  border-color: #6c757d;
+  background-color: rgba(52, 58, 64, 0.25);
+}
+
+.custom-range::-webkit-slider-thumb {
+  background-color: #343a40;
+}
+
+.custom-range::-webkit-slider-thumb:active {
+  background-color: #6c757d;
+}
+
+.custom-range::-ms-thumb {
+  background-color: #343a40;
+}
+
+.custom-range::-ms-thumb:active {
+  background-color: #6c757d;
+}
+
+.custom-range::-moz-range-thumb {
+  background-color: #343a40;
+}
+
+.custom-range::-moz-range-thumb:active {
+  background-color: #6c757d;
+}
+
+.custom-range:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 58, 64, 0.25);
+}
+
+.custom-range:focus::-ms-thumb {
+  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 58, 64, 0.25);
+}
+
+.custom-range:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 58, 64, 0.25);
+}
+
+.range-value {
+  position: absolute;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  background-color: #343a40;
+  border-radius: 0.2rem;
+  transform: translateX(-85%);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.range-value.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.range-value::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #343a40;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .territory-map {
   height: 40vw;
 }

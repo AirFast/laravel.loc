@@ -1,12 +1,40 @@
 require('./bootstrap');
 
 // Custom js
-if ( $('.scroll-nav-tabs').length ) {
+if ($('.scroll-nav-tabs').length) {
     var navTabs = $('.scroll-nav-tabs'),
         activeTab = $('.scroll-nav-tabs .nav-link.active');
 
     var scrollPosition = activeTab.offset().left + activeTab.outerWidth() / 2 - navTabs.width() / 4;
     navTabs.animate({scrollLeft: scrollPosition}, 1000, 'swing');
+}
+
+if ($('.custom-range').length) {
+    var range = $('.custom-range'),
+        rangeVal = $('.range-value'),
+        setRangeVal = () => {
+            var newValue = Number((100 / range.attr('max')) * range.val());
+
+            rangeVal.html(range.val());
+
+            rangeVal.css({
+                left: newValue + '%',
+            });
+        }
+
+    setRangeVal();
+
+    range.on('input', function () {
+        setRangeVal();
+    });
+
+    range.on('mouseover', function () {
+        rangeVal.removeClass('is-hidden');
+    });
+
+    range.on('mouseout', function () {
+        rangeVal.addClass('is-hidden');
+    });
 }
 
 $('#create-modal').on('show.bs.modal', function (event) {

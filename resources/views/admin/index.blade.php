@@ -176,6 +176,7 @@
                                 <div class="form-group col-12 col-lg-6">
                                     <label for="map-zoom" class="col-form-label">{{ __('Наближення до карти') }}</label>
                                     <input id="map-zoom" type="range" class="custom-range @error('map_zoom') is-invalid @enderror" min="1" max="20" name="map_zoom" value="{{ old('map_zoom') ?? config('settings.map_zoom') }}">
+                                    <div class="range-value is-hidden"></div>
 
                                     @error('map_zoom')
                                     <span class="invalid-feedback" role="alert">
