@@ -10944,7 +10944,8 @@ a.text-dark:focus {
   background-color: #ffffff;
 }
 
-.form-control:focus {
+.form-control:focus,
+.custom-file-input:focus {
   border-color: #6c757d;
   box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.25);
 }
