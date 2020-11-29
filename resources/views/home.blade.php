@@ -22,7 +22,7 @@
                             <div class="row py-2">
 
                                 <div class="col-2 d-flex text-center">
-                                    <span class="m-auto {{ $dt->hour == $i ? 'btn btn-secondary' : '' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
+                                    <span class="{{ $dt->hour == $i ? 'btn btn-sm btn-secondary ml-n1 my-auto mx-sm-auto' : 'm-auto ' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
                                 </div>
 
                                 @if($stands->contains('time', $i))
