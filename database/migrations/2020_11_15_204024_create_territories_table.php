@@ -16,8 +16,11 @@ class CreateTerritoriesTable extends Migration
         Schema::create('territories', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
-            $table->string('number')->unique();
+            $table->integer('number')->unique();
             $table->string('name');
+            $table->string('map_latitude');
+            $table->string('map_longitude');
+            $table->tinyInteger('status')->default(2);
             $table->text('description')->nullable();
             $table->timestamps();
         });

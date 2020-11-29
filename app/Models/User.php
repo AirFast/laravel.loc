@@ -53,6 +53,10 @@ class User extends Authenticatable {
         return $this->hasMany(Stand::class);
     }
 
+    public function territories() {
+        return $this->hasMany(Territory::class);
+    }
+
     public function isAdmin() {
         return $this->role->name == 'admin';
     }
