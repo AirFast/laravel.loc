@@ -17,10 +17,8 @@
                     <div class="card-header d-flex flex-row justify-content-between border-0">
                         <h5 class="m-0 align-self-center">{{ __('adminpanel.menu.users') }}</h5>
                         <a href="{{ route( 'admin.users.create', app()->getLocale() ) }}" class="btn btn-dark">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-plus-fill"
-                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                             </svg>
                         </a>
                     </div>
@@ -82,12 +80,12 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{{ route( 'admin.users.show', [app()->getLocale(), $user->id] ) }}"
+                                        <a href="{{ route( 'admin.users.show', [app()->getLocale(), $user] ) }}"
                                            class="text-dark">{{ $user->name }}</a>
                                     </td>
                                     <td>{{ __( 'adminpanel.user.table.' . $user->role->name ) }}</td>
                                     <td class="text-right">
-                                        <a href="{{ route( 'admin.users.edit', [app()->getLocale(), $user->id] ) }}"
+                                        <a href="{{ route( 'admin.users.edit', [app()->getLocale(), $user] ) }}"
                                            class="btn btn-sm btn-dark">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -16,11 +16,17 @@
                 <div class="card border-0 shadow">
                     <div class="card-header d-flex flex-row justify-content-between border-0">
                         <h5 class="m-0 align-self-center">{{ __('Території') }}</h5>
+
+                        <div>
+                            <a href="{{ route( 'admin.territories.index', app()->getLocale() ) }}" class="btn btn-sm btn-secondary">Всі</a>
+                            <a href="{{ route( 'admin.territories.index', [app()->getLocale(), 'status' => 1] ) }}" class="btn btn-sm btn-secondary">Опрацьовується</a>
+                            <a href="{{ route( 'admin.territories.index', [app()->getLocale(), 'status' => 2] ) }}" class="btn btn-sm btn-secondary">Вільна</a>
+                            <a href="{{ route( 'admin.territories.index', [app()->getLocale(), 'status' => 3] ) }}" class="btn btn-sm btn-secondary">Очікує</a>
+                        </div>
+
                         <a href="{{ route( 'admin.territories.create', app()->getLocale() ) }}" class="btn btn-dark">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill"
-                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                             </svg>
                         </a>
                     </div>
@@ -90,7 +96,7 @@
 
                     </div>
 
-{{--                    {{ $territories->links() }}--}}
+                    {{ $territories->links() }}
 
                 </div>
 

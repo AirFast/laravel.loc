@@ -18,8 +18,7 @@ class CreateTerritoriesTable extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('number')->unique();
             $table->string('name');
-            $table->string('map_latitude');
-            $table->string('map_longitude');
+            $table->string('map_lat_lng');
             $table->tinyInteger('status')->default(2);
             $table->text('description')->nullable();
             $table->timestamps();

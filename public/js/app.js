@@ -37345,8 +37345,8 @@ $('#delete-modal').on('show.bs.modal', function (event) {
 
 if ($('#google-map').length) {
   var map = $('#google-map'),
-      mapLatitude = map.data('map-latitude'),
-      mapLongitude = map.data('map-longitude'),
+      mapLatLngArr = map.data('map-lat-lng').split(', '),
+      mapLatLng = new google.maps.LatLng(mapLatLngArr[0], mapLatLngArr[1]),
       mapZoom = map.data('map-zoom'),
       mapZoomControl = map.data('map-zoom-control'),
       mapTypeControl = map.data('map-type-control'),
@@ -37356,10 +37356,7 @@ if ($('#google-map').length) {
       mapMarkerIcon = map.data('map-marker-icon'),
       mapMarkerTitle = map.data('map-marker-title');
   var googleMap = new google.maps.Map(document.getElementById('google-map'), {
-    center: {
-      lat: mapLatitude,
-      lng: mapLongitude
-    },
+    center: mapLatLng,
     zoom: mapZoom,
     zoomControl: mapZoomControl,
     mapTypeControl: mapTypeControl,
@@ -37416,17 +37413,13 @@ if ($('#google-map').length) {
     }]
   });
   var marker = new google.maps.Marker({
-    position: {
-      lat: mapLatitude,
-      lng: mapLongitude
-    },
+    position: mapLatLng,
     map: googleMap,
     icon: mapMarkerIcon,
     title: mapMarkerTitle
   });
   var infoWindowTitle = map.data('map-info-window-title'),
-      infoWindowText = map.data('map-info-window-text'),
-      infoWindowContent = '<div class="info-window-content">' + '<h4>' + infoWindowTitle + '</h4>' + '<p>' + infoWindowText + '</p>' + '</div>';
+      infoWindowContent = '<div class="info-window-content">' + '<h6>' + infoWindowTitle + '</h6>' + '</div>';
   var infoWindow = new google.maps.InfoWindow({
     content: infoWindowContent,
     maxWidth: 300

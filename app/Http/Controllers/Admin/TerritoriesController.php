@@ -15,7 +15,12 @@ class TerritoriesController extends Controller {
 
 
     public function index() {
-        $territories = Territory::all();
+
+        if ( request()->query('status') !== null ) {
+            $territories = Territory::where( 'status', request()->query('status') )->paginate( config( 'settings.count_per_page' ) );
+        } else {
+            $territories = Territory::paginate( config( 'settings.count_per_page' ) );
+        }
 
         return view( 'admin.territories.index', compact( 'territories' ) );
     }
@@ -32,13 +37,12 @@ class TerritoriesController extends Controller {
     public function store() {
 
         $data = request()->validate( [
-            'number'        => 'required|numeric|unique:territories',
-            'name'          => 'required|string|max:255',
-            'map_latitude'  => 'required|numeric',
-            'map_longitude' => 'required|numeric',
-            'description'   => '',
-            'status'        => 'required',
-            'user_id'       => '',
+            'number'      => 'required|numeric|unique:territories',
+            'name'        => 'required|string|max:255',
+            'map_lat_lng' => 'required|string',
+            'description' => '',
+            'status'      => 'required',
+            'user_id'     => '',
         ] );
 
         Territory::create( $data );
@@ -47,7 +51,7 @@ class TerritoriesController extends Controller {
     }
 
 
-    protected function show( $locale, Territory $territory) {
+    protected function show( $locale, Territory $territory ) {
         $id = $territory->id;
 
         return view( 'admin.territories.show', compact( 'id', 'territory' ) );

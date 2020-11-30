@@ -58,30 +58,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="latitude" class="col-md-4 col-form-label text-md-right">{{ __('Широта') }}</label>
+                                <label for="map-lat-lng" class="col-md-4 col-form-label text-md-right">{{ __('Координати') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="latitude" type="number" min="0" step="any"
-                                           class="form-control @error('map_latitude') is-invalid @enderror" name="map_latitude"
-                                           value="{{ old('map_latitude') ?? $territory->map_latitude }}" required>
+                                    <input id="map-lat-lng" type="text"
+                                           class="form-control @error('map_lat_lng') is-invalid @enderror" name="map_lat_lng"
+                                           value="{{ old('map_lat_lng') ?? $territory->map_lat_lng }}" required>
 
-                                    @error('map_latitude')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="longitude" class="col-md-4 col-form-label text-md-right">{{ __('Довгота') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="longitude" type="number" min="0" step="any"
-                                           class="form-control @error('map_longitude') is-invalid @enderror" name="map_longitude"
-                                           value="{{ old('map_longitude') ?? $territory->map_longitude }}" required>
-
-                                    @error('map_longitude')
+                                    @error('map_lat_lng')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
