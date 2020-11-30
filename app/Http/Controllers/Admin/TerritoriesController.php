@@ -16,7 +16,7 @@ class TerritoriesController extends Controller {
 
     public function index() {
 
-        if ( request()->query('status') !== null ) {
+        if ( request()->has('status') ) {
             $territories = Territory::where( 'status', request()->query('status') )->paginate( config( 'settings.count_per_page' ) );
         } else {
             $territories = Territory::paginate( config( 'settings.count_per_page' ) );
