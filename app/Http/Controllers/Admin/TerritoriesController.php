@@ -22,7 +22,9 @@ class TerritoriesController extends Controller {
             $territories = Territory::paginate( config( 'settings.count_per_page' ) );
         }
 
-        return view( 'admin.territories.index', compact( 'territories' ) );
+        $territory = new Territory();
+
+        return view( 'admin.territories.index', compact( 'territories', 'territory' ) );
     }
 
 

@@ -93,14 +93,15 @@
 
                                 <div class="col-md-6">
                                     <select id="status" class="form-control @error('status') is-invalid @enderror"
-                                            name="status"
-                                            value="{{ old('status') ?? '2'  }}" required>
-                                            <option value="2">Вільна</option>
-                                            <option value="1">Опрацьоіується</option>
-                                            <option value="3">Очікує</option>
+                                            name="status" required>
+
+                                        @foreach($territory->statusOptions() as $statusOptionKey => $statusOptionValue)
+                                            <option value="{{ $statusOptionKey }}" {{ $territory->status == $statusOptionValue ? 'selected' : '' }}>{{ $statusOptionValue }}</option>
+                                        @endforeach
+
                                     </select>
 
-                                    @error('user_id')
+                                    @error('status')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

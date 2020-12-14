@@ -26,11 +26,12 @@
                             </a>
                         </div>
 
-                        <div class="text-center mt-3 mb-2">
-                            <a href="{{ route( 'admin.territories.index', app()->getLocale() ) }}" class="btn btn-sm btn-secondary">Всі</a>
-                            <a href="{{ route( 'admin.territories.index', [app()->getLocale(), 'status' => 1] ) }}" class="btn btn-sm btn-secondary">Опрацьовується</a>
-                            <a href="{{ route( 'admin.territories.index', [app()->getLocale(), 'status' => 2] ) }}" class="btn btn-sm btn-secondary">Вільна</a>
-                            <a href="{{ route( 'admin.territories.index', [app()->getLocale(), 'status' => 3] ) }}" class="btn btn-sm btn-secondary">Очікує</a>
+                        <div class="mt-3 mb-2">
+                            <a href="{{ route( 'admin.territories.index', app()->getLocale() ) }}" class="btn btn-sm {{ !request()->has('status') ? 'btn-secondary' : 'btn-outline-secondary' }}">Всі</a>
+
+                            @foreach($territory->statusOptions() as $statusOptionKey => $statusOptionValue)
+                                <a href="{{ route( 'admin.territories.index', [app()->getLocale(), 'status' => $statusOptionKey] ) }}" class="btn btn-sm {{ request()->query('status') == $statusOptionKey ? 'btn-secondary' : 'btn-outline-secondary' }}">{{ $statusOptionValue }}</a>
+                            @endforeach
                         </div>
 
                     </div>
