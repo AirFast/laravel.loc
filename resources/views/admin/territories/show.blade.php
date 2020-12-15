@@ -16,8 +16,8 @@
                 <div class="card border-0 shadow">
 
                     <div class="card-header d-flex flex-row justify-content-between border-0">
-                        <h5 class="m-0 align-self-center">Територія №{{ $territory->number }}</h5>
-                        <a href="#"
+                        <h5 class="m-0 align-self-center">{{ __('adminpanel.territories.title') }} №{{ $territory->number }}</h5>
+                        <a href="{{ route( 'admin.territories.edit', [app()->getLocale(), $territory->id] ) }}"
                            class="btn btn-dark">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -29,15 +29,24 @@
 
                     <div class="card-body">
 
+                        @if (session('update'))
+                            <div class="alert alert-success text-center" role="alert">
+                                {{ session('update') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+
                         <div id="google-map" class="territory-map mb-5" data-map-lat-lng="{{ $territory->map_lat_lng }}"
                              data-map-zoom="{{ config('settings.map_zoom') }}" data-map-zoom-control="{{ config('settings.map_zoom_control') }}"
                              data-map-type-control="{{ config('settings.map_type_control') }}" data-map-street-view-control="{{ config('settings.map_street_view_control') }}"
                              data-map-full-screen-control="{{ config('settings.map_full_screen_control') }}" data-map-scroll-wheel="{{ config('settings.map_scroll_wheel') }}"
-                             data-map-marker-icon="{{ asset('css/marker-icon.png') }}" data-map-marker-title="{{ __('Твоя територія тут') }}"
+                             data-map-marker-icon="{{ asset('css/marker-icon.png') }}" data-map-marker-title="{{ __('adminpanel.territories.marker-title') }}"
                              data-map-info-window-title="{{ $territory->name }}">
                         </div>
 
-                        <h4>{{ $territory->name }}</h4>
+                        <h4 class="mb-5">{{ $territory->name }}</h4>
 
                         <p>{!! nl2br( e($territory->description) ) !!}</p>
 

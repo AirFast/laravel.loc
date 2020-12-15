@@ -81,6 +81,18 @@ $('#delete-modal').on('show.bs.modal', function (event) {
     modal.find('#user-name').text(userName);
 })
 
+$('#delete-territory-modal').on('show.bs.modal', function (event) {
+    const button = $(event.relatedTarget);
+    const modal = $(this);
+    const form = modal.find('#delete-form');
+
+    let deleteUrl = button.data('delete-url');
+    let territoryName = button.data('territory');
+
+    form.attr('action', deleteUrl);
+    modal.find('#territory-name').text(territoryName);
+})
+
 if ($('#google-map').length) {
     var map = $('#google-map'),
         mapLatLngArr = map.data('map-lat-lng').split(', '),

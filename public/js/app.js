@@ -37342,6 +37342,15 @@ $('#delete-modal').on('show.bs.modal', function (event) {
   form.attr('action', deleteUrl);
   modal.find('#user-name').text(userName);
 });
+$('#delete-territory-modal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var modal = $(this);
+  var form = modal.find('#delete-form');
+  var deleteUrl = button.data('delete-url');
+  var territoryName = button.data('territory');
+  form.attr('action', deleteUrl);
+  modal.find('#territory-name').text(territoryName);
+});
 
 if ($('#google-map').length) {
   var map = $('#google-map'),

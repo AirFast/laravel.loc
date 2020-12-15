@@ -15,9 +15,16 @@ class UsersController extends Controller {
 
 
     public function index() {
-        $users = User::paginate( config('settings.count_per_page') );
 
-        return view( 'admin.users.index', compact( 'users' ) );
+        if ( request()->has('role') ) {
+            $users = User::where( 'role_id', request()->query('role') )->paginate( config( 'settings.count_per_page' ) );
+        } else {
+            $users = User::paginate( config('settings.count_per_page') );
+        }
+
+        $roles = Role::all();
+
+        return view( 'admin.users.index', compact( 'users', 'roles' ) );
     }
 
 
@@ -88,8 +95,7 @@ class UsersController extends Controller {
         $user->update( $data );
         $this->storeImage( $user );
 
-        return redirect( route( 'admin.users.show', [ app()->getLocale(), $user ] ) );
-
+        return redirect( route( 'admin.users.show', [ app()->getLocale(), $user ] ) )->with( [ 'update' => __( 'adminpanel.user.alert.update' ) ] );
     }
 
 
