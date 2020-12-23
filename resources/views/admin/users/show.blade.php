@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row justify-content-center">
 
-            @include('admin.nav')
+            @include('layouts.nav')
 
             <div class="col-md-8 col-lg-9">
 

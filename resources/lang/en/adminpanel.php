@@ -135,6 +135,7 @@ return [
     'menu' => [
 
         'settings'    => 'Settings',
+        'user'        => 'My personal page',
         'users'       => 'Users',
         'territories' => 'Territories',
         'schedule'    => 'The ministry schedule with stand'

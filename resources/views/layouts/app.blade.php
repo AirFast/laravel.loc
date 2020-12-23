@@ -86,7 +86,7 @@
 
                                     @if (Auth::user()->isAdmin() || Auth::user()->isUser())
                                         <a role="button" class="btn btn-dark"
-                                           href="{{ route('home', app()->getLocale()) }}"
+                                           href="{{ route('user.index', app()->getLocale()) }}"
                                            title="{{ __('adminpanel.user.title') }}">
                                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">

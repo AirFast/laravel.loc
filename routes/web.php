@@ -53,9 +53,13 @@ Route::group(['prefix' => '{language}'], function () {
     // User route
     Route::prefix( 'user' )->middleware( 'user' )->group( function () {
 
+        Route::get('', [ App\Http\Controllers\User\UserController::class, 'index'])->name('user.index');
+
         Route::get( 'stand', [ App\Http\Controllers\StandsController::class, 'index' ] )->name( 'user.stand.index' );
         Route::post( 'stand', [ App\Http\Controllers\StandsController::class, 'store' ] )->name( 'user.stand.store' );
         Route::patch( 'stand/{stand}', [ App\Http\Controllers\StandsController::class, 'update' ] )->name( 'user.stand.update' );
+
+        Route::get('territory/{territory}', [ App\Http\Controllers\User\TerritoriesController::class, 'show'])->name('user.territories.show');
 
     } );
 
