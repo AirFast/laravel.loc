@@ -121,7 +121,7 @@
 
         @auth
 
-            @if (config('settings.global_admin_message') && Auth::user()->isAdmin() || Auth::user()->isUser())
+            @if ( config('settings.global_admin_message') && (Auth::user()->isAdmin() || Auth::user()->isUser()) )
 
                 <div class="container">
                     <div class="row">
@@ -142,9 +142,7 @@
 
             @endif
 
-
         @endauth
-
 
         @yield('content')
 

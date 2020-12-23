@@ -26,6 +26,7 @@ Route::group(['prefix' => '{language}'], function () {
         Auth::routes();
 
         Route::middleware( [ 'admin' ] )->group( function () {
+
             Route::get( '', [ App\Http\Controllers\Admin\SettingsController::class, 'index' ] )->name( 'admin.settings.index' );
             Route::patch('settings', [ App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('admin.settings.update');
 
@@ -51,9 +52,11 @@ Route::group(['prefix' => '{language}'], function () {
 
     // User route
     Route::prefix( 'user' )->middleware( 'user' )->group( function () {
+
         Route::get( 'stand', [ App\Http\Controllers\StandsController::class, 'index' ] )->name( 'user.stand.index' );
         Route::post( 'stand', [ App\Http\Controllers\StandsController::class, 'store' ] )->name( 'user.stand.store' );
         Route::patch( 'stand/{stand}', [ App\Http\Controllers\StandsController::class, 'update' ] )->name( 'user.stand.update' );
+
     } );
 
 });
