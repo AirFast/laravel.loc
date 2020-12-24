@@ -11080,3 +11080,47 @@ a.text-dark:focus {
   }
 }
 
+.territory-time-end {
+  position: relative;
+  vertical-align: text-bottom;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.territory-time-end:hover .territory-time-end-label {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.territory-time-end .territory-time-end-label {
+  position: absolute;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem 0.75rem;
+  background-color: #343a40;
+  border-radius: 0.2rem;
+  width: 250px;
+  left: 50%;
+  bottom: calc(100% + 5px);
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease-in-out;
+  z-index: 100;
+}
+
+.territory-time-end .territory-time-end-label::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #343a40;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+

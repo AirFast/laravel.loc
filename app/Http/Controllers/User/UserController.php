@@ -24,11 +24,4 @@ class UserController extends Controller {
         return view( 'user.index', compact( 'dt', 'territories' ) );
     }
 
-
-    public function getEndTime( $currentTime ) {
-        $dt = Carbon::createFromDate( $currentTime )->timezone( 'Europe/Kiev' );
-
-        return $dt->addMonth( 4 );
-    }
-
 }

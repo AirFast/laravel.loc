@@ -148,7 +148,16 @@
                                             <a href="{{ route( 'user.territories.show', [app()->getLocale(), $territory] ) }}"
                                                class="text-dark">{{ $territory->name }}</a>
                                         </td>
-                                        <td>{{ $dt->createFromTimestamp( $territory->updated_at->timestamp )->addMonth( 4 )->locale(app()->getLocale())->translatedFormat('d F Y') }}</td>
+                                        <td>{{ $dt->createFromTimestamp( $territory->updated_at->timestamp )->addMonth( 4 )->locale(app()->getLocale())->translatedFormat('d F Y') }}
+                                            @if($dt->toDay() > $dt->createFromTimestamp( $territory->updated_at->timestamp )->addMonth( 4 ))
+                                                <span class="territory-time-end text-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                                    </svg>
+                                                    <span class="territory-time-end-label">{{ __('Час на опрацювання цієї території завершився. Здай її будь ласка відповідальному за території.') }}</span>
+                                                </span>
+                                            @endif
+                                        </td>
                                         <td class="text-right">
                                             <a href="{{ route( 'admin.territories.edit', [app()->getLocale(), $territory->id] ) }}"
                                                class="btn btn-sm btn-dark">
