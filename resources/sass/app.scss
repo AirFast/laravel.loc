@@ -222,10 +222,27 @@
 }
 
 .territory-time-end {
+    display: inline-flex;
     position: relative;
     vertical-align: text-bottom;
     margin-left: 10px;
+    box-shadow: 0 0 0 5px rgba(227, 52, 47, .2);
+    border-radius: 100%;
     cursor: pointer;
+    animation: pulse 1.4s infinite ease-in-out;
+
+    &:after {
+        position: absolute;
+        content: '';
+        display: block;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        animation: pulse 1.4s infinite ease-in-out;
+        animation-delay: .7s;
+    }
 
     &:hover {
         .territory-time-end-label {
@@ -244,7 +261,7 @@
         border-radius: 0.2rem;
         width: 250px;
         left: 50%;
-        bottom: calc(100% + 5px);
+        bottom: calc(100% + 12px);
         transform: translateX(-50%);
         opacity: 0;
         visibility: hidden;
@@ -264,5 +281,17 @@
             left: 50%;
             transform: translateX(-50%);
         }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 1px #fff;
+    }
+    50% {
+        box-shadow: 0 0 0 5px rgba(227, 52, 47, .4);
+    }
+    100% {
+        box-shadow: 0 0 0 10px #fff;
     }
 }
