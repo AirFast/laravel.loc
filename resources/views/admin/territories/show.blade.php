@@ -54,6 +54,41 @@
 
                 </div>
 
+                @if($territory->territoryPeriod->count())
+                    <div class="card border-0 mt-4 shadow">
+
+                        <div class="card-header d-flex flex-row justify-content-between border-0">
+                            <h5 class="m-0 align-self-center">{{ __('adminpanel.territories.statistics') }}</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            <table class="table table-borderless table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">{{ __('adminpanel.territories.user') }}</th>
+                                    <th scope="col">{{ __('adminpanel.territories.time-start') }}</th>
+                                    <th scope="col">{{ __('adminpanel.territories.time-end') }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach($territory->territoryPeriod as $period)
+                                    <tr>
+                                        <td>{{ $period->user->name }}</td>
+                                        <td>{{ $dt->createFromFormat( 'Y-m-d', $period->time_start )->locale(app()->getLocale())->translatedFormat('d F Y') }}</td>
+                                        <td>{{ $period->time_end ? $dt->createFromFormat( 'Y-m-d', $period->time_end )->locale(app()->getLocale())->translatedFormat('d F Y') : '' }}</td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                @endif
+
             </div>
 
         </div>

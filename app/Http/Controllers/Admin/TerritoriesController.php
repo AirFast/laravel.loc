@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Territory;
+use App\Models\TerritoryPeriod;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TerritoriesController extends Controller {
@@ -53,8 +55,10 @@ class TerritoriesController extends Controller {
 
     public function show( $locale, Territory $territory ) {
         $id = $territory->id;
+        $dt = Carbon::create();
+        $dt->timezone( 'Europe/Kiev' );
 
-        return view( 'admin.territories.show', compact( 'id', 'territory' ) );
+        return view( 'admin.territories.show', compact( 'id', 'territory', 'dt' ) );
     }
 
 
@@ -75,9 +79,52 @@ class TerritoriesController extends Controller {
             'user_id'     => '',
         ] );
 
+        if ( $data['status'] == 1 && $data['user_id'] != 0 ) {
+
+            TerritoryPeriod::create( [
+                'user_id'      => $data['user_id'],
+                'territory_id' => $territory->id,
+                'in_process'   => 1,
+                'time_start'   => now()->toDateString(),
+            ] );
+
+            session()->flash( 'update', __( 'adminpanel.territories.alert.update' ) );
+
+        } else {
+
+            if ( $data['status'] == 2 || $data['status'] == 3 ) {
+
+                $data['user_id'] = 0;
+
+                $territoryPeriods = TerritoryPeriod::where( [
+                    [ 'territory_id', $territory->id ],
+                    [ 'in_process', 1 ]
+                ] )->get();
+
+                foreach ( $territoryPeriods as $territoryPeriod ) {
+                    $territoryPeriod->in_process = 0;
+                    $territoryPeriod->time_end   = now()->toDateString();
+                    $territoryPeriod->save();
+                }
+
+                session()->flash( 'update', __( 'adminpanel.territories.alert.update' ) );
+
+            } else {
+
+                $data['status'] = 2;
+
+                session()->flash( 'update', __( 'Територія не може бути опрацьована ніким' ) );
+
+            }
+
+        }
+
         $territory->update( $data );
 
-        return redirect( route( 'admin.territories.show', [ app()->getLocale(), $territory ] ) )->with( [ 'update' => __( 'adminpanel.territories.alert.update' ) ] );
+        return redirect( route( 'admin.territories.show', [
+            app()->getLocale(),
+            $territory
+        ] ) );
     }
 
 

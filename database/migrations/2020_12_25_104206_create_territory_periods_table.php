@@ -15,10 +15,11 @@ class CreateTerritoryPeriodsTable extends Migration
     {
         Schema::create('territory_periods', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable();
             $table->integer('territory_id');
             $table->tinyInteger('in_process');
             $table->string('time_start');
-            $table->string('time_end');
+            $table->string('time_end')->nullable();
             $table->timestamps();
         });
     }

@@ -59,7 +59,9 @@ Route::group(['prefix' => '{language}'], function () {
         Route::post( 'stand', [ App\Http\Controllers\StandsController::class, 'store' ] )->name( 'user.stand.store' );
         Route::patch( 'stand/{stand}', [ App\Http\Controllers\StandsController::class, 'update' ] )->name( 'user.stand.update' );
 
+        Route::get('territories', [ App\Http\Controllers\User\TerritoriesController::class, 'index'])->name('user.territories.index');
         Route::get('territory/{territory}', [ App\Http\Controllers\User\TerritoriesController::class, 'show'])->name('user.territories.show');
+        Route::patch('territory/{territory}', [ App\Http\Controllers\User\TerritoriesController::class, 'update'])->name('user.territories.update');
 
     } );
 

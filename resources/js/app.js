@@ -93,6 +93,18 @@ $('#delete-territory-modal').on('show.bs.modal', function (event) {
     modal.find('#territory-name').text(territoryName);
 })
 
+$('#update-territory-modal').on('show.bs.modal', function (event) {
+    const button = $(event.relatedTarget);
+    const modal = $(this);
+    const form = modal.find('#update-form');
+
+    let updateUrl = button.data('update-url');
+    let territoryName = button.data('territory');
+
+    form.attr('action', updateUrl);
+    modal.find('#territory-name').text(territoryName);
+})
+
 if ($('#google-map').length) {
     var map = $('#google-map'),
         mapLatLngArr = map.data('map-lat-lng').split(', '),

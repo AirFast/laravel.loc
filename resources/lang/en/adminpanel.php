@@ -75,10 +75,17 @@ return [
     'territories' => [
 
         'title'          => 'Territory',
+        'your-title'     => 'Your territories',
         'marker-title'   => 'Your territory is here',
         'address'        => 'Address',
         'user'           => 'Preacher',
+        'time-to'        => 'Work until',
+        'time-start'     => 'Beginning',
+        'time-end'       => 'Completion',
         'no-territories' => 'There are no territories...',
+        'statistics'     => 'Statistics on processing',
+        'btn-start'      => 'Take the territory',
+        'btn-end'        => 'Give the territory',
 
         'form' => [
 
@@ -116,9 +123,11 @@ return [
 
         'popup' => [
 
-            'delete'  => 'Do you really want to delete the territory',
-            'btn-no'  => 'No',
-            'btn-yes' => 'Yes, I want',
+            'update-start' => 'You really want to ask about territories',
+            'update-end'   => 'You really want to hand over the territory',
+            'delete'       => 'Do you really want to delete the territory',
+            'btn-no'       => 'No',
+            'btn-yes'      => 'Yes, I want',
 
         ],
 
@@ -130,12 +139,20 @@ return [
 
         ],
 
+        'message' => [
+
+            'territory-end'  => 'Time for processing of the territory ended. Please hand it over to the person in charge of the territory.',
+            'territory-take' => 'Your request for cultivation of the territory was sent to the person in charge of the territory.',
+            'territory-give' => 'The territory is handed over.',
+
+        ]
+
     ],
 
     'menu' => [
 
         'settings'    => 'Settings',
-        'user'        => 'My personal page',
+        'user'        => 'My page',
         'users'       => 'Users',
         'territories' => 'Territories',
         'schedule'    => 'The ministry schedule with stand'

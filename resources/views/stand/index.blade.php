@@ -268,10 +268,10 @@
 
                                 @csrf
 
-                                <input id="store-time" type="text" name="time" hidden>
-                                <input type="text" name="date" hidden value="{{ $dt->toDateString() }}">
-                                <input id="store-user-id-1" type="text" name="user_id_1" hidden>
-                                <input id="store-user-id-2" type="text" name="user_id_2" hidden>
+                                <input id="store-time" type="hidden" name="time">
+                                <input type="hidden" name="date" value="{{ $dt->toDateString() }}">
+                                <input id="store-user-id-1" type="hidden" name="user_id_1">
+                                <input id="store-user-id-2" type="hidden" name="user_id_2">
 
                                 <button type="submit" class="btn btn-dark" role="button">Yes, I want</button>
 
@@ -307,8 +307,8 @@
                                 @csrf
                                 @method('PATCH')
 
-                                <input id="edit-user-id-1" type="text" name="user_id_1" hidden>
-                                <input id="edit-user-id-2" type="text" name="user_id_2" hidden>
+                                <input id="edit-user-id-1" type="hidden" name="user_id_1">
+                                <input id="edit-user-id-2" type="hidden" name="user_id_2">
 
                                 <button type="submit" class="btn btn-dark" role="button">Yes, I want</button>
 

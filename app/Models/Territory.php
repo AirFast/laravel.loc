@@ -26,6 +26,11 @@ class Territory extends Model {
     }
 
 
+    public function territoryPeriod() {
+        return $this->hasMany( TerritoryPeriod::class );
+    }
+
+
     public function statusOptions() {
         return [
             1 => 'processed',
@@ -33,11 +38,4 @@ class Territory extends Model {
             3 => 'pending',
         ];
     }
-
-    public function getEndTime( $currentTime ) {
-        $dt = Carbon::createFromDate( $currentTime )->timezone( 'Europe/Kiev' );
-
-        return $dt->addMonth( 4 );
-    }
-
 }
