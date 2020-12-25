@@ -141,9 +141,10 @@ return [
 
         'message' => [
 
-            'territory-end'  => 'Time for processing of the territory ended. Please hand it over to the person in charge of the territory.',
-            'territory-take' => 'Your request for cultivation of the territory was sent to the person in charge of the territory.',
-            'territory-give' => 'The territory is handed over.',
+            'territory-end-short' => 'Time for processing of the territory ended.',
+            'territory-end'       => 'Time for processing of the territory ended. Please hand it over to the person in charge of the territory.',
+            'territory-take'      => 'Your request for cultivation of the territory was sent to the person in charge of the territory.',
+            'territory-give'      => 'The territory is handed over.',
 
         ]
 

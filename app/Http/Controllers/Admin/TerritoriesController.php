@@ -24,8 +24,10 @@ class TerritoriesController extends Controller {
         }
 
         $territory = new Territory();
+        $dt = Carbon::create();
+        $dt->timezone( 'Europe/Kiev' );
 
-        return view( 'admin.territories.index', compact( 'territories', 'territory' ) );
+        return view( 'admin.territories.index', compact( 'territories', 'territory', 'dt' ) );
     }
 
 
