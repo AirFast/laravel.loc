@@ -253,7 +253,7 @@
     }
 
     .territory-time-end-label {
-        position: absolute;
+        position: fixed;
         color: #fff;
         text-align: center;
         white-space: normal;
@@ -261,9 +261,7 @@
         background-color: #343a40;
         border-radius: 0.2rem;
         width: 250px;
-        left: 50%;
-        bottom: calc(100% + 12px);
-        transform: translateX(-50%);
+        transform: translate(calc(-50% + 10px), calc(-100% - 12px));
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -287,8 +285,9 @@
     &.right-side {
 
         .territory-time-end-label {
-            left: -25px;
-            transform: translateX(0);
+            text-align: left;
+            width: 200px;
+            transform: translate(calc(0% - 25px), calc(-100% - 12px));
 
             &::before {
                 left: 35px;

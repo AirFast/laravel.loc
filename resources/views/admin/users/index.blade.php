@@ -30,11 +30,11 @@
 
                         <div class="mt-3 mb-2">
                             <a href="{{ route( 'admin.users.index', app()->getLocale() ) }}"
-                               class="btn btn-sm {{ !request()->has('role') ? 'btn-secondary' : 'btn-outline-secondary' }}">{{ __('adminpanel.territories.status.all') }}</a>
+                               class="btn mt-1 btn-sm {{ !request()->has('role') ? 'btn-secondary' : 'btn-outline-secondary' }}">{{ __('adminpanel.territories.status.all') }}</a>
 
                             @foreach($roles as $role)
                                 <a href="{{ route( 'admin.users.index', [app()->getLocale(), 'role' => $role->id] ) }}"
-                                   class="btn btn-sm {{ request()->query('role') == $role->id ? 'btn-secondary' : 'btn-outline-secondary' }}">{{ __( 'adminpanel.user.table.' . $role->name ) }}</a>
+                                   class="btn mt-1 btn-sm {{ request()->query('role') == $role->id ? 'btn-secondary' : 'btn-outline-secondary' }}">{{ __( 'adminpanel.user.table.' . $role->name ) }}</a>
                             @endforeach
                         </div>
                     </div>

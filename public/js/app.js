@@ -37307,6 +37307,18 @@ if ($('.custom-range').length) {
   });
 }
 
+if ($('.territory-time-end').length) {
+  $('.territory-time-end').on('mousemove', function () {
+    var scrollTop = $(window).scrollTop(),
+        left = $(this).offset().left,
+        top = $(this).offset().top;
+    $(this).find('.territory-time-end-label').css({
+      left: left,
+      top: top - scrollTop
+    });
+  });
+}
+
 $('#create-modal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var modal = $(this);

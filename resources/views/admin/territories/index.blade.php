@@ -31,11 +31,11 @@
 
                         <div class="mt-3 mb-2">
                             <a href="{{ route( 'admin.territories.index', app()->getLocale() ) }}"
-                               class="btn btn-sm {{ !request()->has('status') ? 'btn-secondary' : 'btn-outline-secondary' }}">{{ __('adminpanel.territories.status.all') }}</a>
+                               class="btn mt-1 btn-sm {{ !request()->has('status') ? 'btn-secondary' : 'btn-outline-secondary' }}">{{ __('adminpanel.territories.status.all') }}</a>
 
                             @foreach($territory->statusOptions() as $statusOptionKey => $statusOptionValue)
                                 <a href="{{ route( 'admin.territories.index', [app()->getLocale(), 'status' => $statusOptionKey] ) }}"
-                                   class="btn btn-sm {{ request()->query('status') == $statusOptionKey ? 'btn-secondary' : 'btn-outline-secondary' }}">{{ __('adminpanel.territories.status.' . $statusOptionValue) }}</a>
+                                   class="btn mt-1 btn-sm {{ request()->query('status') == $statusOptionKey ? 'btn-secondary' : 'btn-outline-secondary' }}">{{ __('adminpanel.territories.status.' . $statusOptionValue) }}</a>
                             @endforeach
                         </div>
 
