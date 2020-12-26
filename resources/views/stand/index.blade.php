@@ -104,7 +104,7 @@
 
                                 @for($i = config('settings.stand_time_start'); $i <= config('settings.stand_time_end'); $i++)
 
-                                    <div class="row py-2">
+                                    <div class="row py-3 py-md-2">
 
                                         <div class="col-2 d-flex text-center">
                                             <span
@@ -119,7 +119,7 @@
 
                                                     @if(!empty($stand->user_id_1))
 
-                                                        <div class="col-5">
+                                                        <div class="col-10 col-md-5">
 
                                                             @if(Auth::user()->id == $stand->user_id_1)
 
@@ -145,7 +145,7 @@
 
                                                     @else
 
-                                                        <div class="col-5">
+                                                        <div class="col-10 col-md-5">
                                                             <button class="btn btn-outline-secondary btn-block"
                                                                     data-update-url="{{ route('user.stand.update', [app()->getLocale(), $stand]) }}"
                                                                     data-crt-dlt-sign="create"
@@ -160,7 +160,7 @@
 
                                                     @if(!empty($stand->user_id_2))
 
-                                                        <div class="col-5">
+                                                        <div class="col-10 col-md-5 offset-2 offset-md-0 mt-3 m-md-0">
 
                                                             @if(Auth::user()->id == $stand->user_id_2)
 
@@ -186,7 +186,7 @@
 
                                                     @else
 
-                                                        <div class="col-5">
+                                                        <div class="col-10 col-md-5 offset-2 offset-md-0 mt-3 m-md-0">
                                                             <button class="btn btn-outline-secondary btn-block"
                                                                     data-update-url="{{ route('user.stand.update', [app()->getLocale(), $stand]) }}"
                                                                     data-crt-dlt-sign="create"
@@ -205,7 +205,7 @@
 
                                         @else
 
-                                            <div class="col-5">
+                                            <div class="col-10 col-md-5">
                                                 <button class="btn btn-outline-secondary btn-block"
                                                         data-time="{{ $i }}"
                                                         data-user-id-1="{{ Auth::user()->id }}" data-toggle="modal"
@@ -213,7 +213,7 @@
                                                 </button>
                                             </div>
 
-                                            <div class="col-5">
+                                            <div class="col-10 col-md-5 offset-2 offset-md-0 mt-3 m-md-0">
                                                 <button class="btn btn-outline-secondary btn-block"
                                                         data-time="{{ $i }}"
                                                         data-user-id-2="{{ Auth::user()->id }}" data-toggle="modal"
