@@ -179,7 +179,7 @@
                                                 @endforeach
                                             </td>
                                             <td class="text-right">
-                                                <button class="btn btn-sm btn-success"
+                                                <button class="btn btn-success"
                                                         data-update-url="{{ route('user.territories.update', [app()->getLocale(), $territory]) }}"
                                                         data-territory="{{ $territory->name }}" data-toggle="modal"
                                                         data-target="#update-territory-modal"
