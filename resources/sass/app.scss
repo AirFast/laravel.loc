@@ -256,6 +256,7 @@
         position: absolute;
         color: #fff;
         text-align: center;
+        white-space: normal;
         padding: 0.5rem 0.75rem;
         background-color: #343a40;
         border-radius: 0.2rem;
@@ -282,6 +283,19 @@
             transform: translateX(-50%);
         }
     }
+
+    &.right-side {
+
+        .territory-time-end-label {
+            left: -25px;
+            transform: translateX(0);
+
+            &::before {
+                left: 35px;
+            }
+        }
+
+    }
 }
 
 @keyframes pulse {
@@ -294,4 +308,8 @@
     100% {
         box-shadow: 0 0 0 10px #fff;
     }
+}
+
+.table {
+    white-space: nowrap;
 }

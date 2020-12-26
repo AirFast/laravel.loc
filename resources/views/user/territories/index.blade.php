@@ -26,33 +26,37 @@
 
                         @if ($territories->count())
 
-                            <table class="table table-borderless table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">№</th>
-                                    <th scope="col">{{ __('adminpanel.territories.address') }}</th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                            <div class="table-responsive">
 
-                                @foreach($territories as $territory)
-
+                                <table class="table table-borderless table-striped">
+                                    <thead>
                                     <tr>
-                                        <td>{{ $territory->number }}</td>
-                                        <td>
-                                            <a href="{{ route( 'user.territories.show', [app()->getLocale(), $territory] ) }}"
-                                               class="text-dark">{{ $territory->name }}</a>
-                                        </td>
-                                        <td class="text-right">
-                                            <button class="btn btn-sm btn-success" data-update-url="{{ route('user.territories.update', [app()->getLocale(), $territory]) }}" data-territory="{{ $territory->name }}" data-toggle="modal" data-target="#update-territory-modal" role="button">{{ __('adminpanel.territories.btn-start') }}</button>
-                                        </td>
+                                        <th scope="col">№</th>
+                                        <th scope="col">{{ __('adminpanel.territories.address') }}</th>
+                                        <th scope="col"></th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
 
-                                @endforeach
+                                    @foreach($territories as $territory)
 
-                                </tbody>
-                            </table>
+                                        <tr>
+                                            <td>{{ $territory->number }}</td>
+                                            <td>
+                                                <a href="{{ route( 'user.territories.show', [app()->getLocale(), $territory] ) }}"
+                                                   class="text-dark">{{ $territory->name }}</a>
+                                            </td>
+                                            <td class="text-right">
+                                                <button class="btn btn-sm btn-success" data-update-url="{{ route('user.territories.update', [app()->getLocale(), $territory]) }}" data-territory="{{ $territory->name }}" data-toggle="modal" data-target="#update-territory-modal" role="button">{{ __('adminpanel.territories.btn-start') }}</button>
+                                            </td>
+                                        </tr>
+
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+
+                            </div>
 
                         @else
 

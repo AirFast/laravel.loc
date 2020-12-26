@@ -44,7 +44,8 @@
 
                                 @if(Auth::user()->img_src)
                                     <div class="user-avatar shadow m-auto">
-                                        <img src="{{ asset( 'storage/' . Auth::user()->img_src ) }}" alt="{{ Auth::user()->name }}">
+                                        <img src="{{ asset( 'storage/' . Auth::user()->img_src ) }}"
+                                             alt="{{ Auth::user()->name }}">
                                     </div>
                                 @else
                                     <span class="m-auto text-secondary">
@@ -82,16 +83,20 @@
                                         </svg>
                                     </span>
                                     @if(Auth::user()->email)
-                                        <a class="text-dark" href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}</a>
+                                        <a class="text-dark"
+                                           href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}</a>
                                     @else
                                         N/A
                                     @endif
                                 </p>
                                 <p>
                                     <span class="pr-3 text-secondary">
-                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                          <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                          <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-fill"
+                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd"
+                                                d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                          <path fill-rule="evenodd"
+                                                d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
                                         </svg>
                                     </span>
                                     {{ Auth::user()->address ? Auth::user()->address : 'N/A' }}
@@ -105,7 +110,8 @@
                                         </svg>
                                     </span>
                                     @if(Auth::user()->phone)
-                                        <a class="text-dark" href="tel:{{ Auth::user()->phone }}">{{ Auth::user()->phone }}</a>
+                                        <a class="text-dark"
+                                           href="tel:{{ Auth::user()->phone }}">{{ Auth::user()->phone }}</a>
                                     @else
                                         N/A
                                     @endif
@@ -129,7 +135,9 @@
 
                         <div class="card-body">
 
-                            <table class="table table-borderless table-striped">
+                            <div class="table-responsive">
+
+                                <table class="table table-borderless table-striped">
                                     <thead>
                                     <tr>
                                         <th scope="col">№</th>
@@ -155,10 +163,15 @@
 
                                                         @if($dt->toDay() > $dt->createFromFormat( 'Y-m-d', $period->time_start )->addMonth( 4 ))
                                                             <span class="territory-time-end text-danger">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                                                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                     height="20" fill="currentColor"
+                                                                     class="bi bi-exclamation-circle-fill"
+                                                                     viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                                                                 </svg>
-                                                                <span class="territory-time-end-label">{{ __('adminpanel.territories.message.territory-end') }}</span>
+                                                                <span
+                                                                    class="territory-time-end-label">{{ __('adminpanel.territories.message.territory-end') }}</span>
                                                             </span>
                                                         @endif
 
@@ -166,7 +179,11 @@
                                                 @endforeach
                                             </td>
                                             <td class="text-right">
-                                                <button class="btn btn-sm btn-success" data-update-url="{{ route('user.territories.update', [app()->getLocale(), $territory]) }}" data-territory="{{ $territory->name }}" data-toggle="modal" data-target="#update-territory-modal" role="button">{{ __('adminpanel.territories.btn-end') }}</button>
+                                                <button class="btn btn-sm btn-success"
+                                                        data-update-url="{{ route('user.territories.update', [app()->getLocale(), $territory]) }}"
+                                                        data-territory="{{ $territory->name }}" data-toggle="modal"
+                                                        data-target="#update-territory-modal"
+                                                        role="button">{{ __('adminpanel.territories.btn-end') }}</button>
                                             </td>
                                         </tr>
 
@@ -174,6 +191,8 @@
 
                                     </tbody>
                                 </table>
+
+                            </div>
 
                         </div>
 
