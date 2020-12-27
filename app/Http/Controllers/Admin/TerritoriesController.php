@@ -87,7 +87,7 @@ class TerritoriesController extends Controller {
                 'user_id'      => $data['user_id'],
                 'territory_id' => $territory->id,
                 'in_process'   => 1,
-                'time_start'   => now()->toDateString(),
+                'time_start'   => '2020-5-17',//now()->toDateString(),
             ] );
 
             session()->flash( 'update', __( 'adminpanel.territories.alert.update' ) );
