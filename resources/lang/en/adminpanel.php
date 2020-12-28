@@ -83,6 +83,7 @@ return [
         'time-start'     => 'Beginning',
         'time-end'       => 'Completion',
         'no-territories' => 'There are no territories...',
+        'no-data'        => 'No data yet...',
         'statistics'     => 'Statistics on processing',
         'btn-start'      => 'Take the territory',
         'btn-end'        => 'Give the territory',

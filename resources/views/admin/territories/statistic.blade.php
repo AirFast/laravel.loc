@@ -32,7 +32,7 @@
 
                                     <table class="table table-borderless table-striped mb-5">
                                         <thead>
-                                        <tr class="table-info">
+                                        <tr>
                                             <th colspan="3">{{ __('adminpanel.territories.title') }} № {{ $territory->number }} ({{ $territory->name }})</th>
                                         </tr>
                                         <tr>
@@ -42,13 +42,19 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($territory->territoryPeriod as $period)
-                                            <tr>
-                                                <td>{{ $period->user->name }}</td>
-                                                <td>{{ $dt->createFromFormat( 'Y-m-d', $period->time_start )->locale(app()->getLocale())->translatedFormat('d F Y') }}</td>
-                                                <td>{{ $period->time_end ? $dt->createFromFormat( 'Y-m-d', $period->time_end )->locale(app()->getLocale())->translatedFormat('d F Y') : '' }}</td>
-                                            </tr>
-                                        @endforeach
+
+                                        @if($territory->territoryPeriod->count())
+                                            @foreach($territory->territoryPeriod as $period)
+                                                <tr>
+                                                    <td>{{ $period->user->name }}</td>
+                                                    <td>{{ $dt->createFromFormat( 'Y-m-d', $period->time_start )->locale(app()->getLocale())->translatedFormat('d F Y') }}</td>
+                                                    <td>{{ $period->time_end ? $dt->createFromFormat( 'Y-m-d', $period->time_end )->locale(app()->getLocale())->translatedFormat('d F Y') : '' }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr><td colspan="3">{{ __('adminpanel.territories.no-data') }}</td></tr>
+                                        @endif
+
                                         </tbody>
                                     </table>
 
