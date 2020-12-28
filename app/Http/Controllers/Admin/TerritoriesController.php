@@ -32,7 +32,7 @@ class TerritoriesController extends Controller {
 
 
     public function statistic() {
-        $territories = Territory::all();
+        $territories = Territory::orderBy('number', 'ASC')->get();
         $dt = Carbon::create();
         $dt->timezone( 'Europe/Kiev' );
 
