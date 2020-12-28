@@ -16,7 +16,7 @@
                 <div class="card border-0 shadow">
 
                     <div class="card-header d-flex flex-row justify-content-between border-0">
-                        <h5 class="m-0 align-self-center">{{ __('adminpanel.territories.title') }} №{{ $territory->number }}</h5>
+                        <h5 class="m-0 align-self-center">{{ __('adminpanel.territories.title') }} № {{ $territory->number }}</h5>
                         <a href="{{ route( 'admin.territories.edit', [app()->getLocale(), $territory->id] ) }}"
                            class="btn btn-dark">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor"

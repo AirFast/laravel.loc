@@ -21,6 +21,10 @@
                         <a class="text-dark"
                            href="{{ route('admin.territories.index', app()->getLocale()) }}">{{ __('adminpanel.menu.territories') }}</a>
                     </li>
+                    <li class="nav-item mb-2">
+                        <a class="text-dark"
+                           href="{{ route('admin.territories.statistic', app()->getLocale()) }}">{{ __('adminpanel.territories.statistics') }}</a>
+                    </li>
                 </ul>
 
             </div>

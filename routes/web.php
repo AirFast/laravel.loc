@@ -39,6 +39,7 @@ Route::group(['prefix' => '{language}'], function () {
             Route::delete('user/{user}', [ App\Http\Controllers\Admin\UsersController::class, 'destroy'])->name('admin.users.destroy');
 
             Route::get('territories', [ App\Http\Controllers\Admin\TerritoriesController::class, 'index'])->name('admin.territories.index');
+            Route::get('territories/statistic', [ App\Http\Controllers\Admin\TerritoriesController::class, 'statistic'])->name('admin.territories.statistic');
             Route::get('territories/create', [ App\Http\Controllers\Admin\TerritoriesController::class, 'create'])->name('admin.territories.create');
             Route::post('territories', [ App\Http\Controllers\Admin\TerritoriesController::class, 'store'])->name('admin.territories.store');
             Route::get('territory/{territory}', [ App\Http\Controllers\Admin\TerritoriesController::class, 'show'])->name('admin.territories.show');

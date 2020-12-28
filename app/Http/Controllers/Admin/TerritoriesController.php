@@ -31,6 +31,15 @@ class TerritoriesController extends Controller {
     }
 
 
+    public function statistic() {
+        $territories = Territory::all();
+        $dt = Carbon::create();
+        $dt->timezone( 'Europe/Kiev' );
+
+        return view( 'admin.territories.statistic', compact( 'territories', 'dt' ) );
+    }
+
+
     public function create() {
         $users     = User::all();
         $territory = new Territory();
