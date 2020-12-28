@@ -19,7 +19,7 @@ class UserController extends Controller {
         $dt = Carbon::create();
         $dt->timezone( 'Europe/Kiev' );
 
-        $territories = Territory::where( [ [ 'user_id', Auth::user()->id ], [ 'status', 1 ] ] )->get();
+        $territories = Territory::orderBy('number', 'ASC')->where( [ [ 'user_id', Auth::user()->id ], [ 'status', 1 ] ] )->get();
 
         return view( 'user.index', compact( 'dt', 'territories' ) );
     }
