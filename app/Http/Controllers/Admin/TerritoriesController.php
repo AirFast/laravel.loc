@@ -155,7 +155,7 @@ class TerritoriesController extends Controller {
                 $period->save();
             }
 
-            session()->flash( 'update', __( 'Територія не може бути опрацьована ніким' ) );
+            session()->flash( 'error', __( 'adminpanel.territories.alert.error' ) );
         }
 
 

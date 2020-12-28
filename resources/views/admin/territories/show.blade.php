@@ -38,6 +38,15 @@
                             </div>
                         @endif
 
+                        @if (session('error'))
+                            <div class="alert alert-danger text-center" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+
                         <div id="google-map" class="territory-map mb-5" data-map-lat-lng="{{ $territory->map_lat_lng }}"
                              data-map-zoom="{{ config('settings.map_zoom') }}" data-map-zoom-control="{{ config('settings.map_zoom_control') }}"
                              data-map-type-control="{{ config('settings.map_type_control') }}" data-map-street-view-control="{{ config('settings.map_street_view_control') }}"

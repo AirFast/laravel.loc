@@ -137,6 +137,7 @@ return [
             'create' => 'The territory :name has been successfully added!',
             'update' => 'The territory has successfully updated!',
             'delete' => 'The territory has been deleted!',
+            'error'  => 'Nobody is assigned to cultivate the territory.',
 
         ],
 
