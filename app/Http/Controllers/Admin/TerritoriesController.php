@@ -90,7 +90,29 @@ class TerritoriesController extends Controller {
             'user_id'     => '',
         ] );
 
-        if ( $data['status'] == 1 && $data['user_id'] != 0 ) {
+
+        if ( $territory->status != $territory->statusOptions()[ $data['status'] ] && ( $data['status'] == 1 && $data['user_id'] != 0 ) ) {
+            TerritoryPeriod::create( [
+                'user_id'      => $data['user_id'],
+                'territory_id' => $territory->id,
+                'in_process'   => 1,
+                'time_start'   => now()->toDateString(),
+            ] );
+
+            session()->flash( 'update', __( 'adminpanel.territories.alert.update' ) );
+        }
+
+        if ( $territory->user_id != $data['user_id'] && ( $data['status'] == 1 && $data['user_id'] != 0 ) ) {
+
+            $territoryPeriods = TerritoryPeriod::where( [
+                [ 'territory_id', $territory->id ],
+                [ 'in_process', 1 ]
+            ] )->get();
+
+            foreach ( $territoryPeriods as $period ) {
+                $period->time_end   = now()->toDateString();
+                $period->save();
+            }
 
             TerritoryPeriod::create( [
                 'user_id'      => $data['user_id'],
@@ -100,35 +122,42 @@ class TerritoriesController extends Controller {
             ] );
 
             session()->flash( 'update', __( 'adminpanel.territories.alert.update' ) );
+        }
 
-        } else {
+        if ( $territory->user_id != $data['user_id'] && ($data['status'] == 2 || $data['status'] == 3) ) {
+            $data['user_id'] = 0;
 
-            if ( $data['status'] == 2 || $data['status'] == 3 ) {
+            $territoryPeriods = TerritoryPeriod::where( [
+                [ 'territory_id', $territory->id ],
+                [ 'in_process', 1 ]
+            ] )->get();
 
-                $data['user_id'] = 0;
-
-                $territoryPeriods = TerritoryPeriod::where( [
-                    [ 'territory_id', $territory->id ],
-                    [ 'in_process', 1 ]
-                ] )->get();
-
-                foreach ( $territoryPeriods as $territoryPeriod ) {
-                    $territoryPeriod->in_process = 0;
-                    $territoryPeriod->time_end   = now()->toDateString();
-                    $territoryPeriod->save();
-                }
-
-                session()->flash( 'update', __( 'adminpanel.territories.alert.update' ) );
-
-            } else {
-
-                $data['status'] = 2;
-
-                session()->flash( 'update', __( 'Територія не може бути опрацьована ніким' ) );
-
+            foreach ( $territoryPeriods as $period ) {
+                $period->in_process = 0;
+                $period->time_end   = now()->toDateString();
+                $period->save();
             }
 
+            session()->flash( 'update', __( 'adminpanel.territories.alert.update' ) );
         }
+
+        if( $data['status'] == 1 && $data['user_id'] == 0 ) {
+            $data['status'] = 2;
+
+            $territoryPeriods = TerritoryPeriod::where( [
+                [ 'territory_id', $territory->id ],
+                [ 'in_process', 1 ]
+            ] )->get();
+
+            foreach ( $territoryPeriods as $period ) {
+                $period->in_process = 0;
+                $period->time_end   = now()->toDateString();
+                $period->save();
+            }
+
+            session()->flash( 'update', __( 'Територія не може бути опрацьована ніким' ) );
+        }
+
 
         $territory->update( $data );
 
