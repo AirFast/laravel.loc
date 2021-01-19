@@ -70,6 +70,7 @@
 
                     </div>
 
+                    {{ $territories->withQueryString()->links() }}
 
                 </div>
 

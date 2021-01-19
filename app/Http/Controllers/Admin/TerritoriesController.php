@@ -32,7 +32,7 @@ class TerritoriesController extends Controller {
 
 
     public function statistic() {
-        $territories = Territory::orderBy( 'number', 'ASC' )->get();
+        $territories = Territory::orderBy( 'number', 'ASC' )->paginate( config( 'settings.count_per_page' ) );
         $dt          = Carbon::create();
         $dt->timezone( 'Europe/Kiev' );
 
