@@ -221,15 +221,13 @@
     }
 }
 
-.territory-time-end {
+.territory-has-label {
     display: inline-flex;
     position: relative;
     vertical-align: text-bottom;
     margin-left: 10px;
-    box-shadow: 0 0 0 5px rgba(227, 52, 47, .2);
     border-radius: 100%;
     cursor: pointer;
-    animation: pulse 1.4s infinite ease-in-out;
 
     &:after {
         position: absolute;
@@ -240,19 +238,18 @@
         width: 20px;
         height: 20px;
         border-radius: 100%;
-        animation: pulse 1.4s infinite ease-in-out;
-        animation-delay: .7s;
+        animation-delay: .6s;
     }
 
     &:hover {
-        .territory-time-end-label {
+        .territory-label {
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
         }
     }
 
-    .territory-time-end-label {
+    .territory-label {
         position: fixed;
         color: #fff;
         text-align: center;
@@ -284,9 +281,8 @@
 
     &.right-side {
 
-        .territory-time-end-label {
+        .territory-label {
             text-align: left;
-            width: 200px;
             transform: translate(calc(0% - 25px), calc(-100% - 12px));
 
             &::before {
@@ -297,15 +293,74 @@
     }
 }
 
-@keyframes pulse {
+.territory-pending {
+    box-shadow: 0 0 0 5px rgba(56, 193, 114, .2);
+    animation: pulse-success 1.2s infinite ease-in-out;
+
+    &:after {
+        animation: pulse-success 1.2s infinite ease-in-out;
+    }
+}
+
+.territory-time-end {
+    box-shadow: 0 0 0 5px rgba(227, 52, 47, .2);
+    animation: pulse-danger 1.2s infinite ease-in-out;
+
+    &:after {
+        animation: pulse-danger 1.2s infinite ease-in-out;
+    }
+
+    &.right-side {
+
+        .territory-label {
+            width: 200px;
+        }
+
+    }
+}
+
+.territory-warning {
+    box-shadow: 0 0 0 5px rgba(52, 144, 220, .2);
+    animation: pulse-warning 1.2s infinite ease-in-out;
+
+    &:after {
+        animation: pulse-warning 1.2s infinite ease-in-out;
+    }
+}
+
+@keyframes pulse-success {
     0% {
-        box-shadow: 0 0 0 1px #fff;
+        box-shadow: 0 0 0 1px transparent;
+    }
+    50% {
+        box-shadow: 0 0 0 5px rgba(56, 193, 114, .4);
+    }
+    100% {
+        box-shadow: 0 0 0 10px transparent;
+    }
+}
+
+@keyframes pulse-danger {
+    0% {
+        box-shadow: 0 0 0 1px transparent;
     }
     50% {
         box-shadow: 0 0 0 5px rgba(227, 52, 47, .4);
     }
     100% {
-        box-shadow: 0 0 0 10px #fff;
+        box-shadow: 0 0 0 10px transparent;
+    }
+}
+
+@keyframes pulse-warning {
+    0% {
+        box-shadow: 0 0 0 1px transparent;
+    }
+    50% {
+        box-shadow: 0 0 0 5px rgba(52, 144, 220, .4);
+    }
+    100% {
+        box-shadow: 0 0 0 10px transparent;
     }
 }
 

@@ -72,26 +72,30 @@
 
                         <div class="card-body">
 
-                            <table class="table table-borderless table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">{{ __('adminpanel.territories.user') }}</th>
-                                    <th scope="col">{{ __('adminpanel.territories.time-start') }}</th>
-                                    <th scope="col">{{ __('adminpanel.territories.time-end') }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                            <div class="table-responsive">
 
-                                @foreach($territory->territoryPeriod as $period)
+                                <table class="table table-borderless table-striped">
+                                    <thead>
                                     <tr>
-                                        <td>{{ $period->user->name }}</td>
-                                        <td>{{ $dt->createFromFormat( 'Y-m-d', $period->time_start )->locale(app()->getLocale())->translatedFormat('d F Y') }}</td>
-                                        <td>{{ $period->time_end ? $dt->createFromFormat( 'Y-m-d', $period->time_end )->locale(app()->getLocale())->translatedFormat('d F Y') : '' }}</td>
+                                        <th scope="col">{{ __('adminpanel.territories.user') }}</th>
+                                        <th scope="col">{{ __('adminpanel.territories.time-start') }}</th>
+                                        <th scope="col">{{ __('adminpanel.territories.time-end') }}</th>
                                     </tr>
-                                @endforeach
+                                    </thead>
+                                    <tbody>
 
-                                </tbody>
-                            </table>
+                                    @foreach($territory->territoryPeriod as $period)
+                                        <tr>
+                                            <td>{{ $period->user->name }}</td>
+                                            <td>{{ $dt->createFromFormat( 'Y-m-d', $period->time_start )->locale(app()->getLocale())->translatedFormat('d F Y') }}</td>
+                                            <td>{{ $period->time_end ? $dt->createFromFormat( 'Y-m-d', $period->time_end )->locale(app()->getLocale())->translatedFormat('d F Y') : '' }}</td>
+                                        </tr>
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+
+                            </div>
 
                         </div>
 

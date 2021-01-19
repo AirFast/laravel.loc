@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder {
         DB::table( 'users' )->insert( [
             'name'     => 'Admin',
             'role_id'  => 1,
-            'email'    => 'admin@email.com',
+            'email'    => 'airfast.88@gmail.com',
             'password' => Hash::make( 'password' ),
         ] );
 
