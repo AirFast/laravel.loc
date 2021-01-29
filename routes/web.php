@@ -14,16 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Default route
 Route::redirect('/', Illuminate\Support\Facades\App::getLocale());
 
+
+// Language route group
 Route::group(['prefix' => '{language}'], function () {
 
-    Route::get( '/', [ App\Http\Controllers\HomeController::class, 'index' ] )->name( 'home' );
+    Route::get('email', function () {
+        return new \App\Mail\VerifyEmailSender();
+    });
+
+    Route::get( '/', [ App\Http\Controllers\HomeController::class, 'index' ] )->middleware('auth')->name( 'home' );
 
     // Admin route
     Route::prefix( 'admin' )->group( function () {
 
-        Auth::routes();
+        // Authentication routes
+        Auth::routes(['verify' => true]);
 
         Route::middleware( [ 'admin' ] )->group( function () {
 
