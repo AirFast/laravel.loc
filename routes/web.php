@@ -21,10 +21,6 @@ Route::redirect('/', Illuminate\Support\Facades\App::getLocale());
 // Language route group
 Route::group(['prefix' => '{language}'], function () {
 
-    Route::get('email', function () {
-        return new \App\Mail\VerifyEmailSender();
-    });
-
     Route::get( '/', [ App\Http\Controllers\HomeController::class, 'index' ] )->middleware('auth')->name( 'home' );
 
     // Admin route
