@@ -37307,12 +37307,12 @@ if ($('.custom-range').length) {
   });
 }
 
-if ($('.territory-has-label').length) {
-  $('.territory-has-label').on('mousemove', function () {
+if ($('.has-label').length) {
+  $('.has-label').on('mousemove', function () {
     var scrollTop = $(window).scrollTop(),
         left = $(this).offset().left,
         top = $(this).offset().top;
-    $(this).find('.territory-label').css({
+    $(this).find('.label').css({
       left: left,
       top: top - scrollTop
     });
