@@ -7,9 +7,11 @@
             <div class="card border-0 shadow">
                 <div class="card-header border-0">{{ __('Reset Password') }}</div>
 
+                <img class="card-img-top" src="https://assetsnffrgf-a.akamaihd.net/assets/m/501100017/univ/art/501100017_univ_lsr_xl.jpg" alt="Card image cap">
+
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success text-center" role="alert">
+                        <div class="col-md-8 mx-auto alert alert-success text-center" role="alert">
                             {{ session('status') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -34,10 +36,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-dark">
-                                    {{ __('Send Password Reset Link') }}
+                                    {{ __('Send password reset link') }}
                                 </button>
                             </div>
                         </div>

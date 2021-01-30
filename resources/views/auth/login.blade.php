@@ -7,6 +7,8 @@
             <div class="card border-0 shadow">
                 <div class="card-header border-0">{{ __('Login') }}</div>
 
+                <img class="card-img-top" src="https://assetsnffrgf-a.akamaihd.net/assets/m/501100017/univ/art/501100017_univ_lsr_xl.jpg" alt="Card image cap">
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login', app()->getLocale()) }}">
                         @csrf
@@ -45,25 +47,30 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Remember me') }}
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-dark">
                                     {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link text-dark" href="{{ route('password.request', app()->getLocale()) }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Forgot your password?') }}
                                     </a>
                                 @endif
+
+                                <div class="mt-5">{{ __('If you do not already have an account, go to the registration page at') }}
+                                    <a href="{{ route('register', app()->getLocale()) }}">{{ __('this link') }}</a>.
+                                </div>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

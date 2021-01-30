@@ -7,6 +7,8 @@
             <div class="card border-0 shadow">
                 <div class="card-header border-0">{{ __('Register') }}</div>
 
+                <img class="card-img-top" src="https://assetsnffrgf-a.akamaihd.net/assets/m/501100017/univ/art/501100017_univ_lsr_xl.jpg" alt="Card image cap">
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('register', app()->getLocale()) }}">
                         @csrf
@@ -61,7 +63,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-dark">
                                     {{ __('Register') }}
