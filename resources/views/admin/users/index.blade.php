@@ -78,25 +78,40 @@
 
                                         <tr>
                                             <td>
-                                                <a href="{{ route( 'admin.users.show', [app()->getLocale(), $user] ) }}">
+                                                <a class="has-icon" href="{{ route( 'admin.users.show', [app()->getLocale(), $user] ) }}">
                                                     @if($user->img_src)
                                                         <div class="user-avatar inline-img shadow m-auto">
                                                             <img src="{{ asset( 'storage/' . $user->img_src ) }}"
                                                                  alt="{{ $user->name }}">
                                                         </div>
                                                     @else
-                                                        <span
-                                                            class="user-avatar inline-img d-block m-auto text-secondary">
-                                                    <svg width="30" height="30" viewBox="0 0 16 16"
-                                                         class="bi bi-person-circle"
-                                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                      <path
-                                                          d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-                                                      <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                                      <path fill-rule="evenodd"
-                                                            d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                                                    </svg>
-                                                </span>
+                                                        <span class="user-avatar inline-img d-block m-auto text-secondary">
+                                                            <svg width="40" height="40" viewBox="0 0 16 16"
+                                                                 class="bi bi-person-circle"
+                                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                              <path
+                                                                  d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                                                              <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                                              <path fill-rule="evenodd"
+                                                                    d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                                                            </svg>
+                                                        </span>
+                                                    @endif
+
+                                                    @if($user->hasVerifiedEmail())
+                                                        <span class="verified-user has-label right-side text-success">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                                            </svg>
+                                                            <span class="label">{{ __( 'adminpanel.territories.message.territory-pending' ) }}</span>
+                                                        </span>
+                                                    @else
+                                                        <span class="not-verified-user has-label right-side text-danger">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                                            </svg>
+                                                            <span class="label">{{ __( 'adminpanel.territories.message.territory-pending' ) }}</span>
+                                                        </span>
                                                     @endif
                                                 </a>
                                             </td>

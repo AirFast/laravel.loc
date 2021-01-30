@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller {
 
     public function __construct() {
-        $this->middleware( 'admin' );
+        $this->middleware( [ 'auth', 'verified', 'admin' ] );
     }
 
 

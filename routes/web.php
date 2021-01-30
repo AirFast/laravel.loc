@@ -21,7 +21,7 @@ Route::redirect('/', Illuminate\Support\Facades\App::getLocale());
 // Language route group
 Route::group(['prefix' => '{language}'], function () {
 
-    Route::get( '/', [ App\Http\Controllers\HomeController::class, 'index' ] )->middleware('auth')->name( 'home' );
+    Route::get( '/', [ App\Http\Controllers\HomeController::class, 'index' ] )->name( 'home' );
 
     // Admin route
     Route::prefix( 'admin' )->group( function () {

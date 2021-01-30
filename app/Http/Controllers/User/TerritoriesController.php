@@ -10,12 +10,12 @@ use Illuminate\Http\Request;
 class TerritoriesController extends Controller {
 
     public function __construct() {
-        $this->middleware( 'user' );
+        $this->middleware( [ 'auth', 'verified', 'user' ] );
     }
 
 
     public function index() {
-        $territories = Territory::orderBy('number', 'ASC')->where( 'status', 2 )->paginate( config( 'settings.count_per_page' ) );
+        $territories = Territory::orderBy( 'number', 'ASC' )->where( 'status', 2 )->paginate( config( 'settings.count_per_page' ) );
 
         return view( 'user.territories.index', compact( 'territories' ) );
     }
@@ -30,14 +30,14 @@ class TerritoriesController extends Controller {
 
     public function update( $locale, Territory $territory ) {
         $data = request()->validate( [
-            'status'      => 'required',
-            'user_id'     => 'required',
+            'status'  => 'required',
+            'user_id' => 'required',
         ] );
 
-        if($data['status'] == 2) {
+        if ( $data['status'] == 2 ) {
 
             $data['user_id'] = 0;
-            $data['status'] = 3;
+            $data['status']  = 3;
 
             $territoryPeriods = TerritoryPeriod::where( [
                 [ 'territory_id', $territory->id ],

@@ -9,7 +9,7 @@ use App\Models\User;
 class SettingsController extends Controller {
 
     public function __construct() {
-        $this->middleware( 'admin' );
+        $this->middleware( [ 'auth', 'verified', 'admin' ] );
     }
 
     public function index() {
