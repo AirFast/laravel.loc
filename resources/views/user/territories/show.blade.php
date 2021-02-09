@@ -44,6 +44,12 @@
 
 @endsection
 
+@section('app-bg')
+
+    <div class="app-background" style="background-image: url('{{ asset('img/' . mt_rand(1, 17) . '.jpg') }}')"></div>
+
+@endsection
+
 @push('scripts')
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwni-fw_bVIcbUlGlAthGMxIJ8BdZICPk&language={{ app()->getLocale() }}" defer></script>
 @endpush

@@ -324,3 +324,9 @@
     @endauth
 
 @endsection
+
+@section('app-bg')
+
+    <div class="app-background" style="background-image: url('{{ asset('img/' . mt_rand(1, 17) . '.jpg') }}')"></div>
+
+@endsection
