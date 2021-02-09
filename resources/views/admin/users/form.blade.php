@@ -2,12 +2,12 @@
 
 <div class="form-group row">
     <label for="image"
-           class="col-md-4 col-form-label text-md-right">{{ __('User Image') }}</label>
+           class="col-md-4 col-form-label text-md-right">{{ __('forms.user.img') }}</label>
 
     <div class="col-md-6">
         <div class="custom-file @error('img_src') is-invalid @enderror">
             <input type="file" class="custom-file-input" name="img_src" id="image">
-            <label class="custom-file-label" for="image">{{ __('Choose Image') }}</label>
+            <label class="custom-file-label" for="image">{{ __('forms.user.choose-img') }}</label>
         </div>
 
         @error('img_src')
@@ -19,7 +19,7 @@
 </div>
 
 <div class="form-group row">
-    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('forms.general.name') }}</label>
 
     <div class="col-md-6">
         <input id="name" type="text"
@@ -36,7 +36,7 @@
 
 <div class="form-group row">
     <label for="email"
-           class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+           class="col-md-4 col-form-label text-md-right">{{ __('forms.general.email') }}</label>
 
     <div class="col-md-6">
         <input id="email" type="email"
@@ -53,7 +53,7 @@
 
 <div class="form-group row">
     <label for="address"
-           class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+           class="col-md-4 col-form-label text-md-right">{{ __('forms.user.address') }}</label>
 
     <div class="col-md-6">
         <input id="address" type="text"
@@ -70,7 +70,7 @@
 
 <div class="form-group row">
     <label for="phone"
-           class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+           class="col-md-4 col-form-label text-md-right">{{ __('forms.user.phone') }}</label>
 
     <div class="col-md-6">
         <input id="phone" type="tel" pattern="[+]{1}[0-9]{12}"
@@ -88,7 +88,7 @@
 @if($user->hasVerifiedEmail())
     <div class="form-group row">
         <label for="role"
-               class="col-md-4 col-form-label text-md-right">{{ __('Select Role') }}</label>
+               class="col-md-4 col-form-label text-md-right">{{ __('forms.user.role') }}</label>
 
         <div class="col-md-6">
             <select id="role" class="form-control @error('role_id') is-invalid @enderror" name="role_id"

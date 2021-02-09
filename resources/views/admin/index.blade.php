@@ -279,7 +279,7 @@
                                 <div class="form-group col-12 text-right">
 
                                     <button type="submit" class="btn btn-dark">
-                                        {{ __('Update') }}
+                                        {{ __('forms.general.update') }}
                                     </button>
 
                                 </div>

@@ -4,8 +4,8 @@ return [
 
     'admin' => [
 
-        'menu-title' => 'Admin Menu',
-        'title'      => 'Admin Panel',
+        'menu-title' => 'Admin menu',
+        'title'      => 'Admin panel',
 
         'settings' => [
 
@@ -39,9 +39,9 @@ return [
 
     'user' => [
 
-        'menu-title' => 'User Menu',
-        'title'      => 'User Profile',
-        'add-new'    => 'Add New User',
+        'menu-title' => 'User menu',
+        'title'      => 'User profile',
+        'add-new'    => 'Add new user',
         'no-users'   => 'No users...',
 
         'table' => [

@@ -15,6 +15,7 @@ return [
         'failed'       => 'These credentials do not match our records.',
         'throttle'     => 'Too many login attempts. Please try again in :seconds seconds.',
         'link'         => 'цим посиланням',
+        'update'       => 'Оновити',
 
     ],
 
@@ -40,6 +41,18 @@ return [
         'title' => 'Скидання пароля',
         'link'  => 'Надіслати посилання для скидання пароля',
         'btn'   => 'Скинути пароль'
+
+    ],
+
+    'user' => [
+
+        'img'        => 'Фото користувача',
+        'choose-img' => 'Обрати фото',
+        'address'    => 'Адреса',
+        'phone'      => 'Номер телефону',
+        'role'       => 'Обрати роль',
+        'btn-add'    => 'Додати користувача',
+        'btn-edit'   => 'Оновити користувача',
 
     ],
 

@@ -15,6 +15,7 @@ return [
         'failed'       => 'These credentials do not match our records.',
         'throttle'     => 'Too many login attempts. Please try again in :seconds seconds.',
         'link'         => 'this link',
+        'update'       => 'Update',
 
     ],
 
@@ -40,6 +41,18 @@ return [
         'title' => 'Reset password',
         'link'  => 'Send password reset link',
         'btn'   => 'Reset password'
+
+    ],
+
+    'user' => [
+
+        'img'        => 'User image',
+        'choose-img' => 'Choose image',
+        'address'    => 'Address',
+        'phone'      => 'Phone number',
+        'role'       => 'Select role',
+        'btn-add'    => 'Add user',
+        'btn-edit'   => 'Update user',
 
     ],
 
