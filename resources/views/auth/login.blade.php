@@ -1,20 +1,24 @@
 @extends('layouts.app')
 
+@section('title'){{ __('forms.general.login') }}@endsection
+
+@section('description'){{ __('Home page a ministry with stand.') }}@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card border-0 shadow">
-                <div class="card-header border-0">{{ __('Login') }}</div>
+                <div class="card-header border-0">{{ __('forms.general.login') }}</div>
 
-                <img class="card-img-top" src="https://assetsnffrgf-a.akamaihd.net/assets/m/501100017/univ/art/501100017_univ_lsr_xl.jpg" alt="Card image cap">
+                <img class="card-img-top" src="{{ asset('img/' . mt_rand(1, 17) . '.jpg') }}" alt="Card image">
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login', app()->getLocale()) }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('forms.general.email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -28,7 +32,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('forms.general.password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -47,7 +51,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember me') }}
+                                        {{ __('forms.login.remember') }}
                                     </label>
                                 </div>
                             </div>
@@ -56,17 +60,17 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-dark">
-                                    {{ __('Login') }}
+                                    {{ __('forms.general.login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link text-dark" href="{{ route('password.request', app()->getLocale()) }}">
-                                        {{ __('Forgot your password?') }}
+                                        {{ __('forms.login.forgot') }}
                                     </a>
                                 @endif
 
-                                <div class="mt-5">{{ __('If you do not already have an account, go to the registration page at') }}
-                                    <a href="{{ route('register', app()->getLocale()) }}">{{ __('this link') }}</a>.
+                                <div class="mt-5">{{ __('forms.login.info') }}
+                                    <a class="text-dark" href="{{ route('register', app()->getLocale()) }}">{{ __('forms.general.link') }}</a>.
                                 </div>
                             </div>
                         </div>

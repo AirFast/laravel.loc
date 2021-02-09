@@ -22,7 +22,8 @@
                             <div class="row py-3 py-md-2">
 
                                 <div class="col-2 d-flex text-center">
-                                    <span class="{{ $dt->hour == $i ? 'btn btn-sm btn-secondary ml-n1 my-auto mx-sm-auto' : 'm-auto ' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
+                                    <span
+                                        class="{{ $dt->hour == $i ? 'btn btn-sm btn-secondary ml-n1 my-auto mx-sm-auto' : 'm-auto ' }}">{{ $i >= 10 ? $i : '0' . $i }}:00</span>
                                 </div>
 
                                 @if($stands->contains('time', $i))
@@ -34,13 +35,15 @@
                                             @if(!empty($stand->user_id_1))
 
                                                 <div class="col-10 col-md-5">
-                                                    <button class="btn btn-secondary btn-block">{{ $stand->userOne->name }}</button>
+                                                    <button
+                                                        class="btn btn-secondary btn-block">{{ $stand->userOne->name }}</button>
                                                 </div>
 
                                             @else
 
                                                 <div class="col-10 col-md-5">
-                                                    <button class="btn btn-outline-secondary btn-block">{{ __('stand.free') }}</button>
+                                                    <button
+                                                        class="btn btn-outline-secondary btn-block">{{ __('stand.free') }}</button>
                                                 </div>
 
                                             @endif
@@ -48,13 +51,15 @@
                                             @if(!empty($stand->user_id_2))
 
                                                 <div class="col-10 col-md-5 offset-2 offset-md-0 mt-3 m-md-0">
-                                                    <button class="btn btn-secondary btn-block">{{ $stand->userTwo->name }}</button>
+                                                    <button
+                                                        class="btn btn-secondary btn-block">{{ $stand->userTwo->name }}</button>
                                                 </div>
 
                                             @else
 
                                                 <div class="col-10 col-md-5 offset-2 offset-md-0 mt-3 m-md-0">
-                                                    <button class="btn btn-outline-secondary btn-block">{{ __('stand.free') }}</button>
+                                                    <button
+                                                        class="btn btn-outline-secondary btn-block">{{ __('stand.free') }}</button>
                                                 </div>
 
                                             @endif
@@ -66,11 +71,13 @@
                                 @else
 
                                     <div class="col-10 col-md-5">
-                                        <button class="btn btn-outline-secondary btn-block">{{ __('stand.free') }}</button>
+                                        <button
+                                            class="btn btn-outline-secondary btn-block">{{ __('stand.free') }}</button>
                                     </div>
 
                                     <div class="col-10 col-md-5 offset-2 offset-md-0 mt-3 m-md-0">
-                                        <button class="btn btn-outline-secondary btn-block">{{ __('stand.free') }}</button>
+                                        <button
+                                            class="btn btn-outline-secondary btn-block">{{ __('stand.free') }}</button>
                                     </div>
 
                                 @endif
@@ -87,5 +94,11 @@
 
         </div>
     </div>
+
+@endsection
+
+@section('app-bg')
+
+    <div class="app-background" style="background-image: url('{{ asset('img/' . mt_rand(1, 17) . '.jpg') }}')"></div>
 
 @endsection

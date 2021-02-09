@@ -50,12 +50,12 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login', app()->getLocale()) }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login', app()->getLocale()) }}">{{ __('forms.general.login') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
                                 <a class="nav-link"
-                                   href="{{ route('register', app()->getLocale()) }}">{{ __('Register') }}</a>
+                                   href="{{ route('register', app()->getLocale()) }}">{{ __('forms.general.register') }}</a>
                             </li>
                         @endif
                     @else
@@ -149,6 +149,8 @@
     </main>
 
 </div>
+
+@yield('app-bg')
 
 <!-- Scripts -->
 @stack('scripts')
