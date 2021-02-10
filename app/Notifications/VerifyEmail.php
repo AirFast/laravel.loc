@@ -51,15 +51,9 @@ class VerifyEmail extends Notification {
             return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
         }
 
-        return (new MailMessage)->markdown('emails.verify', compact('verificationUrl'));
-
-//        return (new MailMessage)
-//            ->greeting(__('Hi!'))
-//            ->subject(__('Verify Email Address'))
-//            ->line(__('Please click the button below to verify your email address.'))
-//            ->action(__('Verify Email Address'), $verificationUrl)
-//            ->line(__('If you did not create an account, no further action is required.'))
-//            ->salutation(__('Regards'));
+        return (new MailMessage)
+            ->subject( __( 'emails.verify.title' ) )
+            ->markdown('emails.verify', compact('verificationUrl'));
     }
 
     /**

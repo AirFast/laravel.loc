@@ -99,7 +99,7 @@
                                     <a role="button" class="btn btn-secondary"
                                        href="{{ route('logout', app()->getLocale()) }}"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('auth.logout') }}
+                                        {{ __('forms.general.logout') }}
                                     </a>
                                 </div>
 

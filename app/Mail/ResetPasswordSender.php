@@ -25,6 +25,6 @@ class ResetPasswordSender extends Mailable {
      * @return $this
      */
     public function build() {
-        return $this->subject( __( 'emails.reset.title' ) )->markdown( 'emails.reset' );
+        return $this->markdown( 'emails.reset' );
     }
 }

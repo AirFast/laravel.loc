@@ -25,6 +25,6 @@ class VerifyEmailSender extends Mailable {
      * @return $this
      */
     public function build() {
-        return $this->subject( __( 'emails.verify.title' ) )->markdown( 'emails.verify' );
+        return $this->markdown( 'emails.verify' );
     }
 }
