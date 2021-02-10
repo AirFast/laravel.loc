@@ -13,7 +13,9 @@ class SettingsController extends Controller {
     }
 
     public function index() {
-        return view( 'admin.index' );
+        $admins = User::where( 'role_id', 1 )->get();
+
+        return view( 'admin.index', compact( 'admins' ) );
     }
 
     public function update() {
@@ -23,6 +25,7 @@ class SettingsController extends Controller {
             'stand_time_start'        => 'required|numeric|min:0|max:23',
             'stand_time_end'          => 'required|numeric|min:0|max:23',
             'global_admin_message'    => '',
+            'territory_admin_email'   => '',
             'map_zoom'                => 'required|numeric|min:1|max:20',
             'map_zoom_control'        => 'boolean',
             'map_type_control'        => 'boolean',

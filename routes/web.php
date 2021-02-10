@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 // Default route
 Route::redirect('/', Illuminate\Support\Facades\App::getLocale());
 
-
 // Language route group
 Route::group(['prefix' => '{language}'], function () {
+
+    Route::get('/email', function () {
+        return new \App\Mail\TerritoryMailSender();
+    });
 
     Route::get( '/', [ App\Http\Controllers\HomeController::class, 'index' ] )->name( 'home' );
 

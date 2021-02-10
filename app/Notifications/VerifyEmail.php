@@ -51,9 +51,7 @@ class VerifyEmail extends Notification {
             return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
         }
 
-        return (new MailMessage)
-            ->subject(__('Verify Email Address'))
-            ->markdown('emails.verify', compact('verificationUrl'));
+        return (new MailMessage)->markdown('emails.verify', compact('verificationUrl'));
 
 //        return (new MailMessage)
 //            ->greeting(__('Hi!'))

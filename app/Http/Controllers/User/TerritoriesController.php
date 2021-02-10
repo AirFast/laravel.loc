@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TerritoryMailSender;
 use App\Models\Territory;
 use App\Models\TerritoryPeriod;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class TerritoriesController extends Controller {
 
@@ -54,12 +58,25 @@ class TerritoriesController extends Controller {
 
         } else {
 
+            if ( config( 'settings.territory_admin_email' ) ) {
+
+                $details = [
+                    'name'    => Auth::user()->name,
+                    'number'  => $territory->number,
+                    'address' => $territory->name,
+                    'url'     => route( 'admin.territories.edit', [ app()->getLocale(), $territory->id ] ),
+                ];
+
+                Mail::to( config( 'settings.territory_admin_email' ) )->send( new TerritoryMailSender( $details ) );
+
+            }
+
             session()->flash( 'message', __( 'adminpanel.territories.message.territory-take' ) );
 
         }
 
         $territory->update( $data );
 
-        return redirect( route( 'user.index', [ app()->getLocale(), $territory ] ) );
+        return redirect( route( 'user.index', [ app()->getLocale() ] ) );
     }
 }

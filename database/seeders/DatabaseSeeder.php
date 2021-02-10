@@ -55,6 +55,10 @@ class DatabaseSeeder extends Seeder {
                 'value' => ''
             ],
             [
+                'name'  => 'territory_admin_email',
+                'value' => false
+            ],
+            [
                 'name'  => 'map_zoom',
                 'value' => 17
             ],

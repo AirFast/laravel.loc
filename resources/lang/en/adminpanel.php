@@ -31,6 +31,20 @@ return [
 
             ],
 
+            'territory' => [
+
+                'admin-title'             => 'Responsible for the territory',
+                'admin-default'           => 'Select responsible for the territory',
+                'map-title'               => 'Map of the territory',
+                'map-zoom'                => 'Map zoom',
+                'map-zoom-control'        => 'Map zoom control',
+                'map-type-control'        => 'Map type control',
+                'map-street-view-control' => 'Map street view control',
+                'map-scroll-wheel'        => 'Mouse scroll wheel control',
+                'map-full-screen-control' => 'Full screen control',
+
+            ],
+
             'status' => 'Settings has been saved!',
 
         ],
@@ -67,6 +81,13 @@ return [
             'create' => 'User :name has been successfully added!',
             'update' => 'User has been successfully updated!',
             'delete' => 'User has been deleted!',
+
+        ],
+
+        'message' => [
+
+            'verified'     => 'This user has verified their email.',
+            'not-verified' => 'This user has not verified their email.',
 
         ]
 
@@ -143,12 +164,12 @@ return [
 
         'message' => [
 
-            'territory-pending'      => ':name wants to cultivate this territory.',
+            'territory-pending'      => ':name wants to process this territory.',
             'territory-warning'      => 'The territory is pending. No one preacher can take it for processing.',
             'territory-warning-user' => 'The territory is pending. You can\'t process it until the person in charge of the territory assigns it to you.',
             'territory-end-short'    => 'Time for processing of the territory ended.',
             'territory-end'          => 'Time for processing of the territory ended. Please hand it over to the person in charge of the territory.',
-            'territory-take'         => 'Your request for cultivation of the territory was sent to the person in charge of the territory.',
+            'territory-take'         => 'Your request for processing of the territory was sent to the person in charge of the territory.',
             'territory-give'         => 'The territory is handed over.',
 
         ]

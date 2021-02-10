@@ -7,18 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TerritoryMailSender extends Mailable
-{
+class TerritoryMailSender extends Mailable {
     use Queueable, SerializesModels;
+
+    public $details;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
+    public function __construct( $details ) {
+        $this->details = $details;
     }
 
     /**
@@ -26,8 +26,7 @@ class TerritoryMailSender extends Mailable
      *
      * @return $this
      */
-    public function build()
-    {
-        return $this->markdown('emails.territory');
+    public function build() {
+        return $this->subject( __( 'emails.territory.title' ) )->markdown( 'emails.territory' );
     }
 }

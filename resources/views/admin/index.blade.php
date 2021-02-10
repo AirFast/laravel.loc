@@ -165,7 +165,44 @@
 
                                 <div class="form-group col">
 
-                                    <h5>{{ __('Карта території') }}</h5>
+                                    <h5>{{ __('adminpanel.admin.settings.territory.admin-title') }}</h5>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-12 col-md-6">
+
+                                    <select id="territory-admin-email"
+                                            class="form-control @error('territory_admin_email') is-invalid @enderror"
+                                            name="territory_admin_email"
+                                            value="{{ old('territory_admin_email') ?? config('settings.territory_admin_email')  }}"
+                                            required>
+
+                                        <option value="0">{{ __('adminpanel.admin.settings.territory.admin-default') }}</option>
+                                        @foreach($admins as $admin)
+                                            <option
+                                                value="{{ $admin->email }}" {{ $admin->email == config('settings.territory_admin_email') ? 'selected' : '' }}>{{ $admin->name }}</option>
+                                        @endforeach
+
+                                    </select>
+
+                                    @error('stand_time_start')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-5">
+
+                                <div class="form-group col">
+
+                                    <h5>{{ __('adminpanel.admin.settings.territory.map-title') }}</h5>
 
                                 </div>
 
@@ -174,7 +211,7 @@
                             <div class="form-row">
 
                                 <div class="form-group col-12 col-lg-6">
-                                    <label for="map-zoom" class="col-form-label">{{ __('Наближення до карти') }}</label>
+                                    <label for="map-zoom" class="col-form-label">{{ __('adminpanel.admin.settings.territory.map-zoom') }}</label>
                                     <input id="map-zoom" type="range" class="custom-range @error('map_zoom') is-invalid @enderror" min="1" max="20" name="map_zoom" value="{{ old('map_zoom') ?? config('settings.map_zoom') }}">
                                     <div class="range-value is-hidden"></div>
 
@@ -193,7 +230,7 @@
 
                                     <div class="custom-control custom-switch">
                                         <input id="map-zoom-control" type="checkbox" class="custom-control-input @error('map_zoom_control') is-invalid @enderror"  name="map_zoom_control" value="1" {{ old('map_zoom_control') || config('settings.map_zoom_control') ? 'checked' : '' }}>
-                                        <label for="map-zoom-control" class="custom-control-label">{{ __('Керування наближенням') }}</label>
+                                        <label for="map-zoom-control" class="custom-control-label">{{ __('adminpanel.admin.settings.territory.map-zoom-control') }}</label>
 
                                         @error('map_zoom_control')
                                         <span class="invalid-feedback" role="alert">
@@ -208,7 +245,7 @@
 
                                     <div class="custom-control custom-switch">
                                         <input id="map-type-control" type="checkbox" class="custom-control-input @error('map_type_control') is-invalid @enderror"  name="map_type_control" value="1" {{ old('map_type_control') || config('settings.map_type_control') ? 'checked' : '' }}>
-                                        <label for="map-type-control" class="custom-control-label">{{ __('Керування типами карти') }}</label>
+                                        <label for="map-type-control" class="custom-control-label">{{ __('adminpanel.admin.settings.territory.map-type-control') }}</label>
 
                                         @error('map_type_control')
                                         <span class="invalid-feedback" role="alert">
@@ -227,7 +264,7 @@
 
                                     <div class="custom-control custom-switch">
                                         <input id="map-street-view-control" type="checkbox" class="custom-control-input @error('map_street_view_control') is-invalid @enderror"  name="map_street_view_control" value="1" {{ old('map_street_view_control') || config('settings.map_street_view_control') ? 'checked' : '' }}>
-                                        <label for="map-street-view-control" class="custom-control-label">{{ __('Керування переглядом вулиці') }}</label>
+                                        <label for="map-street-view-control" class="custom-control-label">{{ __('adminpanel.admin.settings.territory.map-street-view-control') }}</label>
 
                                         @error('map_street_view_control')
                                         <span class="invalid-feedback" role="alert">
@@ -242,7 +279,7 @@
 
                                     <div class="custom-control custom-switch">
                                         <input id="map-scroll-wheel" type="checkbox" class="custom-control-input @error('map_scroll_wheel') is-invalid @enderror"  name="map_scroll_wheel" value="1" {{ old('map_scroll_wheel') || config('settings.map_scroll_wheel') ? 'checked' : '' }}>
-                                        <label for="map-scroll-wheel" class="custom-control-label">{{ __('Керування колесом миші') }}</label>
+                                        <label for="map-scroll-wheel" class="custom-control-label">{{ __('adminpanel.admin.settings.territory.map-scroll-wheel') }}</label>
 
                                         @error('map_scroll_wheel')
                                         <span class="invalid-feedback" role="alert">
@@ -261,7 +298,7 @@
 
                                     <div class="custom-control custom-switch">
                                         <input id="map-full-screen-control" type="checkbox" class="custom-control-input @error('map_full_screen_control') is-invalid @enderror"  name="map_full_screen_control" value="1" {{ old('map_full_screen_control') || config('settings.map_full_screen_control') ? 'checked' : '' }}>
-                                        <label for="map-full-screen-control" class="custom-control-label">{{ __('Керування повноекранним режимом') }}</label>
+                                        <label for="map-full-screen-control" class="custom-control-label">{{ __('adminpanel.admin.settings.territory.map-full-screen-control') }}</label>
 
                                         @error('map_full_screen_control')
                                         <span class="invalid-feedback" role="alert">

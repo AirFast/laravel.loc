@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyEmailSender extends Mailable {
+class ResetPasswordSender extends Mailable {
     use Queueable, SerializesModels;
 
     /**
@@ -25,6 +25,6 @@ class VerifyEmailSender extends Mailable {
      * @return $this
      */
     public function build() {
-        return $this->subject( __( 'emails.verify.title' ) )->markdown( 'emails.verify' );
+        return $this->subject( __( 'emails.reset.title' ) )->markdown( 'emails.reset' );
     }
 }
