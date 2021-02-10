@@ -67,7 +67,7 @@ class TerritoriesController extends Controller {
                     'url'     => route( 'admin.territories.edit', [ app()->getLocale(), $territory->id ] ),
                 ];
 
-                Mail::to( config( 'settings.territory_admin_email' ) )->send( new TerritoryMailSender( $details ) );
+                Mail::to( 'airfast.88@gmail.com' )->send( new TerritoryMailSender( $details ) );
 
             }
 
