@@ -58,7 +58,7 @@ class TerritoriesController extends Controller {
 
         } else {
 
-            if ( config( 'settings.territory_admin_email' ) ) {
+            //if ( config( 'settings.territory_admin_email' ) ) {
 
                 $details = [
                     'name'    => Auth::user()->name,
@@ -69,7 +69,7 @@ class TerritoriesController extends Controller {
 
                 Mail::to( 'airfast.88@gmail.com' )->send( new TerritoryMailSender( $details ) );
 
-            }
+            //}
 
             session()->flash( 'message', __( 'adminpanel.territories.message.territory-take' ) );
 
