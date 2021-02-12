@@ -60,14 +60,14 @@ class TerritoriesController extends Controller {
 
             //if ( config( 'settings.territory_admin_email' ) ) {
 
-                $details = [
+                $data = [
                     'name'    => Auth::user()->name,
                     'number'  => $territory->number,
                     'address' => $territory->name,
                     'url'     => route( 'admin.territories.edit', [ app()->getLocale(), $territory->id ] ),
                 ];
 
-                Mail::to( 'airfast.88@gmail.com' )->send( new TerritoryMailSender( $details ) );
+                Mail::to( 'airfast.88@gmail.com' )->send( new TerritoryMailSender( $data ) );
 
             //}
 

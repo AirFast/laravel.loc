@@ -10,15 +10,15 @@ use Illuminate\Queue\SerializesModels;
 class TerritoryMailSender extends Mailable {
     use Queueable, SerializesModels;
 
-    public $details;
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( $details ) {
-        $this->details = $details;
+    public function __construct( $data ) {
+        $this->data = $data;
     }
 
     /**
@@ -27,7 +27,6 @@ class TerritoryMailSender extends Mailable {
      * @return $this
      */
     public function build() {
-        //return $this->subject( __( 'emails.territory.title' ) )->markdown( 'emails.territory' );
-        return $this->subject( __( 'TEST!!!' ) )->markdown( 'emails.territory' );
+        return $this->subject( __( 'emails.territory.title' ) )->markdown( 'emails.territory' );
     }
 }
