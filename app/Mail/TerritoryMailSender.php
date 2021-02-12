@@ -27,6 +27,7 @@ class TerritoryMailSender extends Mailable {
      * @return $this
      */
     public function build() {
-        return $this->subject( __( 'emails.territory.title' ) )->markdown( 'emails.territory' );
+        //return $this->subject( __( 'emails.territory.title' ) )->markdown( 'emails.territory' );
+        return $this->subject( __( 'TEST!!!' ) )->markdown( 'emails.territory' );
     }
 }
