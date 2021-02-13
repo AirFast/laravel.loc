@@ -10,15 +10,15 @@ use Illuminate\Queue\SerializesModels;
 class TerritoryMailSender extends Mailable {
     use Queueable, SerializesModels;
 
-    public $data;
+    public $mailData;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( $data ) {
-        $this->data = $data;
+    public function __construct( $mailData ) {
+        $this->mailData = $mailData;
     }
 
     /**
