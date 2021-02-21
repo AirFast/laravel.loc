@@ -36,9 +36,13 @@ class StandsController extends Controller {
             'user_id_2' => 'required_if:user_id_1,null|required_if:user_id_2,' . Auth::user()->id
         ] );
 
-        $stand = Stand::create( $data );
+        if ( ! Stand::where( [ [ 'date', $data['date'] ], [ 'time', $data['time'] ] ] )->exists() ) {
+            $stand = Stand::create( $data );
 
-        return back()->with( [ 'create' => $this->setCreateSessionMessage( $stand ) ] );
+            session()->flash( 'create', $this->setCreateSessionMessage( $stand ) );
+        }
+
+        return back();
     }
 
     public function update( $locale, Stand $stand ) {
