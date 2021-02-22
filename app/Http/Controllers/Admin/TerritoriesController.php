@@ -7,7 +7,6 @@ use App\Models\Territory;
 use App\Models\TerritoryPeriod;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class TerritoriesController extends Controller {
 
