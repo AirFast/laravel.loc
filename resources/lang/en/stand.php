@@ -10,4 +10,12 @@ return [
     'prev-week' => 'Previous Week',
     'next-week' => 'Next Week',
 
+    'alert' => [
+
+        'create' => ':user, you have created an entry at :time:00 on :date. Thanks!',
+        'notice' => 'Entry already exists at this time. Please sign up for another time.',
+        'delete' => ':user, you have delete an entry at :time:00 on :date. Thanks!',
+
+    ],
+
 ];

@@ -33,10 +33,37 @@ class StandsController extends Controller {
             'user_id_2' => 'required_if:user_id_1,null|required_if:user_id_2,' . Auth::user()->id
         ] );
 
-        if ( ! Stand::where( [ [ 'date', $data['date'] ], [ 'time', $data['time'] ] ] )->exists() ) {
+        $stand = Stand::where( [ [ 'date', $data['date'] ], [ 'time', $data['time'] ] ] );
+        $dt    = $dt = Carbon::createFromDate( $data['date'] )->timezone( 'Europe/Kiev' )->locale( app()->getLocale() )->translatedFormat( 'l, d F Y' );
+
+        if ( ! $stand->exists() ) {
             $stand = Stand::create( $data );
 
-            session()->flash( 'create', $this->setCreateSessionMessage( $stand ) );
+            session()->flash( 'create', __( 'stand.alert.create', [
+                'user' => Auth::user()->name,
+                'time' => $stand->time,
+                'date' => $dt
+            ] ) );
+        } else if ( ! empty( $data['user_id_1'] ) && empty( $stand->first()->user_id_1 ) ) {
+            $data['user_id_2'] = $stand->first()->user_id_2;
+            $stand->first()->update( $data );
+
+            session()->flash( 'create', __( 'stand.alert.create', [
+                'user' => Auth::user()->name,
+                'time' => $stand->first()->time,
+                'date' => $dt
+            ] ) );
+        } else if ( ! empty( $data['user_id_2'] ) && empty( $stand->first()->user_id_2 ) ) {
+            $data['user_id_1'] = $stand->first()->user_id_1;
+            $stand->first()->update( $data );
+
+            session()->flash( 'create', __( 'stand.alert.create', [
+                'user' => Auth::user()->name,
+                'time' => $stand->first()->time,
+                'date' => $dt
+            ] ) );
+        } else {
+            session()->flash( 'create', __( 'stand.alert.notice' ) );
         }
 
         return back();
@@ -48,41 +75,63 @@ class StandsController extends Controller {
             'user_id_2' => 'required_if:user_id_1,null|required_if:user_id_2,' . Auth::user()->id
         ] );
 
-        if ( ! empty( $stand->user_id_1 ) && ( $stand->user_id_1 == $data['user_id_1'] ) ) {
-            $stand->user_id_1 = null;
-            $stand->update();
-
-            return back()->with( [ 'delete' => $this->setDeleteSessionMessage( $stand ) ] );
-        }
+        $dt = Carbon::createFromDate( $stand->date )->timezone( 'Europe/Kiev' )->locale( app()->getLocale() )->translatedFormat( 'l, d F Y' );
 
         if ( ! empty( $data['user_id_1'] ) ) {
-            $stand->user_id_1 = $data['user_id_1'];
-            $stand->update();
+            unset( $data['user_id_2'] );
 
-            return back()->with( [ 'create' => $this->setCreateSessionMessage( $stand ) ] );
-        }
+            if ( ! empty( $stand->user_id_1 ) && $stand->user_id_1 == $data['user_id_1'] ) {
+                $data['user_id_1'] = null;
 
-        if ( ! empty( $stand->user_id_2 ) && ( $stand->user_id_2 == $data['user_id_2'] ) ) {
-            $stand->user_id_2 = null;
-            $stand->update();
+                session()->flash( 'delete', __( 'stand.alert.delete', [
+                    'user' => Auth::user()->name,
+                    'time' => $stand->time,
+                    'date' => $dt
+                ] ) );
+            } else {
+                session()->flash( 'create', __( 'stand.alert.create', [
+                    'user' => Auth::user()->name,
+                    'time' => $stand->time,
+                    'date' => $dt
+                ] ) );
+            }
 
-            return back()->with( [ 'delete' => $this->setDeleteSessionMessage( $stand ) ] );
+            if ( ! empty( $stand->user_id_1 ) && $stand->user_id_1 != $data['user_id_1'] && $data['user_id_1'] != null ) {
+                $data['user_id_1'] = $stand->user_id_1;
+
+                session()->flash( 'create', __( 'stand.alert.notice' ) );
+            }
         }
 
         if ( ! empty( $data['user_id_2'] ) ) {
-            $stand->user_id_2 = $data['user_id_2'];
-            $stand->update();
+            unset( $data['user_id_1'] );
 
-            return back()->with( [ 'create' => $this->setCreateSessionMessage( $stand ) ] );
+            if ( ! empty( $stand->user_id_2 ) && $stand->user_id_2 == $data['user_id_2'] ) {
+                $data['user_id_2'] = null;
+
+                session()->flash( 'delete', __( 'stand.alert.delete', [
+                    'user' => Auth::user()->name,
+                    'time' => $stand->time,
+                    'date' => $dt
+                ] ) );
+            } else {
+                session()->flash( 'create', __( 'stand.alert.create', [
+                    'user' => Auth::user()->name,
+                    'time' => $stand->time,
+                    'date' => $dt
+                ] ) );
+            }
+
+            if ( ! empty( $stand->user_id_2 ) && $stand->user_id_2 != $data['user_id_2'] && $data['user_id_2'] != null ) {
+                $data['user_id_2'] = $stand->user_id_2;
+
+                session()->flash( 'create', __( 'stand.alert.notice' ) );
+            }
         }
-    }
 
-    private function setCreateSessionMessage( $stand ) {
-        return Auth::user()->name . ', you have created an entry at ' . $stand->time . ':00 on ' . Carbon::createFromDate( $stand->date )->timezone( 'Europe/Kiev' )->format( 'l, d F Y' ) . '. Thanks!';
-    }
+        $stand->update( $data );
 
-    private function setDeleteSessionMessage( $stand ) {
-        return Auth::user()->name . ', you have delete an entry at ' . $stand->time . ':00 on ' . Carbon::createFromDate( $stand->date )->timezone( 'Europe/Kiev' )->format( 'l, d F Y' ) . '. Thanks!';
+        return back();
     }
 
 }
