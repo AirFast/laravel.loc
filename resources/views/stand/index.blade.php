@@ -255,14 +255,15 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Do you really want to create entry?</br><span id="create-modal-time">8:00</span>
-                                on {{ $dt->format('l, d F Y') }}</p>
+                            <p>
+                                <span>{{ __('stand.popup.create') }}</span>
+                                </br>
+                                <span id="create-modal-time">8:00</span>, {{ $dt->locale(app()->getLocale())->translatedFormat('l, d F Y') }}
+                            </p>
                         </div>
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">
-                                No
-                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">{{ __('stand.popup.btn-no') }}</button>
 
                             <form action="{{ route('user.stand.store', app()->getLocale()) }}" method="POST">
 
@@ -273,7 +274,7 @@
                                 <input id="store-user-id-1" type="hidden" name="user_id_1">
                                 <input id="store-user-id-2" type="hidden" name="user_id_2">
 
-                                <button type="submit" class="btn btn-dark" role="button">Yes, I want</button>
+                                <button type="submit" class="btn btn-dark" role="button">{{ __('stand.popup.btn-yes') }}</button>
 
                             </form>
 
@@ -293,14 +294,16 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Do you really want to <span id="crt-dlt-sign">#</span> an entry?</br><span
-                                    id="update-modal-time">8:00</span> on {{ $dt->format('l, d F Y') }}</p>
+                            <p>
+                                <span id="crt-sign">{{ __('stand.popup.create') }}</span>
+                                <span id="dlt-sign">{{ __('stand.popup.delete') }}</span>
+                                </br>
+                                <span id="update-modal-time">8:00</span>, {{ $dt->locale(app()->getLocale())->translatedFormat('l, d F Y') }}
+                            </p>
                         </div>
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">
-                                No
-                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" role="button">{{ __('stand.popup.btn-no') }}</button>
 
                             <form id="edit-form" action="#" method="POST">
 
@@ -310,7 +313,7 @@
                                 <input id="edit-user-id-1" type="hidden" name="user_id_1">
                                 <input id="edit-user-id-2" type="hidden" name="user_id_2">
 
-                                <button type="submit" class="btn btn-dark" role="button">Yes, I want</button>
+                                <button type="submit" class="btn btn-dark" role="button">{{ __('stand.popup.btn-yes') }}</button>
 
                             </form>
 

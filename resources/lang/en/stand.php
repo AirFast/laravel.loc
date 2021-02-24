@@ -18,4 +18,13 @@ return [
 
     ],
 
+    'popup' => [
+
+        'create'  => 'Do you really want to create entry?',
+        'delete'  => 'Do you really want to delete an entry?',
+        'btn-no'  => 'No',
+        'btn-yes' => 'Yes, I want',
+
+    ],
+
 ];

@@ -44,8 +44,14 @@ class StandsController extends Controller {
                 'time' => $stand->time,
                 'date' => $dt
             ] ) );
-        } else if ( ! empty( $data['user_id_1'] ) && empty( $stand->first()->user_id_1 ) ) {
-            $data['user_id_2'] = $stand->first()->user_id_2;
+        } else if ( ! empty( $data['user_id_1'] ) && ( empty( $stand->first()->user_id_1 ) || empty( $stand->first()->user_id_2 ) ) ) {
+            if ( empty( $stand->first()->user_id_2 ) ) {
+                $data['user_id_2'] = $data['user_id_1'];
+                unset( $data['user_id_1'] );
+            } else {
+                $data['user_id_2'] = $stand->first()->user_id_2;
+            }
+
             $stand->first()->update( $data );
 
             session()->flash( 'create', __( 'stand.alert.create', [
@@ -53,8 +59,14 @@ class StandsController extends Controller {
                 'time' => $stand->first()->time,
                 'date' => $dt
             ] ) );
-        } else if ( ! empty( $data['user_id_2'] ) && empty( $stand->first()->user_id_2 ) ) {
-            $data['user_id_1'] = $stand->first()->user_id_1;
+        } else if ( ! empty( $data['user_id_2'] ) && ( empty( $stand->first()->user_id_1 ) || empty( $stand->first()->user_id_2 ) ) ) {
+            if ( empty( $stand->first()->user_id_1 ) ) {
+                $data['user_id_1'] = $data['user_id_2'];
+                unset( $data['user_id_2'] );
+            } else {
+                $data['user_id_1'] = $stand->first()->user_id_1;
+            }
+
             $stand->first()->update( $data );
 
             session()->flash( 'create', __( 'stand.alert.create', [

@@ -76,7 +76,8 @@ $('#update-modal').on('show.bs.modal', function (event) {
     let userId2 = button.data('user-id-2');
 
     form.attr('action', updateUrl);
-    modal.find('#crt-dlt-sign').text(crtDltSign);
+    crtDltSign == 'create' ? modal.find('#crt-sign').show() : modal.find('#crt-sign').hide();
+    crtDltSign == 'delete' ? modal.find('#dlt-sign').show() : modal.find('#dlt-sign').hide();
     modal.find('#update-modal-time').text(time + ':00');
     modal.find('#edit-user-id-1').val(userId1);
     modal.find('#edit-user-id-2').val(userId2);
