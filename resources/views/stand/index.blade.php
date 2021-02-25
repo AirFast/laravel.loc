@@ -72,7 +72,7 @@
                             <div class="card-body">
 
                                 @if (session('create'))
-                                    <div class="alert alert-success ol-12 col-md-10 ml-auto text-center" role="alert">
+                                    <div class="alert alert-success col-12 col-md-10 ml-auto text-center" role="alert">
                                         {{ session('create') }}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -81,7 +81,7 @@
                                 @endif
 
                                 @if (session('delete'))
-                                    <div class="alert alert-danger ol-12 col-md-10 ml-auto text-center" role="alert">
+                                    <div class="alert alert-danger col-12 col-md-10 ml-auto text-center" role="alert">
                                         {{ session('delete') }}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>

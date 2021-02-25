@@ -2,13 +2,16 @@
 
 return [
 
-    'appname'   => 'My ministry',
-    'home'      => 'Home page',
-    'free'      => 'Free place',
-    'sign'      => 'Sign up',
-    'today'     => 'Today',
-    'prev-week' => 'Previous Week',
-    'next-week' => 'Next Week',
+    'appname'           => 'My ministry',
+    'home'              => 'Home page',
+    'free'              => 'Free place',
+    'sign'              => 'Sign up',
+    'today'             => 'Today',
+    'tomorrow'          => 'Tomorrow',
+    'prev-week'         => 'Previous Week',
+    'next-week'         => 'Next Week',
+    'ministry-schedule' => 'Your ministry schedule with a stand',
+    'no-entries'        => 'There are no entries to date...',
 
     'alert' => [
 
