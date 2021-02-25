@@ -100,6 +100,19 @@ class StandsController extends Controller {
                     'time' => $stand->time,
                     'date' => $dt
                 ] ) );
+            } elseif ( empty( $stand->user_id_2 ) && ! empty( $stand->user_id_1 ) && $data['user_id_1'] != null ) {
+                $data['user_id_2'] = $data['user_id_1'];
+                unset($data['user_id_1']);
+
+                session()->flash( 'create', __( 'stand.alert.create', [
+                    'user' => Auth::user()->name,
+                    'time' => $stand->time,
+                    'date' => $dt
+                ] ) );
+            } else if ( ! empty( $stand->user_id_1 ) && $stand->user_id_1 != $data['user_id_1'] && $data['user_id_1'] != null ) {
+                unset($data['user_id_1']);
+
+                session()->flash( 'create', __( 'stand.alert.notice' ) );
             } else {
                 session()->flash( 'create', __( 'stand.alert.create', [
                     'user' => Auth::user()->name,
@@ -108,11 +121,6 @@ class StandsController extends Controller {
                 ] ) );
             }
 
-            if ( ! empty( $stand->user_id_1 ) && $stand->user_id_1 != $data['user_id_1'] && $data['user_id_1'] != null ) {
-                $data['user_id_1'] = $stand->user_id_1;
-
-                session()->flash( 'create', __( 'stand.alert.notice' ) );
-            }
         }
 
         if ( ! empty( $data['user_id_2'] ) ) {
@@ -126,6 +134,19 @@ class StandsController extends Controller {
                     'time' => $stand->time,
                     'date' => $dt
                 ] ) );
+            } else if ( ! empty( $stand->user_id_2 ) && empty( $stand->user_id_1 ) && $data['user_id_2'] != null ) {
+                $data['user_id_1'] = $data['user_id_2'];
+                unset($data['user_id_2']);
+
+                session()->flash( 'create', __( 'stand.alert.create', [
+                    'user' => Auth::user()->name,
+                    'time' => $stand->time,
+                    'date' => $dt
+                ] ) );
+            } else if ( ! empty( $stand->user_id_2 ) && $stand->user_id_2 != $data['user_id_2'] && $data['user_id_2'] != null ) {
+                unset($data['user_id_2']);
+
+                session()->flash( 'create', __( 'stand.alert.notice' ) );
             } else {
                 session()->flash( 'create', __( 'stand.alert.create', [
                     'user' => Auth::user()->name,
@@ -134,11 +155,6 @@ class StandsController extends Controller {
                 ] ) );
             }
 
-            if ( ! empty( $stand->user_id_2 ) && $stand->user_id_2 != $data['user_id_2'] && $data['user_id_2'] != null ) {
-                $data['user_id_2'] = $stand->user_id_2;
-
-                session()->flash( 'create', __( 'stand.alert.notice' ) );
-            }
         }
 
         $stand->update( $data );
