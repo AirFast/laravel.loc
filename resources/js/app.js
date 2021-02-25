@@ -1,6 +1,18 @@
 require('./bootstrap');
 
 // Custom js
+if ($('.menu-btn').length) {
+    $('.menu-btn').on('click', function () {
+        let $this = $(this),
+            $openIcon = $this.find('.menu-btn-icon-open'),
+            $closeIcon = $this.find('.menu-btn-icon-close');
+
+        $openIcon.toggleClass('d-none');
+        $closeIcon.toggleClass('d-none');
+        $this.next().toggleClass('d-none');
+    });
+}
+
 if ($('.scroll-nav-tabs').length) {
     var navTabs = $('.scroll-nav-tabs'),
         activeTab = $('.scroll-nav-tabs .nav-link.active');

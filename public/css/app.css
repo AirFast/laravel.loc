@@ -10926,6 +10926,10 @@ a.text-dark:focus {
   background: linear-gradient(185deg, #f8fafc 30%, rgba(248, 250, 252, 0.95) 40%, transparent 100%);
 }
 
+.menu-btn {
+  cursor: pointer;
+}
+
 .user-avatar-box {
   position: relative;
   margin: auto;

@@ -37275,6 +37275,17 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Custom js
 
 
+if ($('.menu-btn').length) {
+  $('.menu-btn').on('click', function () {
+    var $this = $(this),
+        $openIcon = $this.find('.menu-btn-icon-open'),
+        $closeIcon = $this.find('.menu-btn-icon-close');
+    $openIcon.toggleClass('d-none');
+    $closeIcon.toggleClass('d-none');
+    $this.next().toggleClass('d-none');
+  });
+}
+
 if ($('.scroll-nav-tabs').length) {
   var navTabs = $('.scroll-nav-tabs'),
       activeTab = $('.scroll-nav-tabs .nav-link.active');
