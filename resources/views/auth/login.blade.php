@@ -11,7 +11,7 @@
             <div class="card border-0 shadow">
                 <div class="card-header border-0">{{ __('forms.general.login') }}</div>
 
-                <img class="card-img-top" src="{{ asset('img/' . mt_rand(1, 17) . '.jpg') }}" alt="Card image">
+                <img class="card-img-top" src="{{ asset('img/' . mt_rand(1, 20) . '.jpg') }}" alt="Card image">
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login', app()->getLocale()) }}">
